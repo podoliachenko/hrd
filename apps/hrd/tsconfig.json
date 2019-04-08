@@ -1,7 +1,20 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "jest"]
+    "types": ["node", "jest"],
+    "baseUrl": ".",
+    "paths": {
+      "@services/*": ["./src/app/services/*"],
+      "@pipes/*": ["./src/app/pipes/*"],
+      "@pages/*": ["./src/app/pages/*"],
+      "@interfaces/*": ["./src/app/interfaces/*"],
+      "@classes/*": ["./src/app/classes/*"],
+      "@guards/*": ["./src/app/guards/*"],
+      "@components/*": ["./src/app/components/*"],
+      "@configs/*": ["./src/app/configs/*"],
+      "@environment": ["./src/environments/environment"],
+      "@hrd/*": ["libs/*"]
+    }
   },
   "include": ["**/*.ts"]
 }

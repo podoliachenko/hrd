@@ -1,0 +1,42 @@
+<ng-container *ngIf="service.students && cols">
+  <p-contextMenu #cm [model]="itemsMenu"></p-contextMenu>
+  <!--<p-table #dt1 [columns]="selectedColumns" [value]="students.students" [paginator]="true" [lazy]="true" [rows]="10"
+           [totalRecords]="students.total"
+           (onPage)="changePage($event)" (onSort)="sort($event)" [contextMenu]="cm"
+           [resetPageOnSort]="true" [(contextMenuSelection)]="selected">
+    <ng-template pTemplate="caption">
+      <div style="text-align:left">
+        <p-multiSelect [options]="cols" [(ngModel)]="selectedColumns" optionLabel="header"
+                       selectedItemsLabel="{0} столбцов" [style]="{minWidth: '200px'}"
+                       defaultLabel="Выберите столбцы"></p-multiSelect>
+      </div>
+    </ng-template>
+    <ng-template pTemplate="header" let-columns>
+      <tr>
+        <th *ngFor="let col of (columns)" [pSortableColumn]="col.field" pResizableColumn pReorderableColumn>
+          {{col.header}}
+          <p-sortIcon [field]="col.field"></p-sortIcon>
+        </th>
+      </tr>
+      <tr>
+        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
+          <input pInputText type="text" (input)="filter($event.target.value, col.field)">
+        </th>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" let-rowData let-columns="columns">
+      <tr [pContextMenuRow]="rowData">
+        <td *ngFor="let col of columns">
+          <div *ngIf="!col.type; else other">{{rowData[col.field]}}</div>
+          <ng-template #other>
+          </ng-template>
+        </td>
+      </tr>
+    </ng-template>
+  </p-table> -->
+  <hrd-dynamic-table
+    [tableService]="service"
+    [columns]="students_fields"
+    saveStorageName="students"
+  ></hrd-dynamic-table>
+</ng-container>

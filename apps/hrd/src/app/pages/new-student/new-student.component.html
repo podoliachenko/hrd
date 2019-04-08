@@ -1,0 +1,226 @@
+<div class="" [formGroup]="form">
+  <div class="data row">
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="last_name">Фамилия: </label>
+      <input
+        type="text"
+        id="last_name"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Фамилия"
+        formControlName="last_name"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="first_name">Имя: </label>
+      <input
+        type="text"
+        id="first_name"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Имя"
+        formControlName="first_name"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="patronymic">Отчество: </label>
+      <input
+        type="text"
+        id="patronymic"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Отчество"
+        formControlName="patronymic"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="group">Группа: </label>
+      <p-autoComplete
+        type="text"
+        id="group"
+        class="flex-grow-1"
+        placeholder="Группа"
+        formControlName="group"
+        [suggestions]="getGroups()"
+        [dropdown]="true"
+        (completeMethod)="search($event)"
+      ></p-autoComplete>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="birthday">Дата рождения: </label>
+      <p-calendar
+        [showIcon]="true"
+        class="flex-grow-1"
+        id="birthday"
+        formControlName="birthday"
+        placeholder="Дата рождения"
+      ></p-calendar>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="inn">ИНН: </label>
+      <input
+        type="number"
+        id="inn"
+        class="flex-grow-1"
+        pInputText
+        placeholder="ИНН"
+        formControlName="inn"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="address">Адрес прописки: </label>
+      <input
+        type="text"
+        id="address"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Адрес прописки"
+        formControlName="address"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="address2">Адрес проживания: </label>
+      <input
+        type="text"
+        class="flex-grow-1"
+        id="address2"
+        pInputText
+        placeholder="Адрес проживания"
+        formControlName="address2"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="phone_number">Номер телефона: </label>
+      <input
+        type="text"
+        id="phone_number"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Номер телефона"
+        formControlName="phone_number"
+      />
+    </div>
+
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="form_study">Форма обучения: </label>
+      <p-dropdown
+        [options]="dictionary.getDictionarySelect('form_study')"
+        formControlName="form_study"
+        id="form_study"
+        placeholder="Форма обучения"
+      >
+      </p-dropdown>
+    </div>
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="terms_training">Условия обучения: </label>
+      <p-dropdown
+        [options]="dictionary.getDictionarySelect('terms_training')"
+        formControlName="terms_training"
+        id="terms_training"
+        placeholder="Условия обучения"
+      >
+      </p-dropdown>
+    </div>
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="status">Статус: </label>
+      <p-dropdown
+        [options]="dictionary.getDictionarySelect('status')"
+        formControlName="status"
+        id="status"
+        placeholder="Статус"
+      >
+      </p-dropdown>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="passport_series">Серия паспорта: </label>
+      <input
+        type="text"
+        id="passport_series"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Серия паспорта"
+        formControlName="passport_series"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="passport_no">Номер паспорта: </label>
+      <input
+        type="text"
+        id="passport_no"
+        class="flex-grow-1"
+        pInputText
+        placeholder="Номер паспорта"
+        formControlName="passport_no"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="specialty">Специальность: </label>
+      <p-dropdown
+        [options]="dictionary.getDictionarySelect('specialty')"
+        formControlName="specialty"
+        id="specialty"
+        placeholder="Форма обучения"
+      >
+      </p-dropdown>
+    </div>
+    <div class="ui-g-12 d-flex mb-2 flex-column notes">
+      <label for="notes">Заметки: </label>
+      <textarea
+        name="notes"
+        id="notes"
+        cols="30"
+        rows="5"
+        pInputTextarea
+        placeholder="Заметки"
+        autoResize="false"
+      ></textarea>
+    </div>
+    <!--
+
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="date_action">Дата действия: </label>
+      <input type="text" id="date_action" class="flex-grow-1" pInputText placeholder="Дата действия"
+             formControlName="date_action">
+    </div>
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="order_date">Дата приказа: </label>
+      <input type="text" id="order_date" class="flex-grow-1" pInputText placeholder="Дата приказа"
+             formControlName="order_date">
+    </div>
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="notes">Примечания: </label>
+      <input type="text" id="notes" class="flex-grow-1" pInputText placeholder="Примечания" formControlName="notes">
+    </div>
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="output">Выпуск: </label>
+      <input type="text" id="output" class="flex-grow-1" pInputText placeholder="Выпуск" formControlName="output">
+    </div>
+    <div class="ui-g-4 d-flex mb-2 flex-column">
+      <label for="privileges">Льготы: </label>
+      <input type="text" id="privileges" class="flex-grow-1" pInputText placeholder="Группа" formControlName="privileges">
+    </div>  -->
+  </div>
+
+  <div class="modal-footer">
+    <div class="ui-g-12 d-flex justify-content-end">
+      <i
+        class="fas fa-sync-alt fa-spin d-flex justify-content-center align-items-center"
+        *ngIf="process"
+      ></i>
+      <button
+        pButton
+        label="Создать"
+        [disabled]="form.invalid || process"
+        class="ml-2 ui-button-raised"
+        (click)="save()"
+      ></button>
+      <button
+        pButton
+        label="Создать и открыть"
+        [disabled]="form.invalid || process"
+        class="ml-2 ui-button-raised"
+        (click)="saveAndOpen()"
+      ></button>
+    </div>
+  </div>
+</div>

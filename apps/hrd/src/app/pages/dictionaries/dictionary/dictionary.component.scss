@@ -1,0 +1,48 @@
+tbody {
+  tr.hide {
+    background: #e6e6e6;
+  }
+
+  .function {
+    padding: 0;
+    display: flex;
+
+    i {
+      height: 49px;
+      width: 49px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      color: #373737;
+
+      &:hover {
+        background: rgb(225, 225, 225);
+      }
+    }
+  }
+
+  .value {
+    width: 10px;
+  }
+
+  .name {
+    padding: 0;
+    input {
+      padding: 13px;
+      width: 100%;
+      height: 49px;
+      border: none;
+    }
+  }
+}
+
+thead {
+  ._id {
+    width: 10px;
+  }
+
+  .function {
+    width: 10px;
+  }
+}

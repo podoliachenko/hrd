@@ -1,0 +1,30 @@
+<ul class="list-group list-group-flush">
+  <li class="list-group-item" *ngFor="let user of users; let j = index">
+    <div class="user">
+      <img [src]="user.img" alt="" />
+      <div class="name">
+        {{ user.full_name }}
+        <div class="prefix">{{ user.email }}</div>
+      </div>
+    </div>
+    <div class="privilege">
+      <select
+        class="form-control"
+        (change)="changeLevel($event.target, j)"
+        [value]="getLvl(user.privilege)"
+        [disabled]="getLvl(auth.privilege) <= getLvl(user.privilege)"
+      >
+        <ng-container *ngFor="let ul of usersLvl; let i = index">
+          <option
+            [value]="i"
+            *ngIf="
+              getLvl(auth.privilege) > i ||
+              getLvl(auth.privilege) <= getLvl(user.privilege)
+            "
+            >{{ ul }}</option
+          >
+        </ng-container>
+      </select>
+    </div>
+  </li>
+</ul>

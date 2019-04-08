@@ -1,0 +1,61 @@
+<div class="d-flex justify-content-end p-2">
+  <button class="btn btn-primary" (click)="display = !display">Добавить</button>
+</div>
+<table class="table table-bordered">
+  <thead>
+    <tr>
+      <th scope="col" class="_id">_id</th>
+      <th scope="col">Имя</th>
+      <th scope="col">Значение</th>
+      <th scope="col" class="function">Функции</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr
+      *ngFor="
+        let dictionary of service.getDictionarySetting(
+          route.snapshot.params['dictionary']
+        )
+      "
+      [class.hide]="dictionary.hide"
+    >
+      <th scope="row">{{ dictionary._id }}</th>
+      <td [class.name]="dictionary.edit">
+        <span [class.d-none]="dictionary.edit">{{ dictionary.label }}</span>
+        <input
+          type="text"
+          [class.d-none]="!dictionary.edit"
+          #inp
+          [value]="dictionary.label"
+        />
+      </td>
+      <td class="value">{{ dictionary.value }}</td>
+      <td class="function">
+        <i
+          class="fas"
+          [class.fa-pen]="!dictionary.edit"
+          [class.fa-check]="dictionary.edit"
+          (click)="editName(dictionary, inp)"
+        ></i>
+        <i
+          class="fas"
+          [class.fa-eye]="dictionary.hide"
+          [class.fa-eye-slash]="!dictionary.hide"
+          (click)="hide(dictionary, !dictionary.hide)"
+        ></i>
+      </td>
+    </tr>
+  </tbody>
+</table>
+
+<p-dialog header="Добавить" [(visible)]="display" width="300">
+  <input type="text" placeholder="Имя" class="form-control" #int required />
+  <p-footer>
+    <button class="btn btn-outline-danger" (click)="display = false">
+      Отменить
+    </button>
+    <button class="btn btn-primary" (click)="addDictionaryElement(int.value)">
+      Добавить
+    </button>
+  </p-footer>
+</p-dialog>

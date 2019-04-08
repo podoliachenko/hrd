@@ -1,0 +1,33 @@
+.list-group-item {
+  border-radius: 0;
+  font-size: 18px;
+  cursor: pointer;
+
+  .group {
+    transition: margin;
+    transition-duration: 500ms;
+  }
+
+  &:hover {
+    background: #007bff;
+    color: #fff !important;
+
+    .arrow {
+      display: block;
+    }
+
+    .group {
+      margin-left: 10px;
+    }
+  }
+
+  .arrow {
+    display: none;
+  }
+}
+
+.search {
+  border-radius: 0;
+  border-left: 0;
+  border-right: 0;
+}

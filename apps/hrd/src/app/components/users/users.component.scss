@@ -1,0 +1,23 @@
+.user {
+  img {
+    width: 44px;
+    height: 44px;
+    border-radius: 500px;
+    margin-right: 10px;
+  }
+
+  display: flex;
+  .name {
+    display: flex;
+    flex-direction: column;
+    .prefix {
+      font-size: 12px;
+      color: #777777;
+    }
+  }
+}
+
+.list-group-item {
+  display: flex;
+  justify-content: space-between;
+}
