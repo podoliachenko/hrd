@@ -12,14 +12,6 @@ export class StudentService {
   }
 
   async getPage(page, max, filter = {}, sort = {}) {
-    /*const count = await this.student.countDocuments(this.regFilter(filter));
-    // const students = await this.student.find(this.regFilter(filter)).sort(sort).skip((page - 1) * max).limit(max);
-    const students = await this.student.aggregate([{
-      $match: this.regFilter(filter),
-    }, {
-      $sort: sort,
-    }]).skip((page - 1) * max).limit(max);
-    // return { students, total: count, max, page, totalPage: count / max };*/
     return await this.student.paginate(this.regFilter(filter), {
       sort,
       limit: 10,
@@ -44,18 +36,13 @@ export class StudentService {
   }
 
   async getStudent(id) {
-    const student = await this.student
-      .findOne({ _id: id })
-      .exec()
-      .catch(() => {
-        throw new HttpException('Student not found', 406);
-      });
+    const student = await this.student.findOne({ _id: id }).catch(() => {
+      throw new HttpException('Student not found', 406);
+    });
     if (student) {
       const result: any = {};
       result.student = student;
-      result.classmates = await this.student
-        .find({ group: student.group })
-        .exec();
+      result.classmates = await this.student.find({ group: student.group });
       return result;
     } else {
       throw new HttpException('Student not found', 406);

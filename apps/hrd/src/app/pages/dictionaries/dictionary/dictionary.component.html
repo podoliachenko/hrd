@@ -27,6 +27,7 @@
           [class.d-none]="!dictionary.edit"
           #inp
           [value]="dictionary.label"
+          (blur)="editName(dictionary, inp)"
         />
       </td>
       <td class="value">{{ dictionary.value }}</td>

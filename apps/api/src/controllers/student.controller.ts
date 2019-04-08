@@ -27,20 +27,6 @@ import {
 export class StudentController {
   constructor(private readonly appService: StudentService) {}
 
-  @ApiOperation({ title: 'Получит всех студентов', deprecated: true })
-  @Get()
-  @Level(1)
-  get(@Res() res): any {
-    this.appService.getAll().then(
-      rs => {
-        res.status(HttpStatus.OK).json(rs);
-      },
-      () => {
-        res.status(HttpStatus.INTERNAL_SERVER_ERROR).json([]);
-      }
-    );
-  }
-
   @ApiOperation({ title: 'Получить студента по id' })
   @Get(':id')
   @Level(1)
