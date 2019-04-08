@@ -8,7 +8,7 @@
             {{ student.student[field.field] | stringify: field:'Не указано' }}
           </td>
           <td class="edit">
-            <i class="fas fa-pen" (click)="showModal(field)"></i>
+            <i class="fas fa-pen" (click)="showModal(editModal, field)"></i>
           </td>
         </tr>
       </ng-container>
@@ -24,54 +24,54 @@
 
 <div *ngIf="error" class="m-4">{{ error }}</div>
 
-<p-dialog
-  [(visible)]="modal"
-  width="400"
-  *ngIf="modal"
-  [ngSwitch]="modalField.type"
->
-  <p-header>Редактировать</p-header>
-  <div class="d-flex flex-column content" [formGroup]="formGroupModal">
-    <label [for]="modalField.field">{{ modalField.header }}</label>
-    <p-calendar
-      [showIcon]="true"
-      class="flex-grow-1"
-      [id]="modalField.field"
-      [formControlName]="modalField.field"
-      [placeholder]="modalField.header"
-      *ngSwitchCase="'date'"
-    ></p-calendar>
-    <p-dropdown
-      [options]="dictionaryService.getDictionarySelect(modalField.options)"
-      *ngSwitchCase="'select'"
-      [formControlName]="modalField.field"
-      [id]="modalField.field"
-      [placeholder]="modalField.header"
+<ng-template #editModal>
+  <ng-container [ngSwitch]="modalField.type">
+    <div class="modal-header">Редактировать</div>
+    <div
+      class="d-flex flex-column content modal-body"
+      [formGroup]="formGroupModal"
     >
-    </p-dropdown>
-    <input
-      pInputText
-      type="text"
-      [id]="modalField.field"
-      [placeholder]="modalField.header"
-      [formControlName]="modalField.field"
-      *ngSwitchDefault
-    />
-  </div>
-  <p-footer>
-    <button class="btn-outline-warning btn" (click)="modal = false">
-      Отменить
-    </button>
-    <button
-      class="btn btn-primary"
-      (click)="changeField()"
-      [disabled]="
-        student.student[modalField.field] ===
-          formGroupModal.controls[modalField.field].value ||
-        formGroupModal.controls[modalField.field].value == null
-      "
-    >
-      Применить
-    </button>
-  </p-footer>
-</p-dialog>
+      <label [for]="modalField.field">{{ modalField.header }}</label>
+      <p-calendar
+        [showIcon]="true"
+        class="flex-grow-1"
+        [id]="modalField.field"
+        [formControlName]="modalField.field"
+        [placeholder]="modalField.header"
+        *ngSwitchCase="'date'"
+      ></p-calendar>
+      <p-dropdown
+        [options]="dictionaryService.getDictionarySelect(modalField.options)"
+        *ngSwitchCase="'select'"
+        [formControlName]="modalField.field"
+        [id]="modalField.field"
+        [placeholder]="modalField.header"
+      >
+      </p-dropdown>
+      <input
+        pInputText
+        type="text"
+        [id]="modalField.field"
+        [placeholder]="modalField.header"
+        [formControlName]="modalField.field"
+        *ngSwitchDefault
+      />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline-warning btn" (click)="modalRef.hide()">
+        Отменить
+      </button>
+      <button
+        class="btn btn-primary"
+        (click)="changeField()"
+        [disabled]="
+          student.student[modalField.field] ===
+            formGroupModal.controls[modalField.field].value ||
+          formGroupModal.controls[modalField.field].value == null
+        "
+      >
+        Применить
+      </button>
+    </div>
+  </ng-container>
+</ng-template>

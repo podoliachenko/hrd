@@ -7,6 +7,7 @@ import { StudentField } from '@interfaces/student-field';
 import { FormControl, FormGroup } from '@angular/forms';
 import { sudent_fields } from '@configs/student_fields';
 import { DictionaryService } from '@services/dictionary.service';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
 @Component({
   selector: 'hrd-student-info',
@@ -21,7 +22,7 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
 
   statusUserChangeSubs: Subscription;
   paramsSubs: Subscription;
-  public modal: boolean;
+  public modalRef: BsModalRef;
   public modalField: StudentField;
   formGroupModal: FormGroup;
 
@@ -29,7 +30,8 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
     public service: StudentService,
     public route: ActivatedRoute,
     private auth: HrdAuthService,
-    public dictionaryService: DictionaryService
+    public dictionaryService: DictionaryService,
+    private modalService: BsModalService
   ) {
     this.formGroupModal = new FormGroup({});
   }
@@ -58,7 +60,8 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
     this.paramsSubs = null;
   }
 
-  showModal(field: StudentField) {
+  showModal(template, field: StudentField) {
+    this.modalRef = this.modalService.show(template);
     this.modalField = field;
     Object.keys(this.formGroupModal.controls).forEach(value => {
       this.formGroupModal.removeControl(value);
@@ -72,7 +75,6 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
     } else {
       this.formGroupModal.addControl(field.field, new FormControl(val));
     }
-    this.modal = true;
   }
 
   changeField() {
@@ -80,6 +82,7 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
       .edit(this.student.student._id, this.formGroupModal.value)
       .subscribe(() => {
         this.getStudent();
+        this.modalRef.hide();
       });
   }
 
