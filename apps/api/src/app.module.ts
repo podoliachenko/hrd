@@ -14,10 +14,11 @@ import { LoggerInterceptor } from './interceptor/LoggerInterceptor';
 import { LoggerSchema } from './schemas/logger.schema';
 import { DictionarySchema } from './schemas/dictionary.schema';
 import { DictionaryController } from './controllers/dictionary.controller';
+import { environment } from './environments/environment';
 
 @Module({
   imports: [
-    MongooseModule.forRoot('mongodb://localhost/hrd', {
+    MongooseModule.forRoot(environment.mongodb, {
       useNewUrlParser: true
     }),
     MongooseModule.forFeature([
@@ -59,4 +60,5 @@ import { DictionaryController } from './controllers/dictionary.controller';
     }
   ]
 })
-export class AppModule {}
+export class AppModule {
+}
