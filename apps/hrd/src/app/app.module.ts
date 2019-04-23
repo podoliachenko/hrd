@@ -21,7 +21,7 @@ import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
 import { NewStudentComponent } from '@pages/new-student/new-student.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
 import { StudentInfoComponent } from '@pages/student-info/student-info.component';
 import { StudentsInfoComponent } from '@pages/students-info/students-info.component';
 import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
@@ -47,6 +47,13 @@ import { DictionaryComponent } from '@pages/dictionaries/dictionary/dictionary.c
 import { ToastModule } from 'primeng/toast';
 import { DynamicTableComponent } from '@components/dynamic-table/dynamic-table.component';
 import { NxModule } from '@nrwl/nx';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+
+
+export function HttpLoaderFactory(httpClient: HttpClient) {
+  return new TranslateHttpLoader(httpClient);
+}
 
 @NgModule({
   declarations: [
@@ -91,7 +98,14 @@ import { NxModule } from '@nrwl/nx';
     DialogModule,
     InplaceModule,
     ToastModule,
-    NxModule.forRoot()
+    NxModule.forRoot(),
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: HttpLoaderFactory,
+        deps: [HttpClient]
+      }
+    })
   ],
   providers: [
     DialogService,

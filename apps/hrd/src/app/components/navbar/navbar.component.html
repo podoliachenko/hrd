@@ -2,10 +2,10 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item" routerLink="/students" routerLinkActive="active">
-        <a class="nav-link">Студенты</a>
+        <a class="nav-link">{{'HEADER.STUDENTS' | translate}}</a>
       </li>
       <li class="nav-item" routerLink="/groups" routerLinkActive="active">
-        <a class="nav-link">Группы</a>
+        <a class="nav-link">{{'HEADER.GROUPS' | translate}}</a>
       </li>
       <li
         class="nav-item"
@@ -13,7 +13,7 @@
         routerLinkActive="active"
         *ngIf="auth.checkPrivilege(3)"
       >
-        <a class="nav-link">Пользователи</a>
+        <a class="nav-link">{{'HEADER.USERS' | translate}}</a>
       </li>
       <li
         class="nav-item"
@@ -21,7 +21,7 @@
         routerLinkActive="active"
         *ngIf="auth.checkPrivilege(2)"
       >
-        <a class="nav-link">Внести студента</a>
+        <a class="nav-link">{{'HEADER.CREATE_STUDENT' | translate}}</a>
       </li>
       <li
         class="nav-item"
@@ -29,7 +29,7 @@
         routerLinkActive="active"
         *ngIf="auth.checkPrivilege(3)"
       >
-        <a class="nav-link">Словари</a>
+        <a class="nav-link">{{'HEADER.DICTIONARIES' | translate}}</a>
       </li>
     </ul>
     <div class="form-inline my-2 my-lg-0" *ngIf="!auth.user">
@@ -37,20 +37,21 @@
         class="btn btn-outline-success my-2 my-sm-0"
         (click)="auth.logIn()"
       >
-        Вход
+        {{'HEADER.LOGIN' | translate}}
       </button>
     </div>
     <div class="form-inline my-2 my-lg-0 auth" *ngIf="auth.user">
+      <img class="lang" [src]="'/assets/images/flags/' +  translate.currentLang + '.gif'" (click)="changeLang()"/>
       <img [src]="auth.user.image" alt="" />
       <div class="name">
         {{ auth.user.name }}
-        <span class="prefix">{{ getStringLvl(auth.privilege) }}</span>
+        <span class="prefix">{{ getStringLvl(auth.privilege) | translate}}</span>
       </div>
       <button
         class="btn btn-outline-success my-2 my-sm-0"
         (click)="auth.logOut()"
       >
-        Выход
+        {{'HEADER.EXIT' | translate}}
       </button>
     </div>
   </div>

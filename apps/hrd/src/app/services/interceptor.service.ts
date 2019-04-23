@@ -17,7 +17,11 @@ export class InterceptorService implements HttpInterceptor {
     req: HttpRequest<any>,
     next: HttpHandler
   ): Observable<HttpEvent<any>> {
-    if (req.url.startsWith('$$')) {
+    if (req.url.includes('/i18n/')) {
+      req = req.clone({
+        url: req.url
+      });
+    } else if (req.url.startsWith('$$')) {
       req = req.clone({
         url: `${req.url.slice(2)}`
       });

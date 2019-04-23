@@ -1,45 +1,45 @@
 <div class="" [formGroup]="form">
   <div class="data row">
     <div class="ui-g-4 d-flex flex-column">
-      <label for="last_name">Фамилия: </label>
+      <label for="last_name">{{'FIELD_LABELS.last_name' | translate}}: </label>
       <input
         type="text"
         id="last_name"
         class="flex-grow-1"
         pInputText
-        placeholder="Фамилия"
+        [placeholder]="'FIELD_LABELS.last_name' | translate"
         formControlName="last_name"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="first_name">Имя: </label>
+      <label for="first_name">{{'FIELD_LABELS.first_name' | translate}}: </label>
       <input
         type="text"
         id="first_name"
         class="flex-grow-1"
         pInputText
-        placeholder="Имя"
+        [placeholder]="'FIELD_LABELS.first_name' | translate"
         formControlName="first_name"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="patronymic">Отчество: </label>
+      <label for="patronymic">{{'FIELD_LABELS.patronymic' | translate}}: </label>
       <input
         type="text"
         id="patronymic"
         class="flex-grow-1"
         pInputText
-        placeholder="Отчество"
+        [placeholder]="'FIELD_LABELS.patronymic' | translate"
         formControlName="patronymic"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="group">Группа: </label>
+      <label for="group">{{'FIELD_LABELS.group' | translate}}: </label>
       <p-autoComplete
         type="text"
         id="group"
         class="flex-grow-1"
-        placeholder="Группа"
+        [placeholder]="'FIELD_LABELS.group' | translate"
         formControlName="group"
         [suggestions]="getGroups()"
         [dropdown]="true"
@@ -47,131 +47,131 @@
       ></p-autoComplete>
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="birthday">Дата рождения: </label>
+      <label for="birthday">{{'FIELD_LABELS.birthday' | translate}}: </label>
       <p-calendar
         [showIcon]="true"
         class="flex-grow-1"
         id="birthday"
         formControlName="birthday"
-        placeholder="Дата рождения"
+        [placeholder]="'FIELD_LABELS.birthday' | translate"
       ></p-calendar>
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="inn">ИНН: </label>
+      <label for="inn">{{'FIELD_LABELS.inn' | translate}}: </label>
       <input
         type="number"
         id="inn"
         class="flex-grow-1"
         pInputText
-        placeholder="ИНН"
+        [placeholder]="'FIELD_LABELS.inn' | translate"
         formControlName="inn"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="address">Адрес прописки: </label>
+      <label for="address">{{'FIELD_LABELS.address' | translate}}: </label>
       <input
         type="text"
         id="address"
         class="flex-grow-1"
         pInputText
-        placeholder="Адрес прописки"
+        [placeholder]="'FIELD_LABELS.address' | translate"
         formControlName="address"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="address2">Адрес проживания: </label>
+      <label for="address2">{{'FIELD_LABELS.address2' | translate}}: </label>
       <input
         type="text"
         class="flex-grow-1"
         id="address2"
         pInputText
-        placeholder="Адрес проживания"
+        [placeholder]="'FIELD_LABELS.address2' | translate"
         formControlName="address2"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="phone_number">Номер телефона: </label>
+      <label for="phone_number">{{'FIELD_LABELS.phone_number' | translate}}: </label>
       <input
         type="text"
         id="phone_number"
         class="flex-grow-1"
         pInputText
-        placeholder="Номер телефона"
+        [placeholder]="'FIELD_LABELS.phone_number' | translate"
         formControlName="phone_number"
       />
     </div>
 
     <div class="ui-g-4 d-flex mb-2 flex-column">
-      <label for="form_study">Форма обучения: </label>
+      <label for="form_study">{{'FIELD_LABELS.form_study' | translate}}: </label>
       <p-dropdown
         [options]="dictionary.getDictionarySelect('form_study')"
         formControlName="form_study"
         id="form_study"
-        placeholder="Форма обучения"
+        [placeholder]="'FIELD_LABELS.form_study' | translate"
       >
       </p-dropdown>
     </div>
     <div class="ui-g-4 d-flex mb-2 flex-column">
-      <label for="terms_training">Условия обучения: </label>
+      <label for="terms_training">{{'FIELD_LABELS.terms_training' | translate}}: </label>
       <p-dropdown
         [options]="dictionary.getDictionarySelect('terms_training')"
         formControlName="terms_training"
         id="terms_training"
-        placeholder="Условия обучения"
+        [placeholder]="'FIELD_LABELS.terms_training' | translate"
       >
       </p-dropdown>
     </div>
     <div class="ui-g-4 d-flex mb-2 flex-column">
-      <label for="status">Статус: </label>
+      <label for="status">{{'FIELD_LABELS.status' | translate}}: </label>
       <p-dropdown
         [options]="dictionary.getDictionarySelect('status')"
         formControlName="status"
         id="status"
-        placeholder="Статус"
+        [placeholder]="'FIELD_LABELS.status' | translate"
       >
       </p-dropdown>
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="passport_series">Серия паспорта: </label>
+      <label for="passport_series">{{'FIELD_LABELS.passport_series' | translate}}: </label>
       <input
         type="text"
         id="passport_series"
         class="flex-grow-1"
         pInputText
-        placeholder="Серия паспорта"
+        [placeholder]="'FIELD_LABELS.passport_series' | translate"
         formControlName="passport_series"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="passport_no">Номер паспорта: </label>
+      <label for="passport_no">{{'FIELD_LABELS.passport_no' | translate}}: </label>
       <input
         type="text"
         id="passport_no"
         class="flex-grow-1"
         pInputText
-        placeholder="Номер паспорта"
+        [placeholder]="'FIELD_LABELS.passport_no' | translate"
         formControlName="passport_no"
       />
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="specialty">Специальность: </label>
+      <label for="specialty">{{'FIELD_LABELS.specialty' | translate}}: </label>
       <p-dropdown
         [options]="dictionary.getDictionarySelect('specialty')"
         formControlName="specialty"
         id="specialty"
-        placeholder="Форма обучения"
+        [placeholder]="'FIELD_LABELS.specialty' | translate"
       >
       </p-dropdown>
     </div>
     <div class="ui-g-12 d-flex mb-2 flex-column notes">
-      <label for="notes">Заметки: </label>
+      <label for="notes">{{'FIELD_LABELS.notes' | translate}}: </label>
       <textarea
         name="notes"
         id="notes"
         cols="30"
         rows="5"
         pInputTextarea
-        placeholder="Заметки"
+        [placeholder]="'FIELD_LABELS.notes' | translate"
         autoResize="false"
       ></textarea>
     </div>
@@ -209,14 +209,14 @@
       ></i>
       <button
         pButton
-        label="Создать"
+        [label]="'CONST.CREATE' | translate"
         [disabled]="form.invalid || process"
         class="ml-2 ui-button-raised"
         (click)="save()"
       ></button>
       <button
         pButton
-        label="Создать и открыть"
+        [label]="'CONST.CREATE_AND_OPEN' | translate"
         [disabled]="form.invalid || process"
         class="ml-2 ui-button-raised"
         (click)="saveAndOpen()"

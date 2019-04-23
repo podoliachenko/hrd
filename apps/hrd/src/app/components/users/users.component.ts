@@ -9,14 +9,15 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, OnDestroy {
-  private usersLvl = [
-    'Гость',
-    'Пользователь',
-    'Администратор бд',
-    'Администратор',
-    'Разработчик'
-  ];
 
+  // TODO: вынести в отдельный файл
+  private usersLvl = [
+    'USERS.LVL.GUEST',
+    'USERS.LVL.USER',
+    'USERS.LVL.ADMIN',
+    'USERS.LVL.SUPERVISOR',
+    'USERS.LVL.DEV'
+  ];
   users: any[];
 
   statusUserSubs: Subscription;

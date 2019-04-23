@@ -2,7 +2,7 @@
   type="text"
   pInputText
   class="search w-100"
-  placeholder="Фильтр"
+  [placeholder]="'FIELD_LABELS.GROUPS.FILTER' | translate"
   [(ngModel)]="sort"
 />
 <div class="list-group" *ngIf="this.students.groups">

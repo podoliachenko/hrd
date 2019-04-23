@@ -3,7 +3,7 @@
     <table>
       <ng-container *ngFor="let field of students_fields">
         <tr class="infofiled">
-          <td class="namefield">{{ field.header }}:</td>
+          <td class="namefield">{{ 'FIELD_LABELS.' + field.field | translate }}:</td>
           <td class="valuefield">
             {{ student.student[field.field] | stringify: field:'Не указано' }}
           </td>
@@ -26,12 +26,12 @@
 
 <ng-template #editModal>
   <ng-container [ngSwitch]="modalField.type">
-    <div class="modal-header">Редактировать</div>
+    <div class="modal-header">{{'CONST.EDIT' | translate}}</div>
     <div
       class="d-flex flex-column content modal-body"
       [formGroup]="formGroupModal"
     >
-      <label [for]="modalField.field">{{ modalField.header }}</label>
+      <label [for]="modalField.field">{{ 'FIELD_LABELS.' +  modalField.field | translate }}</label>
       <p-calendar
         [showIcon]="true"
         class="flex-grow-1"
@@ -59,7 +59,7 @@
     </div>
     <div class="modal-footer">
       <button class="btn-outline-warning btn" (click)="modalRef.hide()">
-        Отменить
+        {{'CONST.CANCEL' | translate}}
       </button>
       <button
         class="btn btn-primary"
@@ -70,7 +70,7 @@
           formGroupModal.controls[modalField.field].value == null
         "
       >
-        Применить
+        {{'CONST.APPLY' | translate}}
       </button>
     </div>
   </ng-container>

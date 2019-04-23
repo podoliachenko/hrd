@@ -1,13 +1,13 @@
 <div class="d-flex justify-content-end p-2">
-  <button class="btn btn-primary" (click)="display = !display">Добавить</button>
+  <button class="btn btn-primary" (click)="display = !display">{{'CONST.ADD' | translate}}</button>
 </div>
 <table class="table table-bordered">
   <thead>
     <tr>
       <th scope="col" class="_id">_id</th>
-      <th scope="col">Имя</th>
-      <th scope="col">Значение</th>
-      <th scope="col" class="function">Функции</th>
+      <th scope="col">{{'DICTIONARIES.LABELS.NAME' | translate}}</th>
+      <th scope="col">{{'DICTIONARIES.LABELS.VALUE' | translate}}</th>
+      <th scope="col" class="function">{{'DICTIONARIES.LABELS.FUNC' | translate}}</th>
     </tr>
   </thead>
   <tbody>
@@ -49,14 +49,14 @@
   </tbody>
 </table>
 
-<p-dialog header="Добавить" [(visible)]="display" width="300">
-  <input type="text" placeholder="Имя" class="form-control" #int required />
+<p-dialog [header]="'CONST.ADD' | translate" [(visible)]="display" width="300">
+  <input type="text" [placeholder]="'DICTIONARIES.LABELS.NAME' | translate" class="form-control" #int required />
   <p-footer>
     <button class="btn btn-outline-danger" (click)="display = false">
-      Отменить
+      {{'CONST.CANCEL' | translate}}
     </button>
     <button class="btn btn-primary" (click)="addDictionaryElement(int.value)">
-      Добавить
+      {{'CONST.ADD' | translate}}
     </button>
   </p-footer>
 </p-dialog>

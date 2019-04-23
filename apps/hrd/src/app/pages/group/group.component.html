@@ -1,8 +1,8 @@
 <div *ngIf="group">
   <div class="group-name d-flex align-items-center">
-    <h2 class="ml-2">Группа {{ group.group }}</h2>
+    <h2 class="ml-2">{{'FIELD_LABELS.group' | translate}} {{ group.group }}</h2>
     <div class="func ml-3">
-      <button
+      <!--<button
         pButton
         type="button"
         class="ui-button-raised ui-button-rounded"
@@ -15,7 +15,7 @@
         class="ui-button-raised ui-button-rounded ml-2"
         disabled
         label="Задать форму обучения"
-      ></button>
+      ></button>-->
     </div>
   </div>
   <hrd-static-table

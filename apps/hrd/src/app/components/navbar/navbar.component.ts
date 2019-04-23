@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HrdAuthService } from '@services/hrd-auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'hrd-navbar',
@@ -8,16 +9,18 @@ import { HrdAuthService } from '@services/hrd-auth.service';
 })
 export class NavbarComponent implements OnInit {
   private users = [
-    'Гость',
-    'Пользователь',
-    'Администратор бд',
-    'Администратор',
-    'Разработчик'
+    'USERS.LVL.GUEST',
+    'USERS.LVL.USER',
+    'USERS.LVL.ADMIN',
+    'USERS.LVL.SUPERVISOR',
+    'USERS.LVL.DEV'
   ];
 
-  constructor(public auth: HrdAuthService) {}
+  constructor(public auth: HrdAuthService, public translate: TranslateService) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   getStringLvl(lvl: number) {
     if (lvl < 0) {
@@ -26,5 +29,15 @@ export class NavbarComponent implements OnInit {
       lvl = 4;
     }
     return this.users[lvl];
+  }
+
+  changeLang() {
+    if (this.translate.currentLang === 'uk') {
+      this.translate.use('ru');
+      localStorage.setItem('lang', 'ru');
+    } else {
+      this.translate.use('uk');
+      localStorage.setItem('lang', 'uk');
+    }
   }
 }

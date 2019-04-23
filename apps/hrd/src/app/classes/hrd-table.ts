@@ -1,14 +1,14 @@
 import { StudentField } from '@interfaces/student-field';
-import { Input } from '@angular/core';
 import { sudent_fields } from '@configs/student_fields';
 import { TableService } from '@interfaces/table-service';
+import { Input } from '@angular/core';
 
 export class HrdTable {
   @Input() columns: StudentField[];
   @Input() saveStorageName = 'fields';
   @Input() tableService: TableService;
   protected _selectedColumns: StudentField[];
-  protected items: any[];
+  public items: any[];
   itemsMenu: any;
   selected: any;
 

@@ -13,11 +13,22 @@
         <p-multiSelect
           [options]="columns"
           [(ngModel)]="selectedColumns"
-          optionLabel="header"
-          selectedItemsLabel="{0} столбцов"
+          optionLabel="field"
           [style]="{ minWidth: '200px' }"
-          defaultLabel="Выберите столбцы"
-        ></p-multiSelect>
+          [defaultLabel]="'TABLE_PARAMS.select_cols' | translate"
+        >
+          <ng-template let-cols pTemplate="selectedItems">
+            <span
+              >{{ (cols ? cols.length : 0) + ' ' + ('TABLE_PARAMS.cols' | translate) }}
+            </span> </ng-template
+          ><ng-template let-col let-i="index" pTemplate="item">
+            <div
+              style="float:right; display: flex; align-items: center; justify-content: center; width: auto"
+            >
+              {{ 'FIELD_LABELS.' + col.label | translate }}
+            </div>
+          </ng-template></p-multiSelect
+        >
       </div>
     </ng-template>
     <ng-template pTemplate="header" let-columns>
@@ -28,7 +39,7 @@
           pResizableColumn
           pReorderableColumn
         >
-          {{ col.header }}
+          {{ 'FIELD_LABELS.' + col.field | translate }}
           <p-sortIcon [field]="col.field"></p-sortIcon>
         </th>
       </tr>
