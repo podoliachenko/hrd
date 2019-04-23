@@ -2,7 +2,7 @@
   <div class="data row">
     <div class="ui-g-4 d-flex flex-column">
       <label for="last_name"
-        >{{ 'FIELD_LABELS.last_name' | translate
+      >{{ 'FIELD_LABELS.last_name' | translate
         }}<span class="required">*</span>:
       </label>
       <input
@@ -16,7 +16,7 @@
     </div>
     <div class="ui-g-4 d-flex flex-column">
       <label for="first_name"
-        >{{ 'FIELD_LABELS.first_name' | translate
+      >{{ 'FIELD_LABELS.first_name' | translate
         }}<span class="required">*</span>:
       </label>
       <input
@@ -30,7 +30,7 @@
     </div>
     <div class="ui-g-4 d-flex flex-column">
       <label for="patronymic"
-        >{{ 'FIELD_LABELS.patronymic' | translate }}:
+      >{{ 'FIELD_LABELS.patronymic' | translate }}:
       </label>
       <input
         type="text"
@@ -43,7 +43,7 @@
     </div>
     <div class="ui-g-4 d-flex flex-column">
       <label for="group"
-        >{{ 'FIELD_LABELS.group' | translate }}<span class="required">*</span>:
+      >{{ 'FIELD_LABELS.group' | translate }}<span class="required">*</span>:
       </label>
       <p-autoComplete
         type="text"
@@ -57,21 +57,8 @@
       ></p-autoComplete>
     </div>
     <div class="ui-g-4 d-flex flex-column">
-      <label for="form_study"
-        >{{ 'FIELD_LABELS.form_study' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <p-dropdown
-        [options]="dictionary.getDictionarySelect('form_study')"
-        formControlName="form_study"
-        id="form_study"
-        [placeholder]="'FIELD_LABELS.form_study' | translate"
-      >
-      </p-dropdown>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
       <label for="terms_training"
-        >{{ 'FIELD_LABELS.terms_training' | translate
+      >{{ 'FIELD_LABELS.terms_training' | translate
         }}<span class="required">*</span>:
       </label>
       <p-dropdown
@@ -83,8 +70,21 @@
       </p-dropdown>
     </div>
     <div class="ui-g-4 d-flex flex-column">
+      <label for="form_study"
+      >{{ 'FIELD_LABELS.form_study' | translate
+        }}<span class="required">*</span>:
+      </label>
+      <p-dropdown
+        [options]="dictionary.getDictionarySelect('form_study')"
+        formControlName="form_study"
+        id="form_study"
+        [placeholder]="'FIELD_LABELS.form_study' | translate"
+      >
+      </p-dropdown>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
       <label for="status"
-        >{{ 'FIELD_LABELS.status' | translate }}<span class="required">*</span>:
+      >{{ 'FIELD_LABELS.status' | translate }}<span class="required">*</span>:
       </label>
       <p-dropdown
         [options]="dictionary.getDictionarySelect('status')"
@@ -96,7 +96,7 @@
     </div>
     <div class="ui-g-4 d-flex flex-column">
       <label for="specialty"
-        >{{ 'FIELD_LABELS.specialty' | translate
+      >{{ 'FIELD_LABELS.specialty' | translate
         }}<span class="required">*</span>:
       </label>
       <p-dropdown
@@ -104,6 +104,19 @@
         formControlName="specialty"
         id="specialty"
         [placeholder]="'FIELD_LABELS.specialty' | translate"
+      >
+      </p-dropdown>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="activity"
+      >{{ 'FIELD_LABELS.activity' | translate
+        }}<span class="required">*</span>:
+      </label>
+      <p-dropdown
+        [options]="dictionary.getDictionarySelect('activity')"
+        formControlName="activity"
+        id="activity"
+        [placeholder]="'FIELD_LABELS.activity' | translate"
       >
       </p-dropdown>
     </div>
@@ -119,7 +132,7 @@
     </div>
     <div class="ui-g-4 d-flex flex-column">
       <label for="phone_number"
-        >{{ 'FIELD_LABELS.phone_number' | translate }}:
+      >{{ 'FIELD_LABELS.phone_number' | translate }}:
       </label>
       <input
         type="text"
@@ -158,7 +171,7 @@
       <input
         type="number"
         id="inn"
-        class="flex-grow-1"
+        class="flex-grow-1 w-100"
         pInputText
         [placeholder]="'FIELD_LABELS.inn' | translate"
         formControlName="inn"
@@ -167,7 +180,7 @@
 
     <div class="ui-g-4 d-flex flex-column">
       <label for="passport_series"
-        >{{ 'FIELD_LABELS.passport_series' | translate }}:
+      >{{ 'FIELD_LABELS.passport_series' | translate }}:
       </label>
       <input
         type="text"
@@ -180,7 +193,7 @@
     </div>
     <div class="ui-g-4 d-flex flex-column">
       <label for="passport_no"
-        >{{ 'FIELD_LABELS.passport_no' | translate }}:
+      >{{ 'FIELD_LABELS.passport_no' | translate }}:
       </label>
       <input
         type="text"

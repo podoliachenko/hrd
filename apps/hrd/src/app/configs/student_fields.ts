@@ -30,6 +30,12 @@ export const sudent_fields: StudentField[] = [
     header: 'Забыл локализацию',
     type: 'select',
     options: 'specialty'
+  },
+  {
+    field: 'activity',
+    header: 'Забыл локализацию',
+    type: 'select',
+    options: 'activity'
   }
   // {field: 'enrollment', header: 'Регистрация'},
   // {field: 'date_action', header: 'ИНН'},
