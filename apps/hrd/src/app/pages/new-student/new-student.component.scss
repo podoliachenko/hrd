@@ -2,15 +2,23 @@
   margin: 0 20px;
 }
 
+.required {
+  color: red;
+  font-size: 16px;
+  margin-left: 2px;
+}
+
 p-calendar::ng-deep,
 p-autoComplete::ng-deep,
 p-dropdown::ng-deep {
   display: flex;
+
   span.ui-calendar,
   span.ui-autocomplete,
   .ui-dropdown {
     width: 100% !important;
     display: flex;
+
     input {
       flex-grow: 1;
     }
