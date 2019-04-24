@@ -3,9 +3,14 @@
     <table>
       <ng-container *ngFor="let field of students_fields">
         <tr class="infofiled">
-          <td class="namefield">{{ 'FIELD_LABELS.' + field.field | translate }}:</td>
+          <td class="namefield">
+            {{ 'FIELD_LABELS.' + field.field | translate }}:
+          </td>
           <td class="valuefield">
-            {{ student.student[field.field] | stringify: field:'Не указано' }}
+            {{
+            student.student[field.field]
+              | stringify: field:('CONST.NOT_SPECIFIED' | translate)
+            }}
           </td>
           <td class="edit" *ngIf="this.auth.checkPrivilege(2)">
             <i class="fas fa-pen" (click)="showModal(editModal, field)"></i>
@@ -26,18 +31,20 @@
 
 <ng-template #editModal>
   <ng-container [ngSwitch]="modalField.type">
-    <div class="modal-header">{{'CONST.EDIT' | translate}}</div>
+    <div class="modal-header">{{ 'CONST.EDIT' | translate }}</div>
     <div
       class="d-flex flex-column content modal-body"
       [formGroup]="formGroupModal"
     >
-      <label [for]="modalField.field">{{ 'FIELD_LABELS.' + modalField.field | translate }}</label>
+      <label [for]="modalField.field">{{
+        'FIELD_LABELS.' + modalField.field | translate
+        }}</label>
       <p-calendar
         [showIcon]="true"
         class="flex-grow-1"
         [id]="modalField.field"
         [formControlName]="modalField.field"
-        [placeholder]="'FIELD_LABELS.' +  modalField.field | translate"
+        [placeholder]="'FIELD_LABELS.' + modalField.field | translate"
         *ngSwitchCase="'date'"
       ></p-calendar>
       <p-dropdown
@@ -45,21 +52,21 @@
         *ngSwitchCase="'select'"
         [formControlName]="modalField.field"
         [id]="modalField.field"
-        [placeholder]="'FIELD_LABELS.' +  modalField.field | translate"
+        [placeholder]="'FIELD_LABELS.' + modalField.field | translate"
       >
       </p-dropdown>
       <input
         pInputText
         type="text"
         [id]="modalField.field"
-        [placeholder]="'FIELD_LABELS.' +  modalField.field | translate"
+        [placeholder]="'FIELD_LABELS.' + modalField.field | translate"
         [formControlName]="modalField.field"
         *ngSwitchDefault
       />
     </div>
     <div class="modal-footer">
       <button class="btn-outline-warning btn" (click)="modalRef.hide()">
-        {{'CONST.CANCEL' | translate}}
+        {{ 'CONST.CANCEL' | translate }}
       </button>
       <button
         class="btn btn-primary"
@@ -70,7 +77,7 @@
           formGroupModal.controls[modalField.field].value == null
         "
       >
-        {{'CONST.APPLY' | translate}}
+        {{ 'CONST.APPLY' | translate }}
       </button>
     </div>
   </ng-container>

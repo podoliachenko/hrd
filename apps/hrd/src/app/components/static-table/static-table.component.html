@@ -56,7 +56,7 @@
     <ng-template pTemplate="body" let-rowData let-columns="columns">
       <tr [pContextMenuRow]="rowData">
         <td *ngFor="let col of columns">
-          <div>{{ rowData[col.field] | stringify: col:'Не указано' }}</div>
+          <div>{{ rowData[col.field] | stringify: col: ('CONST.NOT_SPECIFIED' | translate) }}</div>
         </td>
       </tr>
     </ng-template>
