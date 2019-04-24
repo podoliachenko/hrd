@@ -15,7 +15,7 @@ export const LoggerSchema: Schema = new mongoose.Schema(
     query: Object,
     stack: String
   },
-  { versionKey: false }
+  { collection: 'logs' }
 );
 
 export interface LoggerDB extends Document {

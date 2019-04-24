@@ -10,8 +10,7 @@ export const UserSchema: Schema = new mongoose.Schema(
     email: String,
     privilege: Number,
     img: String
-  },
-  { versionKey: false }
+  }
 );
 
 export interface User extends Document {

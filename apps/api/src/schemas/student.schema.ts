@@ -26,6 +26,5 @@ export const StudentSchema: Schema = new mongoose.Schema(
     notes: String,
     output: Date,
     privileges: Date
-  },
-  { versionKey: false }
+  }
 ).plugin(pagination);
