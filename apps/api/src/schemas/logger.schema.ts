@@ -18,7 +18,7 @@ export const LoggerSchema: Schema = new mongoose.Schema(
   { versionKey: false }
 );
 
-export interface Logger extends Document {
+export interface LoggerDB extends Document {
   _id: ObjectId;
   userId: ObjectId;
   status: number;

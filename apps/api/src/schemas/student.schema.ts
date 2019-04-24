@@ -17,6 +17,7 @@ export const StudentSchema: Schema = new mongoose.Schema(
     terms_training: Number,
     status: Number,
     specialty: Number,
+    activity: Number,
     passport_series: String,
     passport_no: String,
     enrollment: String,

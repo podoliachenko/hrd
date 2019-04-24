@@ -31,7 +31,7 @@ import { environment } from './environments/environment';
         schema: UserSchema
       },
       {
-        name: 'Logger',
+        name: 'LoggerDB',
         schema: LoggerSchema
       },
       {
