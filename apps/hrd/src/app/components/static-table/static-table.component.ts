@@ -2,6 +2,7 @@ import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { HrdTable } from '@classes/hrd-table';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
+import { HrdAuthService } from '@services/hrd-auth.service';
 
 @Component({
   selector: 'hrd-static-table',
@@ -13,7 +14,7 @@ export class StaticTableComponent extends HrdTable implements OnInit, OnDestroy 
 
   subsctiptionLang: Subscription;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private auth: HrdAuthService) {
     super();
     this.changeLangContext();
     this.subsctiptionLang = this.translate.onLangChange.subscribe(lang => {
@@ -38,13 +39,16 @@ export class StaticTableComponent extends HrdTable implements OnInit, OnDestroy 
           label: value['CONST.VIEW'],
           icon: 'pi pi-search',
           command: () => this.view(this.selected)
-        },
-        {
-          label: value['CONST.DELETE'],
-          icon: 'pi pi-times',
-          command: () => this.delete(this.selected)
         }
       ];
+      if (this.auth.checkPrivilege(2)) {
+        this.itemsMenu.push(
+          {
+            label: value['CONST.DELETE'],
+            icon: 'pi pi-times',
+            command: () => this.delete(this.selected)
+          });
+      }
     });
   }
 }

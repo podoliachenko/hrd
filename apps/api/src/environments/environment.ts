@@ -7,5 +7,5 @@ import * as npm from '../../../../package.json';
 export const environment = {
   production: false,
   mongodb: 'mongodb://localhost/hrd',
-  version: npm.version
+  version: npm.version + '-dev'
 };

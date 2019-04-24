@@ -3,6 +3,7 @@ import { HrdTable } from '@classes/hrd-table';
 import { DynamicTableService } from '@interfaces/table-service';
 import { Subscription } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { HrdAuthService } from '@services/hrd-auth.service';
 
 @Component({
   selector: 'hrd-dynamic-table',
@@ -16,7 +17,7 @@ export class DynamicTableComponent extends HrdTable
   subsctiptionLang: Subscription;
   total = 0;
 
-  constructor(private translate: TranslateService) {
+  constructor(private translate: TranslateService, private auth: HrdAuthService) {
     super();
     this.changeLangContext();
     this.subsctiptionLang = this.translate.onLangChange.subscribe(lang => {
@@ -63,13 +64,16 @@ export class DynamicTableComponent extends HrdTable
           label: value['CONST.VIEW'],
           icon: 'pi pi-search',
           command: () => this.view(this.selected)
-        },
-        {
-          label: value['CONST.DELETE'],
-          icon: 'pi pi-times',
-          command: () => this.delete(this.selected)
         }
       ];
+      if (this.auth.checkPrivilege(2)) {
+        this.itemsMenu.push(
+          {
+            label: value['CONST.DELETE'],
+            icon: 'pi pi-times',
+            command: () => this.delete(this.selected)
+          });
+      }
     });
   }
 }

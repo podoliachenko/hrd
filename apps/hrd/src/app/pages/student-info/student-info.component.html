@@ -7,7 +7,7 @@
           <td class="valuefield">
             {{ student.student[field.field] | stringify: field:'Не указано' }}
           </td>
-          <td class="edit">
+          <td class="edit" *ngIf="this.auth.checkPrivilege(2)">
             <i class="fas fa-pen" (click)="showModal(editModal, field)"></i>
           </td>
         </tr>
@@ -31,7 +31,7 @@
       class="d-flex flex-column content modal-body"
       [formGroup]="formGroupModal"
     >
-      <label [for]="modalField.field">{{ 'FIELD_LABELS.' +  modalField.field | translate }}</label>
+      <label [for]="modalField.field">{{ 'FIELD_LABELS.' + modalField.field | translate }}</label>
       <p-calendar
         [showIcon]="true"
         class="flex-grow-1"
