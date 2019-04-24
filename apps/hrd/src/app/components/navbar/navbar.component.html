@@ -41,6 +41,7 @@
       </button>
     </div>
     <div class="form-inline my-2 my-lg-0 auth" *ngIf="auth.user">
+      <div class="version" *ngIf="auth.checkPrivilege(4)">{{version}}</div>
       <img class="lang" [src]="'/assets/images/flags/' +  translate.currentLang + '.gif'" (click)="changeLang()"/>
       <img [src]="auth.user.image" alt="" />
       <div class="name">

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HrdAuthService } from '@services/hrd-auth.service';
 import { TranslateService } from '@ngx-translate/core';
+import { environment } from '@environment';
 
 @Component({
   selector: 'hrd-navbar',
@@ -15,6 +16,8 @@ export class NavbarComponent implements OnInit {
     'USERS.LVL.SUPERVISOR',
     'USERS.LVL.DEV'
   ];
+
+  version = environment.version;
 
   constructor(public auth: HrdAuthService, public translate: TranslateService) {
   }
