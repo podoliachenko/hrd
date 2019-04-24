@@ -1,50 +1,68 @@
 {
-	"CONST.ADD": "Добавить",
-	"CONST.APPLY": "Применить",
-	"CONST.CANCEL": "Отменить",
-	"CONST.CREATE": "Создать",
-	"CONST.CREATE_AND_OPEN": "Создать и открыть",
-	"CONST.DELETE": "Удалить",
-	"CONST.EDIT": "Редактировать",
-	"CONST.VIEW": "Посмотреть",
-	"DICTIONARIES.LABELS.FUNC": "Функции",
-	"DICTIONARIES.LABELS.NAME": "Название",
-	"DICTIONARIES.LABELS.VALUE": "Значение",
-	"DICTIONARIES.activity": "Активность",
-	"DICTIONARIES.form_study": "Форма обучения",
-	"DICTIONARIES.specialty": "Специальности",
-	"DICTIONARIES.status": "Статус",
-	"DICTIONARIES.terms_training": "Условия обучения",
-	"FIELD_LABELS.GROUPS.FILTER": "Фильтр",
-	"FIELD_LABELS.activity": "Активность",
-	"FIELD_LABELS.address": "Адрес прописки",
-	"FIELD_LABELS.address2": "Адрес проживания",
-	"FIELD_LABELS.birthday": "День рождения",
-	"FIELD_LABELS.first_name": "Имя",
-	"FIELD_LABELS.form_study": "Форма обучения",
-	"FIELD_LABELS.group": "Группа",
-	"FIELD_LABELS.inn": "ИНН",
-	"FIELD_LABELS.last_name": "Фамилия",
-	"FIELD_LABELS.notes": "Заметки",
-	"FIELD_LABELS.passport_no": "Номер паспорта",
-	"FIELD_LABELS.passport_series": "Серия паспорта",
-	"FIELD_LABELS.patronymic": "Отчество",
-	"FIELD_LABELS.phone_number": "Номер телефона",
-	"FIELD_LABELS.specialty": "Специальность",
-	"FIELD_LABELS.status": "Статус",
-	"FIELD_LABELS.terms_training": "Условия обучения",
-	"HEADER.CREATE_STUDENT": "Добавить студента",
-	"HEADER.DICTIONARIES": "Словари",
-	"HEADER.EXIT": "Выход",
-	"HEADER.GROUPS": "Группы",
-	"HEADER.LOGIN": "Войти",
-	"HEADER.STUDENTS": "Студенты",
-	"HEADER.USERS": "Пользователи",
-	"TABLE_PARAMS.cols": "столбцов",
-	"TABLE_PARAMS.select_cols": "Выберите столбцы",
-	"USERS.LVL.ADMIN": "Администратор\t",
-	"USERS.LVL.DEV": "Разработчик",
-	"USERS.LVL.GUEST": "Гость",
-	"USERS.LVL.SUPERVISOR": "Руководитель",
-	"USERS.LVL.USER": "Пользователь"
+	"CONST": {
+		"ADD": "Добавить",
+		"APPLY": "Применить",
+		"CANCEL": "Отменить",
+		"CREATE": "Создать",
+		"CREATE_AND_OPEN": "Создать и открыть",
+		"DELETE": "Удалить",
+		"EDIT": "Редактировать",
+		"VIEW": "Посмотреть"
+	},
+	"DICTIONARIES": {
+		"LABELS": {
+			"FUNC": "Функции",
+			"NAME": "Название",
+			"VALUE": "Значение"
+		},
+		"activity": "Активность",
+		"form_study": "Форма обучения",
+		"specialty": "Специальности",
+		"status": "Статус",
+		"terms_training": "Условия обучения"
+	},
+	"FIELD_LABELS": {
+		"GROUPS": {
+			"FILTER": "Фильтр"
+		},
+		"activity": "Активность",
+		"address": "Адрес прописки",
+		"address2": "Адрес проживания",
+		"birthday": "День рождения",
+		"first_name": "Имя",
+		"form_study": "Форма обучения",
+		"group": "Группа",
+		"inn": "ИНН",
+		"last_name": "Фамилия",
+		"notes": "Заметки",
+		"passport_no": "Номер паспорта",
+		"passport_series": "Серия паспорта",
+		"patronymic": "Отчество",
+		"phone_number": "Номер телефона",
+		"specialty": "Специальность",
+		"status": "Статус",
+		"terms_training": "Условия обучения"
+	},
+	"HEADER": {
+		"CREATE_STUDENT": "Добавить студента",
+		"DICTIONARIES": "Словари",
+		"EXIT": "Выход",
+		"GROUPS": "Группы",
+		"LOGIN": "Войти",
+		"STUDENTS": "Студенты",
+		"USERS": "Пользователи"
+	},
+	"TABLE_PARAMS": {
+		"cols": "столбцов",
+		"select_cols": "Выберите столбцы"
+	},
+	"USERS": {
+		"LVL": {
+			"ADMIN": "Администратор\t",
+			"DEV": "Разработчик",
+			"GUEST": "Гость",
+			"SUPERVISOR": "Руководитель",
+			"USER": "Пользователь"
+		}
+	}
 }

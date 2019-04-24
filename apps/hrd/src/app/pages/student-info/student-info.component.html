@@ -37,7 +37,7 @@
         class="flex-grow-1"
         [id]="modalField.field"
         [formControlName]="modalField.field"
-        [placeholder]="modalField.header"
+        [placeholder]="'FIELD_LABELS.' +  modalField.field | translate"
         *ngSwitchCase="'date'"
       ></p-calendar>
       <p-dropdown
@@ -45,14 +45,14 @@
         *ngSwitchCase="'select'"
         [formControlName]="modalField.field"
         [id]="modalField.field"
-        [placeholder]="modalField.header"
+        [placeholder]="'FIELD_LABELS.' +  modalField.field | translate"
       >
       </p-dropdown>
       <input
         pInputText
         type="text"
         [id]="modalField.field"
-        [placeholder]="modalField.header"
+        [placeholder]="'FIELD_LABELS.' +  modalField.field | translate"
         [formControlName]="modalField.field"
         *ngSwitchDefault
       />
