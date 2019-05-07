@@ -6,10 +6,12 @@ import { LoggerDB } from '../schemas/logger.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import * as _ from 'lodash';
+import { Reflector } from '@nestjs/core';
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
-  constructor(@InjectModel('LoggerDB') private readonly logger: Model<LoggerDB>) {
+  constructor(@InjectModel('LoggerDB') private readonly logger: Model<LoggerDB>,
+              private readonly reflector: Reflector) {
   }
 
   intercept(
@@ -22,7 +24,7 @@ export class LoggerInterceptor implements NestInterceptor {
     return call$.pipe(
       map(value => {
         const log = {
-          userId: user._id,
+          userId: user ? user._id : null,
           method: args.method,
           url: args._parsedUrl.pathname,
           params,
@@ -33,13 +35,17 @@ export class LoggerInterceptor implements NestInterceptor {
           message: 'ok'
         } as LoggerDB;
         if (args.method !== 'GET') {
+          const logTarget = this.reflector.get<Function>('logTarget', context.getHandler());
+          if (logTarget) {
+            log.targetId = logTarget(value, args);
+          }
           this.logger.insertMany(log);
         }
         return value;
       }),
       catchError(err => {
         const log = {
-          userId: user._id,
+          userId: user ? user._id : null,
           method: args.method,
           url: args._parsedUrl.pathname,
           params,

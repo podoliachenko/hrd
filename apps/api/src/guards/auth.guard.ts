@@ -20,6 +20,9 @@ export class AuthGuard implements CanActivate {
     if (level === undefined) {
       throw new HttpException('Privilege level not set', 403);
     }
+    if(level === 0) {
+      return true;
+    }
     context.getArgByIndex(0).params.profileWithDB = await this.auth.checkAuth(
       context.getArgs()[0].headers,
       level

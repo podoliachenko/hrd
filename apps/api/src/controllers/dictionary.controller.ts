@@ -4,6 +4,7 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Dictionary } from '../schemas/dictionary.schema';
 import { Level } from '../decorators/level.decorator';
 import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
+import { LogTarget } from '../decorators/logtarget.decorator';
 
 @ApiUseTags('dictionary')
 @Controller('dictionary')
@@ -43,6 +44,7 @@ export class DictionaryController {
   @ApiOperation({ title: 'Cоздать элемент словаря' })
   @Level(2)
   @Post(':dictionary')
+  @LogTarget(value => value[0]._id)
   async post(@Param('dictionary') dictionary, @Body('label') label) {
     const value = await this.dictionary.countDocuments({ name: dictionary });
     return await this.dictionary.insertMany([
@@ -53,6 +55,7 @@ export class DictionaryController {
   @ApiOperation({ title: 'Получить изменить имя словаря' })
   @Level(2)
   @Patch('/:id')
+  @LogTarget((_, args) => args.params.id)
   async patch(@Param('id') id, @Body('label') label) {
     return await this.dictionary.update({ _id: id }, { label });
   }
@@ -60,6 +63,7 @@ export class DictionaryController {
   @ApiOperation({ title: 'Спрятать/показать элемент словаря' })
   @Level(2)
   @Patch('/hide/:id')
+  @LogTarget((_, args) => args.params.id)
   async hideChange(@Param('id') id, @Body('hide') hide: boolean) {
     return await this.dictionary.update({ _id: id }, { hide });
   }

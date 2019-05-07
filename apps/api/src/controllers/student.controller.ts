@@ -21,6 +21,7 @@ import {
   PagesQuery,
   StudentParam
 } from '../Interfaces/StudentsController/StudentsController';
+import { LogTarget } from '../decorators/logtarget.decorator';
 
 @ApiUseTags('student')
 @Controller('student')
@@ -58,9 +59,10 @@ export class StudentController {
     );
   }
 
-  @ApiOperation({ title: 'Удаляет сдудента по id' })
+  @ApiOperation({ title: 'Удаляет студента по id' })
   @Delete(':id')
   @Level(2)
+  @LogTarget((_, args) => args.params.id)
   delete(@Param() params: StudentParam) {
     return this.appService.deleteStudent(params.id);
   }
@@ -68,6 +70,7 @@ export class StudentController {
   @ApiOperation({ title: 'Добавить студента' })
   @Post()
   @Level(2)
+  @LogTarget(value => value[0]._id)
   post(@Body() body): any {
     return this.appService.addStudent(body);
   }
@@ -75,6 +78,7 @@ export class StudentController {
   @ApiOperation({ title: 'Изменить студента' })
   @Patch(':id')
   @Level(2)
+  @LogTarget((_, args) => args.params.id)
   patch(@Body() body, @Param('id') id) {
     return this.appService.editStudent(id, body);
   }

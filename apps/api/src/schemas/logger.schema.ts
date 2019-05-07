@@ -5,6 +5,7 @@ import { ObjectId } from 'bson';
 export const LoggerSchema: Schema = new mongoose.Schema(
   {
     userId: ObjectId,
+    targetId: ObjectId,
     status: Number,
     method: String,
     date: Date,
@@ -21,6 +22,7 @@ export const LoggerSchema: Schema = new mongoose.Schema(
 export interface LoggerDB extends Document {
   _id: ObjectId;
   userId: ObjectId;
+  targetId?: ObjectId;
   status: number;
   method: string;
   date: Date;

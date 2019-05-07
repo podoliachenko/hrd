@@ -21,7 +21,7 @@ export class UserController {
   }
 
   @Patch('/privilege')
-  @Level(0)
+  @Level(3)
   async changeLevel(@Body() body, @Req() req) {
     return this.user.changePrivilege(req.headers, body.level, body.id);
   }
