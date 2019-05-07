@@ -49,11 +49,30 @@
         </th>
       </tr>
       <tr>
-        <th *ngFor="let col of columns" [ngSwitch]="col.field" class="ui-fluid">
+        <th *ngFor="let col of columns" [ngSwitch]="col.type" class="ui-fluid">
+          <p-calendar
+            (onSelect)="filter(filterDate($event), col.field)"
+            (onClearClick)="filter('', col.field)"
+            [showIcon]="true"
+            [placeholder]="'FIELD_LABELS.' + col.field | translate"
+            *ngSwitchCase="'date'"
+            [showButtonBar]="true"
+          ></p-calendar>
+          <p-dropdown
+            (onChange)=" filter($event.value, col.field)"
+            [options]="dictionaryService.getDictionarySelect(col.options)"
+            *ngSwitchCase="'select'"
+            [placeholder]="'FIELD_LABELS.' + col.field | translate"
+            [showClear]="true"
+          >
+          </p-dropdown>
           <input
+            (input)="filter($event.target['value'], col.field)"
             pInputText
             type="text"
-            (input)="filter($event.target['value'], col.field)"
+            [id]="col.field"
+            [placeholder]="'FIELD_LABELS.' + col.field | translate"
+            *ngSwitchDefault
           />
         </th>
       </tr>

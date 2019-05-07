@@ -6,6 +6,7 @@ import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/internal/operators/tap';
 import { DynamicTableService } from '@interfaces/table-service';
+import { isNullOrUndefined } from 'util';
 
 @Injectable({
   providedIn: 'root'
@@ -69,10 +70,18 @@ export class StudentService implements OnDestroy, DynamicTableService {
   }
 
   setFilter(name: string, value: string) {
-    if (value.trim() === '') {
-      delete this.filters[name];
-    } else {
-      this.filters[name] = value;
+    if (typeof value === 'string') {
+      if (value.trim() === '') {
+        delete this.filters[name];
+      } else {
+        this.filters[name] = value;
+      }
+    } else if(typeof value === 'number') {
+      if (isNullOrUndefined(value)) {
+        delete this.filters[name];
+      } else {
+        this.filters[name] = value;
+      }
     }
     this.pageStudents = 1;
     this.get(this.pageStudents, this.filters, this.sort);
@@ -115,6 +124,7 @@ export class StudentService implements OnDestroy, DynamicTableService {
     return this.http.patch('/student/' + id, value);
   }
 }
+
 /*
 class Loader {
   const group = [

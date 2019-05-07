@@ -1,6 +1,7 @@
 import { Pipe, PipeTransform } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { DictionaryService } from '@services/dictionary.service';
+import * as moment from 'moment';
 
 @Pipe({
   name: 'stringify'
@@ -21,7 +22,7 @@ export class StringifyPipe implements PipeTransform {
         .find(value1 => value1.value === Number(value));
       return val ? val.label : '';
     } else if (colInfo.type === 'date') {
-      return new DatePipe('en-US').transform(value, 'dd.MM.yyyy');
+      return moment(value).format('DD.MM.YYYY');
     }
   }
 }

@@ -5,7 +5,8 @@ import { IStudent } from '../Interfaces/IStudent';
 
 @Injectable()
 export class StudentService {
-  constructor(@InjectModel('Student') private readonly student: Model<any>) {}
+  constructor(@InjectModel('Student') private readonly student: Model<any>) {
+  }
 
   getAll() {
     return this.student.find({});
@@ -22,7 +23,13 @@ export class StudentService {
   regFilter(filter) {
     const val: any = {};
     Object.keys(filter).forEach(value => {
-      val[value] = { $regex: filter[value] };
+      if (typeof filter[value] === 'number') {
+        val[value] = filter[value];
+      } else if (this.isDate(filter[value])) {
+        val[value] = filter[value];
+      } else {
+        val[value] = { $regex: filter[value] };
+      }
     });
     return val;
   }
@@ -105,5 +112,10 @@ export class StudentService {
 
   editStudent(id: any, body: any) {
     return this.student.updateOne({ _id: id }, body);
+  }
+
+  isDate(_date) {
+    const _regExp = new RegExp('^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$');
+    return _regExp.test(_date);
   }
 }

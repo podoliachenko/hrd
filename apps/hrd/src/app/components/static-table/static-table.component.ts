@@ -3,6 +3,11 @@ import { HrdTable } from '@classes/hrd-table';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 import { HrdAuthService } from '@services/hrd-auth.service';
+import { DictionaryService } from '@services/dictionary.service';
+import { DatePipe } from '@angular/common';
+import * as moment from 'moment';
+import { log } from 'util';
+
 
 @Component({
   selector: 'hrd-static-table',
@@ -14,7 +19,8 @@ export class StaticTableComponent extends HrdTable implements OnInit, OnDestroy 
 
   subsctiptionLang: Subscription;
 
-  constructor(private translate: TranslateService, private auth: HrdAuthService) {
+  constructor(private translate: TranslateService, private auth: HrdAuthService,
+              public dictionaryService: DictionaryService) {
     super();
     this.changeLangContext();
     this.subsctiptionLang = this.translate.onLangChange.subscribe(lang => {
@@ -50,5 +56,9 @@ export class StaticTableComponent extends HrdTable implements OnInit, OnDestroy 
           });
       }
     });
+  }
+
+  filterDate(date) {
+    return moment(date).utc().format('YYYY-MM-DDTHH:mm:ss.SSS') + 'Z';
   }
 }

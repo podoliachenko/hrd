@@ -1,6 +1,6 @@
 {
   "name": "hrd",
-  "version": "0.11.4",
+  "version": "0.12.1",
   "license": "MIT",
   "scripts": {
     "ng": "ng",
@@ -60,7 +60,8 @@
     "primeng": "^7.1.1",
     "rxjs": "6.3.3",
     "swagger-ui-express": "^4.0.2",
-    "zone.js": "^0.8.26"
+    "zone.js": "^0.8.26",
+    "moment": "^2.24.0"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~0.13.0",
