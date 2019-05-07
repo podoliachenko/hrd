@@ -1,6 +1,6 @@
 export interface StudentField {
   field: string;
-  header: string;
+  header?: string;
   default?: boolean;
   type?: string;
   options?: string;

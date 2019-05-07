@@ -5,7 +5,12 @@ export const sudent_fields: StudentField[] = [
   { field: 'first_name', header: 'Забыл локализацию', default: true },
   { field: 'patronymic', header: 'Забыл локализацию', default: true },
   { field: 'group', header: 'Забыл локализацию', default: true },
-  { field: 'birthday', header: 'Забыл локализацию', default: true, type: 'date' },
+  {
+    field: 'birthday',
+    header: 'Забыл локализацию',
+    default: true,
+    type: 'date'
+  },
   { field: 'inn', header: 'Забыл локализацию' },
   { field: 'address', header: 'Забыл локализацию' },
   { field: 'address2', header: 'Забыл локализацию' },
@@ -22,7 +27,12 @@ export const sudent_fields: StudentField[] = [
     type: 'select',
     options: 'terms_training'
   },
-  { field: 'status', header: 'Забыл локализацию', type: 'select', options: 'status' },
+  {
+    field: 'status',
+    header: 'Забыл локализацию',
+    type: 'select',
+    options: 'status'
+  },
   { field: 'passport_series', header: 'Забыл локализацию' },
   { field: 'passport_no', header: 'Забыл локализацию' },
   {
@@ -36,6 +46,9 @@ export const sudent_fields: StudentField[] = [
     header: 'Забыл локализацию',
     type: 'select',
     options: 'activity'
+  },
+  {
+    field: 'notes'
   }
   // {field: 'enrollment', header: 'Регистрация'},
   // {field: 'date_action', header: 'ИНН'},
