@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { DictionaryService } from '@services/dictionary.service';
 import { ActivatedRoute } from '@angular/router';
 import { DictionaryOptionSetting } from '@interfaces/dictionary';
+import { HrdAuthService } from '@services/hrd-auth.service';
 
 @Component({
   selector: 'hrd-dictionary',
@@ -13,7 +14,8 @@ export class DictionaryComponent implements OnInit {
 
   constructor(
     public service: DictionaryService,
-    public route: ActivatedRoute
+    public route: ActivatedRoute,
+    public auth: HrdAuthService
   ) {}
 
   ngOnInit() {}

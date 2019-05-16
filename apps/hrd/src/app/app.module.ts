@@ -50,7 +50,7 @@ import { NxModule } from '@nrwl/nx';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DictionaryLogsComponent } from '@components/logs/dictionary-logs/dictionary-logs.component';
-import { StudentLogsComponent } from './components/logs/student-logs/student-logs.component';
+import { StudentLogsComponent } from '@components/logs/student-logs/student-logs.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {

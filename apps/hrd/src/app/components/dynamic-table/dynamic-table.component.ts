@@ -25,6 +25,7 @@ export class DynamicTableComponent extends HrdTable
     private dictionaryService: DictionaryService
   ) {
     super();
+    this.translate.onTranslationChange.subscribe(console.log);
     this.changeLangContext();
     this.subsctiptionLang = this.translate.onLangChange.subscribe(lang => {
       this.changeLangContext();

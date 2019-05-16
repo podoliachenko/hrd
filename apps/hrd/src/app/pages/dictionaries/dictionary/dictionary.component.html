@@ -53,7 +53,7 @@
   </tbody>
 </table>
 
-<hrd-dictionary-logs [logs]="service.getHistory(route.snapshot.params['dictionary'])"></hrd-dictionary-logs>
+<hrd-dictionary-logs *ngIf="auth.checkPrivilege(3)" [logs]="service.getHistory(route.snapshot.params['dictionary'])"></hrd-dictionary-logs>
 
 <p-dialog [header]="'CONST.ADD' | translate" [(visible)]="display" width="300">
   <input
