@@ -1,6 +1,6 @@
 import { StudentField } from '@interfaces/student-field';
 
-export const sudent_fields: StudentField[] = [
+export const student_fields: StudentField[] = [
   { field: 'last_name', header: 'Забыл локализацию', default: true },
   { field: 'first_name', header: 'Забыл локализацию', default: true },
   { field: 'patronymic', header: 'Забыл локализацию', default: true },

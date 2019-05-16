@@ -49,6 +49,8 @@ import { DynamicTableComponent } from '@components/dynamic-table/dynamic-table.c
 import { NxModule } from '@nrwl/nx';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import { DictionaryLogsComponent } from '@components/logs/dictionary-logs/dictionary-logs.component';
+import { StudentLogsComponent } from './components/logs/student-logs/student-logs.component';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -73,7 +75,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     StringifyPipe,
     DictionariesComponent,
     DictionaryComponent,
-    DynamicTableComponent
+    DynamicTableComponent,
+    DictionaryLogsComponent,
+    StudentLogsComponent
   ],
   imports: [
     BrowserModule,

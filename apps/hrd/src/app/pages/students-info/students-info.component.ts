@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { StudentService } from '@services/student.service';
 import { NewStudentComponent } from '../new-student/new-student.component';
 import { BsModalService } from 'ngx-bootstrap';
-import { sudent_fields } from '@configs/student_fields';
+import { student_fields } from '@configs/student_fields';
 
 @Component({
   selector: 'hrd-students-info',
@@ -10,14 +10,14 @@ import { sudent_fields } from '@configs/student_fields';
   styleUrls: ['./students-info.component.scss']
 })
 export class StudentsInfoComponent implements OnInit {
-  students_fields = sudent_fields;
+  students_fields = student_fields;
 
   get selectedColumns(): any[] {
     if (!this._selectedColumns) {
       if (localStorage['fields']) {
         this._selectedColumns = JSON.parse(localStorage['fields']);
       } else {
-        this._selectedColumns = sudent_fields.filter(val => val.default);
+        this._selectedColumns = student_fields.filter(val => val.default);
       }
     }
     return this._selectedColumns;
@@ -68,6 +68,6 @@ export class StudentsInfoComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.cols = sudent_fields;
+    this.cols = student_fields;
   }
 }

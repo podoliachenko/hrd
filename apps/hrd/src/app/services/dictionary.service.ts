@@ -26,6 +26,11 @@ export class DictionaryService {
     return find ? find.options : [];
   }
 
+  getHistory(name: string) {
+    const find = this.dictionaries.find(value => value.name === name);
+    return find ? find.history : [];
+  }
+
   getDictionarySelect(name: string): DictionaryOption[] {
     return this.getDictionary(name).filter(value => !value.hide);
   }

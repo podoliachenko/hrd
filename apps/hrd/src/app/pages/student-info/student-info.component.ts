@@ -5,7 +5,7 @@ import { HrdAuthService } from '@services/hrd-auth.service';
 import { Subscription } from 'rxjs';
 import { StudentField } from '@interfaces/student-field';
 import { FormControl, FormGroup } from '@angular/forms';
-import { sudent_fields } from '@configs/student_fields';
+import { student_fields } from '@configs/student_fields';
 import { DictionaryService } from '@services/dictionary.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
 
@@ -18,7 +18,7 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
   student: any;
 
   error: string;
-  students_fields = sudent_fields;
+  students_fields = student_fields;
 
   statusUserChangeSubs: Subscription;
   paramsSubs: Subscription;

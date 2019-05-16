@@ -22,17 +22,23 @@ import {
   StudentParam
 } from '../Interfaces/StudentsController/StudentsController';
 import { LogTarget } from '../decorators/logtarget.decorator';
+import { HistoryService } from '../services/history.service';
 
 @ApiUseTags('student')
 @Controller('student')
 export class StudentController {
-  constructor(private readonly appService: StudentService) {}
+  constructor(private readonly appService: StudentService, private history: HistoryService) {
+  }
 
   @ApiOperation({ title: 'Получить студента по id' })
   @Get(':id')
   @Level(1)
-  getStudent(@Param() params: StudentParam) {
-    return this.appService.getStudent(params.id);
+  async getStudent(@Param() params: StudentParam, @Param('profileWithDB') profile) {
+    const student = await this.appService.getStudent(params.id);
+    if (profile.privilege >= 3) {
+      student.history = await this.history.getLogsByTargetIds([student.student._id]);
+    }
+    return student;
   }
 
   @ApiOperation({ title: 'Получит указанную страницу списка студентов' })

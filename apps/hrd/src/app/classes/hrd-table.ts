@@ -1,5 +1,5 @@
 import { StudentField } from '@interfaces/student-field';
-import { sudent_fields } from '@configs/student_fields';
+import { student_fields } from '@configs/student_fields';
 import { TableService } from '@interfaces/table-service';
 import { Input } from '@angular/core';
 
@@ -32,7 +32,7 @@ export class HrdTable {
       if (localStorage[this.saveStorageName]) {
         this._selectedColumns = JSON.parse(localStorage[this.saveStorageName]);
       } else {
-        this._selectedColumns = sudent_fields.filter(val => val.default);
+        this._selectedColumns = student_fields.filter(val => val.default);
       }
     }
     return this._selectedColumns;

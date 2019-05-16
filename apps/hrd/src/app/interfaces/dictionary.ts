@@ -12,4 +12,12 @@ export interface DictionaryOptionSetting extends DictionaryOption {
 export interface Dictionary {
   name: string;
   options: DictionaryOption[];
+  history: any[];
+}
+
+export interface LogHeader {
+  id: string;
+  type: string;
+  date: string;
+  user: string;
 }

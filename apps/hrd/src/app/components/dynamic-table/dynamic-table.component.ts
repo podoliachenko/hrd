@@ -33,8 +33,10 @@ export class DynamicTableComponent extends HrdTable
 
   ngOnInit() {
     this.subsctiption = this.tableService.$items.subscribe(value => {
-      this.items = value.docs;
-      this.total = value.totalDocs;
+      if (value) {
+        this.items = value.docs;
+        this.total = value.totalDocs;
+      }
     });
   }
 

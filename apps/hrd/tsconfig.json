@@ -1,8 +1,8 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "types": ["node", "jest"],
     "baseUrl": ".",
+    "types": ["node", "jest"],
     "paths": {
       "@services/*": ["./src/app/services/*"],
       "@pipes/*": ["./src/app/pipes/*"],
@@ -13,7 +13,8 @@
       "@components/*": ["./src/app/components/*"],
       "@configs/*": ["./src/app/configs/*"],
       "@environment": ["./src/environments/environment"],
-      "@hrd/*": ["libs/*"]
+      "@workspace/*": ["../../*"],
+      "@libs/*": ["../../libs/*"]
     }
   },
   "include": ["**/*.ts"]

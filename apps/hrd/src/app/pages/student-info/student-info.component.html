@@ -25,6 +25,9 @@
     [tableService]="service"
     [columns]="students_fields"
   ></hrd-static-table>
+  <div class="mt-4"></div>
+  <hrd-student-logs [logs]="student.history"></hrd-student-logs>
+  <div class="mb-4"></div>
 </div>
 
 <div *ngIf="error" class="m-4">{{ error }}</div>
@@ -82,3 +85,4 @@
     </div>
   </ng-container>
 </ng-template>
+

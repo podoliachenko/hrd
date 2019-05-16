@@ -1,0 +1,46 @@
+<p-table [value]="logs" dataKey="_id">
+  <ng-template pTemplate="header" let-columns>
+    <tr>
+      <th style="width: 3em"></th>
+      <th>{{'CONST.TYPE' | translate}}</th>
+      <th>{{'CONST.DATE' | translate}}</th>
+      <th>{{'CONST.USER' | translate}}</th>
+    </tr>
+  </ng-template>
+  <ng-template
+    pTemplate="body"
+    let-rowData
+    let-expanded="expanded"
+    let-columns="columns"
+  >
+    <tr>
+      <td>
+        <a href="#" [pRowToggler]="rowData">
+          <i
+            [ngClass]="expanded ? 'pi pi-chevron-down' : 'pi pi-chevron-right'"
+          ></i>
+        </a>
+      </td>
+      <td>{{ getHeader(rowData).type | translate}}</td>
+      <td>{{ getHeader(rowData).date }}</td>
+      <td>{{ getHeader(rowData).user }}</td>
+    </tr>
+  </ng-template>
+  <ng-template pTemplate="rowexpansion" let-rowData let-columns="columns">
+    <tr *ngFor="let log of getContent(rowData); let i = index">
+      <th class="text-center">{{i + 1}}</th>
+      <th [attr.colspan]="1" *ngIf="!log.translateLabel">
+        {{log.label}}
+      </th>
+      <th [attr.colspan]="1" *ngIf="log.translateLabel">
+        {{log.label | translate}}
+      </th>
+      <th [attr.colspan]="2" *ngIf="!log.stringifyValue">
+        {{log.value}}
+      </th>
+      <th [attr.colspan]="2" *ngIf="log.stringifyValue">
+        {{log.value | stringify: log.colInfo}}
+      </th>
+    </tr>
+  </ng-template>
+</p-table>

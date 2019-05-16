@@ -1,6 +1,7 @@
 import { Document, Schema } from 'mongoose';
 import * as mongoose from 'mongoose';
 import { ObjectId } from 'bson';
+import { Log } from '@hrd/api-interface';
 
 export const LoggerSchema: Schema = new mongoose.Schema(
   {
@@ -19,17 +20,5 @@ export const LoggerSchema: Schema = new mongoose.Schema(
   { collection: 'logs' }
 );
 
-export interface LoggerDB extends Document {
-  _id: ObjectId;
-  userId: ObjectId;
-  targetId?: ObjectId;
-  status: number;
-  method: string;
-  date: Date;
-  message: string;
-  url: string;
-  params: any;
-  body: any;
-  query: any;
-  stack: string;
+export interface LoggerDB extends Document, Log {
 }

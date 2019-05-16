@@ -1,23 +1,26 @@
-import { Body, Controller, Get, Param, Patch, Post } from '@nestjs/common';
+import { Body, Controller, Get, Param, Patch, Post, Req } from '@nestjs/common';
 import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Dictionary } from '../schemas/dictionary.schema';
 import { Level } from '../decorators/level.decorator';
 import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
 import { LogTarget } from '../decorators/logtarget.decorator';
+import { HistoryService } from '../services/history.service';
+
 
 @ApiUseTags('dictionary')
 @Controller('dictionary')
 export class DictionaryController {
   constructor(
-    @InjectModel('Dictionary') private readonly dictionary: Model<Dictionary>
-  ) {}
+    @InjectModel('Dictionary') private readonly dictionary: Model<Dictionary>,
+    private history: HistoryService) {
+  }
 
   @ApiOperation({ title: 'Получить все словари' })
   @Level(1)
   @Get()
-  async getAll() {
-    return await this.dictionary.aggregate([
+  async getAll(@Param('profileWithDB') profile) {
+    const dictionaries = await this.dictionary.aggregate([
       {
         $group: {
           _id: '$name',
@@ -39,6 +42,13 @@ export class DictionaryController {
         }
       }
     ]);
+
+    if (profile.privilege >= 3) {
+      for (const dictionary of dictionaries) {
+        dictionary.history = await this.history.getLogsByTargetIds(dictionary.options.map(val => val._id));
+      }
+    }
+    return dictionaries;
   }
 
   @ApiOperation({ title: 'Cоздать элемент словаря' })

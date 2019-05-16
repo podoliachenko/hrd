@@ -15,6 +15,7 @@ import { LoggerSchema } from './schemas/logger.schema';
 import { DictionarySchema } from './schemas/dictionary.schema';
 import { DictionaryController } from './controllers/dictionary.controller';
 import { environment } from './environments/environment';
+import { HistoryService } from './services/history.service';
 
 @Module({
   imports: [
@@ -57,7 +58,8 @@ import { environment } from './environments/environment';
     {
       provide: APP_INTERCEPTOR,
       useClass: LoggerInterceptor
-    }
+    },
+    HistoryService
   ]
 })
 export class AppModule {

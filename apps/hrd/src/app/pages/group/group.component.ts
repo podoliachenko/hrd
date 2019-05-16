@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '@services/student.service';
 import { HrdAuthService } from '@services/hrd-auth.service';
 import { Subscription } from 'rxjs';
-import { sudent_fields } from '@configs/student_fields';
+import { student_fields } from '@configs/student_fields';
 
 @Component({
   selector: 'hrd-group',
@@ -26,7 +26,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   ];
   selected: any;
   statusUserChangeSubs: Subscription;
-  students_fields = sudent_fields;
+  students_fields = student_fields;
 
   constructor(
     private route: ActivatedRoute,
