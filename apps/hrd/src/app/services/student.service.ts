@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { HrdAuthService } from './hrd-auth.service';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/internal/operators/tap';
@@ -76,7 +76,7 @@ export class StudentService implements OnDestroy, DynamicTableService {
       } else {
         this.filters[name] = value;
       }
-    } else if(typeof value === 'number') {
+    } else if (typeof value === 'number') {
       if (isNullOrUndefined(value)) {
         delete this.filters[name];
       } else {
@@ -123,38 +123,11 @@ export class StudentService implements OnDestroy, DynamicTableService {
   edit(id, value) {
     return this.http.patch('/student/' + id, value);
   }
-}
 
-/*
-class Loader {
-  const group = [
-    '3047',
-    '3037',
-    '3057',
-    '3067',
-    '385',
-    '375',
-    '365',
-    '355',
-  ]
-  this.http.get('$$https://randomuser.me/api?results=111&nat=US').subscribe((value: any) => {
-   value.results.map(val => {
-     return {first_name: val.name.first, last_name: val.name.last, group: group[Math.round(Math.random() * (group.length - 1))]};
-   }).forEach(val => {
-     this.addStudent(val);
-   });
- });
-
-  static uploadAfina(http) {
-    http
-      .get('$$http://hrd.kk.nau.edu.ua/assets/students.json')
-      .subscribe((value1: any[]) => {
-        value1.forEach(val => {
-          return http.post('/student', val).subscribe(value => {
-            console.log(value);
-          });
-        });
-      });
+  renameGroup(name: string, students: any) {
+    const obs = students.map(val => {
+      return this.edit(val._id, { group: name });
+    });
+    return zip(...obs);
   }
 }
-*/

@@ -8,7 +8,7 @@ import { UserSchema } from './schemas/user.schema';
 import { UserService } from './services/user.service';
 import { APP_GUARD, APP_INTERCEPTOR } from '@nestjs/core';
 import { AuthGuard } from './guards/auth.guard';
-import { GroupController } from './controllers/group.controller';
+import { GroupsController } from './controllers/groups.controller';
 import { TestController } from './controllers/test.controller';
 import { LoggerInterceptor } from './interceptor/LoggerInterceptor';
 import { LoggerSchema } from './schemas/logger.schema';
@@ -44,7 +44,7 @@ import { HistoryService } from './services/history.service';
   controllers: [
     StudentController,
     UserController,
-    GroupController,
+    GroupsController,
     TestController,
     DictionaryController
   ],

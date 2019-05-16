@@ -2,20 +2,13 @@
   <div class="group-name d-flex align-items-center">
     <h2 class="ml-2">{{'FIELD_LABELS.group' | translate}} {{ group.group }}</h2>
     <div class="func ml-3">
-      <!--<button
+     <button
         pButton
         type="button"
         class="ui-button-raised ui-button-rounded"
-        label="Переименовать"
-        disabled
-      ></button>
-      <button
-        pButton
-        type="button"
-        class="ui-button-raised ui-button-rounded ml-2"
-        disabled
-        label="Задать форму обучения"
-      ></button>-->
+        [label]="'CONST.RENAME' | translate "
+        (click)="openModal(renameModal)"
+        ></button>
     </div>
   </div>
   <hrd-static-table
@@ -24,28 +17,33 @@
     [columns]="students_fields"
     [tableService]="student"
   ></hrd-static-table>
-  <!-- <p-table [columns]="cols" [value]="group.items" [resizableColumns]="true" [scrollable]="true" [contextMenu]="cm"
-            [(contextMenuSelection)]="selected">
-     <ng-template pTemplate="colgroup" let-columns>
-       <colgroup>
-         <col *ngFor="let col of columns" [style.width]="col.width">
-       </colgroup>
-     </ng-template>
-     <ng-template pTemplate="header" let-columns>
-       <tr>
-         <th *ngFor="let col of columns" pResizableColumn>
-           {{col.header}}
-         </th>
-       </tr>
-     </ng-template>
-     <ng-template pTemplate="body" let-rowData let-columns="columns">
-       <tr [pContextMenuRow]="rowData">
-         <td *ngFor="let col of columns" class="ui-resizable-column">
-           {{rowData[col.field]}}
-         </td>
-       </tr>
-     </ng-template>
-   </p-table>
-   <p-contextMenu #cm [model]="itemsMenu"></p-contextMenu>
-   -->
+  <ng-template #renameModal>
+    <div class="modal-header">
+      <h4 class="modal-title pull-left">{{'CONST.NAME' | translate}}</h4>
+      <button type="button" class="close pull-right" aria-label="Close" (click)="renameModalRef.hide()">
+        <span aria-hidden="true">&times;</span>
+      </button>
+    </div>
+    <div class="modal-body">
+      <input
+        pInputText
+        type="text"
+        class="w-100"
+        [value]="group.group"
+        [placeholder]="'CONST.NAME' | translate"
+        #nameField
+      />
+    </div>
+    <div class="modal-footer">
+      <button class="btn-outline-warning btn" (click)="renameModalRef.hide()">
+        {{ 'CONST.CANCEL' | translate }}
+      </button>
+      <button
+        class="btn btn-primary"
+        (click)="saveName(nameField.value)"
+      >
+        {{ 'CONST.APPLY' | translate }}
+      </button>
+    </div>
+  </ng-template>
 </div>
