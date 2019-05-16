@@ -1,4 +1,4 @@
-<ng-container *ngIf="items && columns">
+<ng-container *ngIf="items && columns && dictionaryService.notEmpty()">
   <p-contextMenu #cm [model]="itemsMenu"></p-contextMenu>
   <p-table
     #dt1

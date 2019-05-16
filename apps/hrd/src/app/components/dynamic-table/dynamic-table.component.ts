@@ -22,7 +22,7 @@ export class DynamicTableComponent extends HrdTable
   constructor(
     private translate: TranslateService,
     private auth: HrdAuthService,
-    private dictionaryService: DictionaryService
+    public dictionaryService: DictionaryService
   ) {
     super();
     this.translate.onTranslationChange.subscribe(console.log);

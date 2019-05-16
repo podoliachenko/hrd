@@ -15,6 +15,10 @@ export class DictionaryService {
     this.dictionaries = [];
   }
 
+  notEmpty() {
+    return this.dictionaries && this.dictionaries.length;
+  }
+
   refreshDictionaries() {
     this.http.get('/dictionary').subscribe((value: Dictionary[]) => {
       this.dictionaries = value;
