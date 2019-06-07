@@ -38,7 +38,7 @@
 		},
 		"activity": "Активность",
 		"address": "Адрес прописки",
-		"address2": "Адрес проживания",
+		"address2": "Адрес фактического проживания",
 		"birthday": "День рождения",
 		"first_name": "Имя",
 		"form_study": "Форма обучения",
@@ -52,8 +52,13 @@
 		"phone_number": "Номер телефона",
 		"specialty": "Специальность",
 		"status": "Статус",
-		"terms_training": "Условия обучения"
-	},
+		"terms_training": "Условия обучения",
+    "date_of_enrollment": "Дата зачисления",
+    "enrollment_order": "Приказ зачисления",
+    "date_of_graduation": "Дата выпуска",
+    "graduation_order": "Приказ выпуска",
+    "diploma": "Серия и номер диплома"
+  },
 	"HEADER": {
 		"CREATE_STUDENT": "Добавить студента",
 		"DICTIONARIES": "Словари",

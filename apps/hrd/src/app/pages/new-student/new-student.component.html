@@ -204,6 +204,65 @@
         formControlName="passport_no"
       />
     </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="diploma"
+      >{{ 'FIELD_LABELS.diploma' | translate }}:
+      </label>
+      <input
+        type="text"
+        id="diploma"
+        class="flex-grow-1"
+        pInputText
+        [placeholder]="'FIELD_LABELS.diploma' | translate"
+        formControlName="diploma"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="date_of_enrollment">{{ 'FIELD_LABELS.date_of_enrollment' | translate }}: </label>
+      <p-calendar
+        [showIcon]="true"
+        class="flex-grow-1"
+        id="date_of_enrollment"
+        formControlName="date_of_enrollment"
+        [placeholder]="'FIELD_LABELS.date_of_enrollment' | translate"
+      ></p-calendar>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="enrollment_order"
+      >{{ 'FIELD_LABELS.enrollment_order' | translate }}:
+      </label>
+      <input
+        type="text"
+        id="enrollment_order"
+        class="flex-grow-1"
+        pInputText
+        [placeholder]="'FIELD_LABELS.enrollment_order' | translate"
+        formControlName="enrollment_order"
+      />
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="date_of_graduation">{{ 'FIELD_LABELS.date_of_graduation' | translate }}: </label>
+      <p-calendar
+        [showIcon]="true"
+        class="flex-grow-1"
+        id="date_of_graduation"
+        formControlName="date_of_graduation"
+        [placeholder]="'FIELD_LABELS.date_of_graduation' | translate"
+      ></p-calendar>
+    </div>
+    <div class="ui-g-4 d-flex flex-column">
+      <label for="graduation_order"
+      >{{ 'FIELD_LABELS.graduation_order' | translate }}:
+      </label>
+      <input
+        type="text"
+        id="graduation_order"
+        class="flex-grow-1"
+        pInputText
+        [placeholder]="'FIELD_LABELS.graduation_order' | translate"
+        formControlName="graduation_order"
+      />
+    </div>
     <div class="ui-g-12 d-flex flex-column notes">
       <label for="notes">{{ 'FIELD_LABELS.notes' | translate }}: </label>
       <textarea
@@ -216,6 +275,7 @@
         autoResize="false"
       ></textarea>
     </div>
+
     <!--
       <div class="ui-g-4 d-flex mb-2 flex-column">
         <label for="date_action">Дата действия: </label>

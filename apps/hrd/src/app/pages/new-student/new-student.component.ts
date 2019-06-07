@@ -41,6 +41,11 @@ export class NewStudentComponent implements OnInit, OnDestroy {
       terms_training: new FormControl(null, [Validators.required]),
       status: new FormControl(null, [Validators.required]),
       notes: new FormControl(''),
+      diploma: new FormControl(''),
+      date_of_enrollment: new FormControl(),
+      enrollment_order: new FormControl(''),
+      date_of_graduation: new FormControl(),
+      graduation_order: new FormControl(''),
       specialty: new FormControl(null, [Validators.required]),
       activity: new FormControl(null, [Validators.required])
     });

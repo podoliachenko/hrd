@@ -38,7 +38,7 @@
 		},
 		"activity": "Активність",
 		"address": "Адреса прописки",
-		"address2": "Адреса проживання",
+		"address2": "Адреса фактичного проживання",
 		"birthday": "День народження",
 		"first_name": "Ім'я",
 		"form_study": "Форма навчання",
@@ -52,7 +52,12 @@
 		"phone_number": "Номер телефону",
 		"specialty": "Спеціальність",
 		"status": "Статус",
-		"terms_training": "Умови навчання"
+		"terms_training": "Умови навчання",
+    "date_of_enrollment": "Дата зарахування",
+    "enrollment_order": "Наказ зарахування",
+    "date_of_graduation": "Дата випуску",
+    "graduation_order": "Наказ випуску",
+    "diploma": "Серія і номер диплома"
 	},
 	"HEADER": {
 		"CREATE_STUDENT": "Додати студента",

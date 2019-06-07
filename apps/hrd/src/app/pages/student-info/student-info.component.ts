@@ -70,7 +70,7 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
     if (field.type === 'date') {
       this.formGroupModal.addControl(
         field.field,
-        new FormControl(new Date(val))
+        val ? new FormControl(new Date(val)) : new FormControl()
       );
     } else {
       this.formGroupModal.addControl(field.field, new FormControl(val));
