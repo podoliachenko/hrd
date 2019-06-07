@@ -1,3 +1,3 @@
-import { ReflectMetadata } from '@nestjs/common';
+import { SetMetadata } from '@nestjs/common';
 
-export const Level = (needLevel: number) => ReflectMetadata('level', needLevel);
+export const Level = (needLevel: number) => SetMetadata('level', needLevel);

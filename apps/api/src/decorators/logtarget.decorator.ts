@@ -1,3 +1,3 @@
-import { ReflectMetadata } from '@nestjs/common';
+import { SetMetadata } from '@nestjs/common';
 
-export const LogTarget = (target: Function) => ReflectMetadata('logTarget', target);
+export const LogTarget = (target: Function) => SetMetadata('logTarget', target);

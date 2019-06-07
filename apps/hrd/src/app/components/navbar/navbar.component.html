@@ -43,7 +43,7 @@
     <div class="form-inline my-2 my-lg-0 auth" *ngIf="auth.user">
       <div class="version" >{{version}}</div>
       <img class="lang" [src]="'/assets/images/flags/' +  translate.currentLang + '.gif'" (click)="changeLang()"/>
-      <img [src]="auth.user.image" alt="" />
+      <img [src]="auth.user.photoUrl" alt="" />
       <div class="name">
         {{ auth.user.name }}
         <span class="prefix">{{ getStringLvl(auth.privilege) | translate}}</span>

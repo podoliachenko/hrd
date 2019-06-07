@@ -1,27 +1,33 @@
-import { ExecutionContext, Injectable, Logger, NestInterceptor } from '@nestjs/common';
-import { Observable } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
 import { Model } from 'mongoose';
 import { LoggerDB } from '../schemas/logger.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { User } from '../schemas/user.schema';
 import * as _ from 'lodash';
+import {
+  CallHandler,
+  ExecutionContext,
+  Injectable,
+  NestInterceptor
+} from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
+import { Observable } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class LoggerInterceptor implements NestInterceptor {
-  constructor(@InjectModel('LoggerDB') private readonly logger: Model<LoggerDB>,
-              private readonly reflector: Reflector) {
-  }
+  constructor(
+    @InjectModel('LoggerDB') private readonly logger: Model<LoggerDB>,
+    private readonly reflector: Reflector
+  ) {}
 
   intercept(
     context: ExecutionContext,
-    call$: Observable<any>
+    next: CallHandler<any>
   ): Observable<any> | Promise<Observable<any>> {
     const args: any = context.getArgByIndex(0);
     const user: User = args.params.profileWithDB;
     const params = _.omit(args.params, ['profileWithDB']);
-    return call$.pipe(
+    return next.handle().pipe(
       map(value => {
         const log = {
           userId: user ? user._id : null,
@@ -35,7 +41,10 @@ export class LoggerInterceptor implements NestInterceptor {
           message: 'ok'
         } as LoggerDB;
         if (args.method !== 'GET') {
-          const logTarget = this.reflector.get<Function>('logTarget', context.getHandler());
+          const logTarget = this.reflector.get<Function>(
+            'logTarget',
+            context.getHandler()
+          );
           if (logTarget) {
             log.targetId = logTarget(value, args);
           }

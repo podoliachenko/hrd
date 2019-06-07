@@ -3,7 +3,7 @@ import {
   AuthService,
   GoogleLoginProvider,
   SocialUser
-} from 'angular-6-social-login';
+} from 'angularx-social-login';
 import { skip } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
@@ -19,7 +19,7 @@ export class HrdAuthService implements OnDestroy {
   constructor(private auth: AuthService, private http: HttpClient) {
     this.statusUserChange = new BehaviorSubject(null);
     console.log(auth);
-    this.auth.authState.pipe(skip(1)).subscribe(value => {
+    this.auth.authState.subscribe(value => {
       this.user = value;
       if (value) {
         localStorage.setItem('logged', 'true');

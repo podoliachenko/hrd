@@ -29,7 +29,7 @@ import {
   AuthServiceConfig,
   GoogleLoginProvider,
   SocialLoginModule
-} from 'angular-6-social-login';
+} from 'angularx-social-login';
 import { NavbarComponent } from '@components/navbar/navbar.component';
 import { InterceptorService } from '@services/interceptor.service';
 import { UsersComponent } from '@components/users/users.component';
