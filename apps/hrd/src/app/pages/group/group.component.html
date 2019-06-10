@@ -1,14 +1,15 @@
 <div *ngIf="group">
   <div class="group-name d-flex align-items-center">
-    <h2 class="ml-2">{{'FIELD_LABELS.group' | translate}} {{ group.group }}</h2>
+    <h2 class="ml-2">{{'FIELD_LABELS.group' | translate}} {{ group.group }} <span
+      *ngIf="route.snapshot.params['year'] !== 'null'">({{route.snapshot.params['year']}})</span></h2>
     <div class="func ml-3" *ngIf="auth.checkPrivilege(2)">
-     <button
+      <button
         pButton
         type="button"
         class="ui-button-raised ui-button-rounded"
         [label]="'CONST.RENAME' | translate "
         (click)="openModal(renameModal)"
-        ></button>
+      ></button>
     </div>
   </div>
   <hrd-static-table

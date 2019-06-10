@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { HrdAuthService } from './hrd-auth.service';
-import { BehaviorSubject, Observable, Subscription, zip } from 'rxjs';
+import { BehaviorSubject, Observable, of, Subscription, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { tap } from 'rxjs/internal/operators/tap';
@@ -21,7 +21,7 @@ export class StudentService implements OnDestroy, DynamicTableService {
     this.userStatusSubs = this.auth.statusUserChange.subscribe(value => {
       if (value && value.status) {
         this.get(1);
-        this.getGroups();
+        this.groups$ = this.getGroups();
       } else {
         delete this.students;
       }
@@ -37,12 +37,12 @@ export class StudentService implements OnDestroy, DynamicTableService {
   private userStatusSubs: Subscription;
 
   $items: BehaviorSubject<any>;
+  groups$ = of([]);
 
   addStudent(any) {
     return this.http.post('/student', any).pipe(
       map((value: any[]) => {
         this.get(1);
-        this.getGroups();
         return value;
       })
     );
@@ -62,11 +62,12 @@ export class StudentService implements OnDestroy, DynamicTableService {
       });
   }
 
-  getGroups() {
-    this.http.get('/groups').subscribe((value: any[]) => {
-      this.groups = value;
-      console.log(value);
-    });
+  getGroups(): Observable<any> {
+    return this.http.get('/groups/on-years');
+  }
+
+  setFilterGroups(filter = '') {
+    this.groups$ = this.http.get<any>('/groups/on-years', { params: { filter } });
   }
 
   setFilter(name: string, value: string) {
@@ -112,8 +113,8 @@ export class StudentService implements OnDestroy, DynamicTableService {
     this.$items.complete();
   }
 
-  getGroup(name: string) {
-    return this.http.get('/groups/' + name);
+  getGroup(year: string, group: string) {
+    return this.http.get(`/groups/${year}/${group}`);
   }
 
   view(_id) {

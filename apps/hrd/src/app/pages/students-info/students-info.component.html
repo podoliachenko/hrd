@@ -2,7 +2,7 @@
   <p-contextMenu #cm [model]="itemsMenu"></p-contextMenu>
   <!--<p-table #dt1 [columns]="selectedColumns" [value]="students.students" [paginator]="true" [lazy]="true" [rows]="10"
            [totalRecords]="students.total"
-           (onPage)="changePage($event)" (onSort)="sort($event)" [contextMenu]="cm"
+           (onPage)="changePage($event)" (onSort)="filter($event)" [contextMenu]="cm"
            [resetPageOnSort]="true" [(contextMenuSelection)]="selected">
     <ng-template pTemplate="caption">
       <div style="text-align:left">

@@ -49,7 +49,17 @@ export class StudentService {
     if (student) {
       const result: any = {};
       result.student = student;
-      result.classmates = await this.student.find({ group: student.group });
+      result.classmates = await this.student.aggregate([
+        {
+          $addFields: { year: { $year: '$date_of_enrollment' } }
+        },
+        {
+          $match: {
+            group: student.group,
+            year: new Date(student.date_of_enrollment).getFullYear()
+          }
+        }
+      ]);
       return result;
     } else {
       throw new HttpException('Student not found', 406);
@@ -77,12 +87,80 @@ export class StudentService {
     ]);
   }
 
+  async getGroupsOnYears(filter): Promise<any> {
+    return this.student.aggregate([
+      {
+        $match: {
+          group: new RegExp(filter)
+        }
+      },
+      {
+        $group: {
+          _id: { year: { $year: '$date_of_enrollment' }, group: '$group' },
+          students: {
+            $addToSet: '$$ROOT'
+          }
+        }
+      },
+      { $sort: { '_id.group': 1 } },
+      {
+        $group: {
+          _id: '$_id.year',
+          groups: {
+            $push: {
+              students: '$students',
+              group: '$_id.group'
+            }
+          }
+        }
+      },
+      { $sort: { '_id': -1 } }
+    ]);
+  }
+
   async getGroup(name: string): Promise<any> {
     return this.student
       .aggregate([
         {
           $match: {
             group: name
+          }
+        },
+        {
+          $sort: {
+            last_name: 1
+          }
+        },
+        {
+          $group: {
+            _id: '$group',
+            students: {
+              $push: '$$ROOT'
+            }
+          }
+        },
+        {
+          $replaceRoot: {
+            newRoot: {
+              group: '$_id',
+              students: '$students'
+            }
+          }
+        }
+      ])
+      .then(val => val[0]);
+  }
+
+  async getGroupYear(name: string, year: string): Promise<any> {
+    return this.student
+      .aggregate([
+        {
+          $addFields: { year: { $year: '$date_of_enrollment' } }
+        },
+        {
+          $match: {
+            group: name,
+            year: year ? Number(year) : null
           }
         },
         {

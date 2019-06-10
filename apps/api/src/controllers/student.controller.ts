@@ -41,7 +41,7 @@ export class StudentController {
     return student;
   }
 
-  @ApiOperation({ title: 'Получит указанную страницу списка студентов' })
+  @ApiOperation({ title: 'Получит указанную страницу списка студентов'})
   @Get('page/:page')
   @Level(1)
   async getPage(

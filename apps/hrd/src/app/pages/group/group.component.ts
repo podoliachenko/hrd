@@ -53,7 +53,7 @@ export class GroupComponent implements OnInit, OnDestroy {
 
   refresh() {
     this.student
-      .getGroup(this.route.snapshot.params['group'])
+      .getGroup(this.route.snapshot.params['year'], this.route.snapshot.params['group'])
       .subscribe((value: any[]) => {
         this.group = value;
         this.group.students = this.group.students.map((student, index) => {
@@ -85,7 +85,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   saveName(name: string) {
     this.student.renameGroup(name, this.group.students).subscribe(value => {
       this.renameModalRef.hide();
-      this.router.navigate([`/group`, name]).then(() => {
+      this.router.navigate([`/group`, this.route.snapshot.params['year'], name]).then(() => {
         this.refresh();
       });
     });

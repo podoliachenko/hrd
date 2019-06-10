@@ -27,7 +27,7 @@ const routes: Routes = [
     canActivate: [AuthControllerGuard]
   },
   {
-    path: 'group/:group',
+    path: 'group/:year/:group',
     component: GroupComponent,
     canActivate: [AuthControllerGuard]
   },
