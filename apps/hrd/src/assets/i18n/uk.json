@@ -32,6 +32,13 @@
 		"status": "Статус",
 		"terms_training": "Умови навчання"
 	},
+  "FIELD_GROUP": {
+    "PERSONAL_INFORMATION": "Особиста інформація",
+    "EDUCATIONAL_INFORMATION": "Навчальна інформація",
+    "GROUP": "Група",
+    "GRADUATION_AND_ENROLLMENT": "Випуск і зарахування",
+      "DIPLOMA": "Диплом"
+  },
 	"FIELD_LABELS": {
 		"GROUPS": {
 			"FILTER": "Фільтр"
@@ -57,8 +64,10 @@
     "enrollment_order": "Наказ зарахування",
     "date_of_graduation": "Дата випуску",
     "graduation_order": "Наказ випуску",
-    "diploma": "Серія і номер диплома"
-	},
+    "diploma": "Серія і номер диплома",
+    "group_formation_year": "Рік формування групи",
+    "diploma_registration_number": "Реєстраційний номер диплома"
+  },
 	"HEADER": {
 		"CREATE_STUDENT": "Додати студента",
 		"DICTIONARIES": "Словники",

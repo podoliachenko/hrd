@@ -5,6 +5,7 @@ export const student_fields: StudentField[] = [
   { field: 'first_name', default: true },
   { field: 'patronymic', default: true },
   { field: 'group', default: true },
+  {field: 'group_formation_year'},
   {
     field: 'birthday',
     default: true,
@@ -50,7 +51,8 @@ export const student_fields: StudentField[] = [
   {field: 'date_of_graduation',
     type: 'date'},
   {field: 'graduation_order'},
-  {field: 'diploma'}
+  {field: 'diploma'},
+  {field: 'diploma_registration_number'}
   // {field: 'date_action', header: 'ИНН'},
   // {field: 'order_date', header: 'Дата приказа'},
   // {field: 'output', header: 'ИНН'},

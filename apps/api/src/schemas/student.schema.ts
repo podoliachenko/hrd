@@ -21,11 +21,13 @@ export const StudentSchema: Schema = new mongoose.Schema(
     passport_series: String,
     passport_no: String,
     date_of_enrollment: Date,
+    group_formation_year: Number,
     enrollment_order: String,
     notes: String,
     date_of_graduation: Date,
     graduation_order: String,
-    diploma: String
+    diploma: String,
+    diploma_registration_number: String
     // privileges: Date
   }
 ).plugin(pagination);

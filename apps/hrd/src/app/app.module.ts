@@ -9,13 +9,13 @@ import {
   CalendarModule,
   ContextMenuModule,
   DialogModule,
-  DialogService,
+  DialogService, FieldsetModule,
   InplaceModule,
   InputTextareaModule,
   InputTextModule,
   MessageService,
   MultiSelectModule,
-  PaginatorModule
+  PaginatorModule, PanelModule
 } from 'primeng/primeng';
 import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -51,6 +51,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DictionaryLogsComponent } from '@components/logs/dictionary-logs/dictionary-logs.component';
 import { StudentLogsComponent } from '@components/logs/student-logs/student-logs.component';
+import { NgxfModule } from '@workspace/node_modules/@ngxf/platform';
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -103,6 +104,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     InplaceModule,
     ToastModule,
     NxModule.forRoot(),
+    FieldsetModule,
+    PanelModule,
+    NgxfModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,

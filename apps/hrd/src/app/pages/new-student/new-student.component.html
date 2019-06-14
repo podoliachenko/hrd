@@ -1,280 +1,326 @@
 <div class="" [formGroup]="form">
   <div class="data row">
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="last_name"
-      >{{ 'FIELD_LABELS.last_name' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <input
-        type="text"
-        id="last_name"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.last_name' | translate"
-        formControlName="last_name"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="first_name"
-      >{{ 'FIELD_LABELS.first_name' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <input
-        type="text"
-        id="first_name"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.first_name' | translate"
-        formControlName="first_name"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="patronymic"
-      >{{ 'FIELD_LABELS.patronymic' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="patronymic"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.patronymic' | translate"
-        formControlName="patronymic"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="group"
-      >{{ 'FIELD_LABELS.group' | translate }}<span class="required">*</span>:
-      </label>
-      <p-autoComplete
-        type="text"
-        id="group"
-        class="flex-grow-1"
-        [placeholder]="'FIELD_LABELS.group' | translate"
-        formControlName="group"
-        [suggestions]="getGroups()"
-        [dropdown]="true"
-        (completeMethod)="search($event)"
-      ></p-autoComplete>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="terms_training"
-      >{{ 'FIELD_LABELS.terms_training' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <p-dropdown
-        [options]="dictionary.getDictionarySelect('terms_training')"
-        formControlName="terms_training"
-        id="terms_training"
-        [placeholder]="'FIELD_LABELS.terms_training' | translate"
-      >
-      </p-dropdown>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="form_study"
-      >{{ 'FIELD_LABELS.form_study' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <p-dropdown
-        [options]="dictionary.getDictionarySelect('form_study')"
-        formControlName="form_study"
-        id="form_study"
-        [placeholder]="'FIELD_LABELS.form_study' | translate"
-      >
-      </p-dropdown>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="status"
-      >{{ 'FIELD_LABELS.status' | translate }}<span class="required">*</span>:
-      </label>
-      <p-dropdown
-        [options]="dictionary.getDictionarySelect('status')"
-        formControlName="status"
-        id="status"
-        [placeholder]="'FIELD_LABELS.status' | translate"
-      >
-      </p-dropdown>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="specialty"
-      >{{ 'FIELD_LABELS.specialty' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <p-dropdown
-        [options]="dictionary.getDictionarySelect('specialty')"
-        formControlName="specialty"
-        id="specialty"
-        [placeholder]="'FIELD_LABELS.specialty' | translate"
-      >
-      </p-dropdown>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="activity"
-      >{{ 'FIELD_LABELS.activity' | translate
-        }}<span class="required">*</span>:
-      </label>
-      <p-dropdown
-        [options]="dictionary.getDictionarySelect('activity')"
-        formControlName="activity"
-        id="activity"
-        [placeholder]="'FIELD_LABELS.activity' | translate"
-      >
-      </p-dropdown>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="birthday">{{ 'FIELD_LABELS.birthday' | translate }}: </label>
-      <p-calendar
-        [showIcon]="true"
-        class="flex-grow-1"
-        id="birthday"
-        formControlName="birthday"
-        [placeholder]="'FIELD_LABELS.birthday' | translate"
-      ></p-calendar>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="phone_number"
-      >{{ 'FIELD_LABELS.phone_number' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="phone_number"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.phone_number' | translate"
-        formControlName="phone_number"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="address">{{ 'FIELD_LABELS.address' | translate }}: </label>
-      <input
-        type="text"
-        id="address"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.address' | translate"
-        formControlName="address"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="address2">{{ 'FIELD_LABELS.address2' | translate }}: </label>
-      <input
-        type="text"
-        class="flex-grow-1"
-        id="address2"
-        pInputText
-        [placeholder]="'FIELD_LABELS.address2' | translate"
-        formControlName="address2"
-      />
-    </div>
+    <p-panel [header]="'FIELD_GROUP.PERSONAL_INFORMATION' | translate" class="ui-g-12">
+      <div class="row pl-3 pr-3">
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="last_name"
+          >{{ 'FIELD_LABELS.last_name' | translate
+            }}<span class="required">*</span>:
+          </label>
+          <input
+            type="text"
+            id="last_name"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.last_name' | translate"
+            formControlName="last_name"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="first_name"
+          >{{ 'FIELD_LABELS.first_name' | translate
+            }}<span class="required">*</span>:
+          </label>
+          <input
+            type="text"
+            id="first_name"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.first_name' | translate"
+            formControlName="first_name"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="patronymic"
+          >{{ 'FIELD_LABELS.patronymic' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="patronymic"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.patronymic' | translate"
+            formControlName="patronymic"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="birthday">{{ 'FIELD_LABELS.birthday' | translate }}: </label>
+          <p-calendar
+            [showIcon]="true"
+            class="flex-grow-1"
+            id="birthday"
+            formControlName="birthday"
+            [placeholder]="'FIELD_LABELS.birthday' | translate"
+          ></p-calendar>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="phone_number"
+          >{{ 'FIELD_LABELS.phone_number' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="phone_number"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.phone_number' | translate"
+            formControlName="phone_number"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="address">{{ 'FIELD_LABELS.address' | translate }}: </label>
+          <input
+            type="text"
+            id="address"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.address' | translate"
+            formControlName="address"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="address2">{{ 'FIELD_LABELS.address2' | translate }}: </label>
+          <input
+            type="text"
+            class="flex-grow-1"
+            id="address2"
+            pInputText
+            [placeholder]="'FIELD_LABELS.address2' | translate"
+            formControlName="address2"
+          />
+        </div>
 
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="inn">{{ 'FIELD_LABELS.inn' | translate }}: </label>
-      <input
-        type="number"
-        id="inn"
-        class="flex-grow-1 w-100"
-        pInputText
-        [placeholder]="'FIELD_LABELS.inn' | translate"
-        formControlName="inn"
-      />
-    </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="inn">{{ 'FIELD_LABELS.inn' | translate }}: </label>
+          <input
+            type="number"
+            id="inn"
+            class="flex-grow-1 w-100"
+            pInputText
+            [placeholder]="'FIELD_LABELS.inn' | translate"
+            formControlName="inn"
+          />
+        </div>
 
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="passport_series"
-      >{{ 'FIELD_LABELS.passport_series' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="passport_series"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.passport_series' | translate"
-        formControlName="passport_series"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="passport_no"
-      >{{ 'FIELD_LABELS.passport_no' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="passport_no"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.passport_no' | translate"
-        formControlName="passport_no"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="diploma"
-      >{{ 'FIELD_LABELS.diploma' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="diploma"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.diploma' | translate"
-        formControlName="diploma"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="date_of_enrollment">{{ 'FIELD_LABELS.date_of_enrollment' | translate }}: </label>
-      <p-calendar
-        [showIcon]="true"
-        class="flex-grow-1"
-        id="date_of_enrollment"
-        formControlName="date_of_enrollment"
-        [placeholder]="'FIELD_LABELS.date_of_enrollment' | translate"
-      ></p-calendar>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="enrollment_order"
-      >{{ 'FIELD_LABELS.enrollment_order' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="enrollment_order"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.enrollment_order' | translate"
-        formControlName="enrollment_order"
-      />
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="date_of_graduation">{{ 'FIELD_LABELS.date_of_graduation' | translate }}: </label>
-      <p-calendar
-        [showIcon]="true"
-        class="flex-grow-1"
-        id="date_of_graduation"
-        formControlName="date_of_graduation"
-        [placeholder]="'FIELD_LABELS.date_of_graduation' | translate"
-      ></p-calendar>
-    </div>
-    <div class="ui-g-4 d-flex flex-column">
-      <label for="graduation_order"
-      >{{ 'FIELD_LABELS.graduation_order' | translate }}:
-      </label>
-      <input
-        type="text"
-        id="graduation_order"
-        class="flex-grow-1"
-        pInputText
-        [placeholder]="'FIELD_LABELS.graduation_order' | translate"
-        formControlName="graduation_order"
-      />
-    </div>
-    <div class="ui-g-12 d-flex flex-column notes">
-      <label for="notes">{{ 'FIELD_LABELS.notes' | translate }}: </label>
-      <textarea
-        name="notes"
-        id="notes"
-        cols="30"
-        rows="5"
-        pInputTextarea
-        [placeholder]="'FIELD_LABELS.notes' | translate"
-        autoResize="false"
-      ></textarea>
-    </div>
+        <div class="ui-g-2 d-flex flex-column">
+          <label for="passport_series"
+          >{{ 'FIELD_LABELS.passport_series' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="passport_series"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.passport_series' | translate"
+            formControlName="passport_series"
+          />
+        </div>
+        <div class="ui-g-2 d-flex flex-column">
+          <label for="passport_no"
+          >{{ 'FIELD_LABELS.passport_no' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="passport_no"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.passport_no' | translate"
+            formControlName="passport_no"
+          />
+        </div>
+      </div>
+    </p-panel>
+    <p-panel [header]="'FIELD_GROUP.EDUCATIONAL_INFORMATION' | translate" class="ui-g-12">
+      <div class="row pl-3 pr-3">
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="terms_training"
+          >{{ 'FIELD_LABELS.terms_training' | translate
+            }}<span class="required">*</span>:
+          </label>
+          <p-dropdown
+            [options]="dictionary.getDictionarySelect('terms_training')"
+            formControlName="terms_training"
+            id="terms_training"
+            [placeholder]="'FIELD_LABELS.terms_training' | translate"
+          >
+          </p-dropdown>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="form_study"
+          >{{ 'FIELD_LABELS.form_study' | translate
+            }}<span class="required">*</span>:
+          </label>
+          <p-dropdown
+            [options]="dictionary.getDictionarySelect('form_study')"
+            formControlName="form_study"
+            id="form_study"
+            [placeholder]="'FIELD_LABELS.form_study' | translate"
+          >
+          </p-dropdown>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="status"
+          >{{ 'FIELD_LABELS.status' | translate }}<span class="required">*</span>:
+          </label>
+          <p-dropdown
+            [options]="dictionary.getDictionarySelect('status')"
+            formControlName="status"
+            id="status"
+            [placeholder]="'FIELD_LABELS.status' | translate"
+          >
+          </p-dropdown>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="specialty"
+          >{{ 'FIELD_LABELS.specialty' | translate
+            }}<span class="required">*</span>:
+          </label>
+          <p-dropdown
+            [options]="dictionary.getDictionarySelect('specialty')"
+            formControlName="specialty"
+            id="specialty"
+            [placeholder]="'FIELD_LABELS.specialty' | translate"
+          >
+          </p-dropdown>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="activity"
+          >{{ 'FIELD_LABELS.activity' | translate
+            }}<span class="required">*</span>:
+          </label>
+          <p-dropdown
+            [options]="dictionary.getDictionarySelect('activity')"
+            formControlName="activity"
+            id="activity"
+            [placeholder]="'FIELD_LABELS.activity' | translate"
+          >
+          </p-dropdown>
+        </div>
+        <div class="ui-g-12 d-flex flex-column notes">
+          <label for="notes">{{ 'FIELD_LABELS.notes' | translate }}: </label>
+          <textarea
+            name="notes"
+            id="notes"
+            cols="30"
+            rows="5"
+            pInputTextarea
+            [placeholder]="'FIELD_LABELS.notes' | translate"
+            autoResize="false"
+          ></textarea>
+        </div>
+      </div>
+    </p-panel>
+    <p-panel [header]="'FIELD_GROUP.GROUP' | translate" class="ui-g-12">
+      <div class="row pl-3 pr-3">
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="group"
+          >{{ 'FIELD_LABELS.group' | translate }}<span class="required">*</span>:
+          </label>
+          <p-autoComplete
+            type="text"
+            id="group"
+            class="flex-grow-1"
+            [placeholder]="'FIELD_LABELS.group' | translate"
+            formControlName="group"
+            [suggestions]="getGroups()"
+            [dropdown]="true"
+            (completeMethod)="search($event)"
+          ></p-autoComplete>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="group_formation_year"
+          >{{ 'FIELD_LABELS.group_formation_year' | translate }}:
+          </label>
+          <input
+            type="number"
+            id="group_formation_year"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.group_formation_year' | translate"
+            formControlName="group_formation_year"
+          />
+        </div>
+      </div>
+    </p-panel>
+    <p-panel [header]="'FIELD_GROUP.GRADUATION_AND_ENROLLMENT' | translate" class="ui-g-12">
+      <div class="row pl-3 pr-3">
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="date_of_enrollment">{{ 'FIELD_LABELS.date_of_enrollment' | translate }}: </label>
+          <p-calendar
+            [showIcon]="true"
+            class="flex-grow-1"
+            id="date_of_enrollment"
+            formControlName="date_of_enrollment"
+            [placeholder]="'FIELD_LABELS.date_of_enrollment' | translate"
+          ></p-calendar>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="enrollment_order"
+          >{{ 'FIELD_LABELS.enrollment_order' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="enrollment_order"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.enrollment_order' | translate"
+            formControlName="enrollment_order"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="date_of_graduation">{{ 'FIELD_LABELS.date_of_graduation' | translate }}: </label>
+          <p-calendar
+            [showIcon]="true"
+            class="flex-grow-1"
+            id="date_of_graduation"
+            formControlName="date_of_graduation"
+            [placeholder]="'FIELD_LABELS.date_of_graduation' | translate"
+          ></p-calendar>
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="graduation_order"
+          >{{ 'FIELD_LABELS.graduation_order' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="graduation_order"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.graduation_order' | translate"
+            formControlName="graduation_order"
+          />
+        </div>
+      </div>
+    </p-panel>
+    <p-panel [header]="'FIELD_GROUP.DIPLOMA' | translate" class="ui-g-12">
+      <div class="row pl-3 pr-3">
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="diploma"
+          >{{ 'FIELD_LABELS.diploma' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="diploma"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.diploma' | translate"
+            formControlName="diploma"
+          />
+        </div>
+        <div class="ui-g-4 d-flex flex-column">
+          <label for="diploma_registration_number"
+          >{{ 'FIELD_LABELS.diploma_registration_number' | translate }}:
+          </label>
+          <input
+            type="text"
+            id="diploma_registration_number"
+            class="flex-grow-1"
+            pInputText
+            [placeholder]="'FIELD_LABELS.diploma_registration_number' | translate"
+            formControlName="diploma_registration_number"
+          />
+        </div>
+      </div>
+    </p-panel>
 
     <!--
       <div class="ui-g-4 d-flex mb-2 flex-column">

@@ -96,7 +96,7 @@ export class StudentService {
       },
       {
         $group: {
-          _id: { year: { $year: '$date_of_enrollment' }, group: '$group' },
+          _id: { year: '$group_formation_year', group: '$group' },
           students: {
             $addToSet: '$$ROOT'
           }
@@ -155,7 +155,7 @@ export class StudentService {
     return this.student
       .aggregate([
         {
-          $addFields: { year: { $year: '$date_of_enrollment' } }
+          $addFields: { year: '$group_formation_year' }
         },
         {
           $match: {
