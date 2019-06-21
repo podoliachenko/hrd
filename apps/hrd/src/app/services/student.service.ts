@@ -125,9 +125,9 @@ export class StudentService implements OnDestroy, DynamicTableService {
     return this.http.patch('/student/' + id, value);
   }
 
-  renameGroup(name: string, students: any) {
+  editByStudentList(students: any[], value: any) {
     const obs = students.map(val => {
-      return this.edit(val._id, { group: name });
+      return this.edit(val._id, value);
     });
     return zip(...obs);
   }

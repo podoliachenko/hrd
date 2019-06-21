@@ -13,7 +13,10 @@ import { BsModalRef, BsModalService } from '@workspace/node_modules/ngx-bootstra
 })
 export class GroupComponent implements OnInit, OnDestroy {
 
-  renameModalRef: BsModalRef;
+  isLoadingButton: boolean;
+  isChangeModalVisible: boolean;
+  selectedField: string;
+
 
   group: any;
   cols: any[] = [
@@ -36,8 +39,7 @@ export class GroupComponent implements OnInit, OnDestroy {
     private route: ActivatedRoute,
     public student: StudentService,
     private auth: HrdAuthService,
-    private router: Router,
-    private modalService: BsModalService
+    private router: Router
   ) {
   }
 
@@ -78,14 +80,41 @@ export class GroupComponent implements OnInit, OnDestroy {
     this.student.delete(student._id);
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.renameModalRef = this.modalService.show(template);
+  saveName(name: string) {
+    /* this.student.renameGroup(name, this.group.students).subscribe(value => {
+       this.renameModalRef.hide();
+       this.router.navigate([`/group`, this.route.snapshot.params['year'], name]).then(() => {
+         this.refresh();
+       });
+     });*/
   }
 
-  saveName(name: string) {
-    this.student.renameGroup(name, this.group.students).subscribe(value => {
-      this.renameModalRef.hide();
-      this.router.navigate([`/group`, this.route.snapshot.params['year'], name]).then(() => {
+  openModalEdit(name: string) {
+    this.selectedField = name;
+    this.isChangeModalVisible = true;
+  }
+
+  closeModalEdit() {
+    this.isChangeModalVisible = false;
+
+  }
+
+  saveModalEdit(field: any) {
+    this.isLoadingButton = true;
+    const params = {};
+    params[this.selectedField] = field.value;
+    this.student.editByStudentList(this.group.students, params).subscribe(value => {
+      this.isLoadingButton = false;
+      this.isChangeModalVisible = false;
+      let year = this.route.snapshot.params['year'];
+      let group = this.route.snapshot.params['group'];
+      if (this.selectedField === 'group_formation_year') {
+        year = field.value;
+      } else if (this.selectedField === 'group') {
+        group = field.value;
+      }
+      field.value = '';
+      this.router.navigate([`/group`, year, group]).then(() => {
         this.refresh();
       });
     });

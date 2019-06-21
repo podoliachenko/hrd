@@ -1,38 +1,38 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <div class="collapse navbar-collapse" id="navbarSupportedContent">
-    <ul class="navbar-nav mr-auto">
-      <li class="nav-item" routerLink="/students" routerLinkActive="active">
+<nav class="navbar-expand-lg navbar-light">
+  <div class="d-flex">
+    <ul nz-menu nzMode="horizontal" class=" flex-grow-1">
+      <li nz-menu-item routerLink="/students" routerLinkActive="ant-menu-item-selected">
         <a class="nav-link">{{'HEADER.STUDENTS' | translate}}</a>
       </li>
-      <li class="nav-item" routerLink="/groups" routerLinkActive="active">
+      <li nz-menu-item routerLink="/groups" routerLinkActive="ant-menu-item-selected">
         <a class="nav-link">{{'HEADER.GROUPS' | translate}}</a>
       </li>
       <li
-        class="nav-item"
+        nz-menu-item
         routerLink="/users"
-        routerLinkActive="active"
+        routerLinkActive="ant-menu-item-selected"
         *ngIf="auth.checkPrivilege(3)"
       >
         <a class="nav-link">{{'HEADER.USERS' | translate}}</a>
       </li>
       <li
-        class="nav-item"
+        nz-menu-item
         routerLink="/add-student"
-        routerLinkActive="active"
+        routerLinkActive="ant-menu-item-selected"
         *ngIf="auth.checkPrivilege(2)"
       >
         <a class="nav-link">{{'HEADER.CREATE_STUDENT' | translate}}</a>
       </li>
       <li
-        class="nav-item"
+        nz-menu-item
         routerLink="/dictionaries"
-        routerLinkActive="active"
+        routerLinkActive="ant-menu-item-selected"
         *ngIf="auth.checkPrivilege(3)"
       >
         <a class="nav-link">{{'HEADER.DICTIONARIES' | translate}}</a>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0" *ngIf="!auth.user">
+    <div class="form-inline my-2 my-lg-0 align-item-center" *ngIf="!auth.user">
       <button
         class="btn btn-outline-success my-2 my-sm-0"
         (click)="auth.logIn()"
@@ -40,7 +40,7 @@
         {{'HEADER.LOGIN' | translate}}
       </button>
     </div>
-    <div class="form-inline my-2 my-lg-0 auth" *ngIf="auth.user">
+    <div class="d-flex my-2 my-lg-0 auth mr-2" *ngIf="auth.user">
       <div class="version" >{{version}}</div>
       <img class="lang" [src]="'/assets/images/flags/' +  translate.currentLang + '.gif'" (click)="changeLang()"/>
       <img [src]="auth.user.photoUrl" alt="" />
@@ -48,11 +48,10 @@
         {{ auth.user.name }}
         <span class="prefix">{{ getStringLvl(auth.privilege) | translate}}</span>
       </div>
-      <button
-        class="btn btn-outline-success my-2 my-sm-0"
+      <button nz-button nzShape="circle"
         (click)="auth.logOut()"
       >
-        {{'HEADER.EXIT' | translate}}
+        <i nz-icon nzType="logout" nzTheme="outline"></i>
       </button>
     </div>
   </div>

@@ -51,12 +51,12 @@ export class StudentService {
       result.student = student;
       result.classmates = await this.student.aggregate([
         {
-          $addFields: { year: { $year: '$date_of_enrollment' } }
+          $addFields: { year: '$group_formation_year' }
         },
         {
           $match: {
             group: student.group,
-            year: new Date(student.date_of_enrollment).getFullYear()
+            year: student.group_formation_year
           }
         }
       ]);

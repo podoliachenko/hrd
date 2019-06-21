@@ -51,7 +51,14 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
 import { DictionaryLogsComponent } from '@components/logs/dictionary-logs/dictionary-logs.component';
 import { StudentLogsComponent } from '@components/logs/student-logs/student-logs.component';
-import { NgxfModule } from '@workspace/node_modules/@ngxf/platform';
+import { NgZorroAntdModule, NZ_I18N, uk_UA } from 'ng-zorro-antd';
+import { registerLocaleData } from '@angular/common';
+import uk from '@angular/common/locales/uk';
+import { UniversalFieldComponent } from './components/universal-field/universal-field.component';
+import { AllFieldsComponent } from './components/all-fields/all-fields.component';
+import { ScrollingModule } from '@workspace/node_modules/@angular/cdk/scrolling';
+
+registerLocaleData(uk);
 
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
@@ -78,7 +85,9 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DictionaryComponent,
     DynamicTableComponent,
     DictionaryLogsComponent,
-    StudentLogsComponent
+    StudentLogsComponent,
+    UniversalFieldComponent,
+    AllFieldsComponent
   ],
   imports: [
     BrowserModule,
@@ -106,14 +115,15 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NxModule.forRoot(),
     FieldsetModule,
     PanelModule,
-    NgxfModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    NgZorroAntdModule,
+    ScrollingModule
   ],
   providers: [
     DialogService,
@@ -135,7 +145,8 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
-    }
+    },
+    { provide: NZ_I18N, useValue: uk_UA },
   ],
   bootstrap: [AppComponent],
   entryComponents: [NewStudentComponent]

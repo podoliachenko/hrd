@@ -4,4 +4,5 @@ export interface StudentField {
   default?: boolean;
   type?: string;
   options?: string;
+  validators?: any[];
 }

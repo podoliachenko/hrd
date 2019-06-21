@@ -1,0 +1,61 @@
+<ng-container [ngSwitch]="config.type">
+  <label [class.ant-form-item-required]="required(config)" [for]="config.field" *ngIf="!disableLabel">{{
+    'FIELD_LABELS.' + config.field | translate
+    }}: </label>
+  <nz-form-control [nzValidateStatus]="value !== tempValue && alternateEdit ? 'warning' : ''" nzHasFeedback
+                   class="disable-ant-form-item-children-icon" [class.alternate-disabled-field]="alternateEdit">
+    <nz-input-group nzCompact class="d-flex">
+      <button nz-button *ngIf="alternateEdit" [disabled]="isDisabled"
+              (click)="changeStateButton()"
+              [nzLoading]="loadingButton">
+        <i nz-icon nzType="edit" nzTheme="fill" *ngIf="!isEdit && !loadingButton"></i>
+        <i nz-icon nzType="check-circle" nzTheme="outline" *ngIf="isEdit && !loadingButton"></i>
+        <i nz-icon nzType="loading" nzTheme="outline" *ngIf="loadingButton"></i>
+      </button>
+      <nz-date-picker
+        class="flex-grow-1"
+        nzClassName="w-100"
+        [id]="config.field"
+        [nzPlaceHolder]="'FIELD_LABELS.' + config.field | translate"
+        [ngModel]="value"
+        (ngModelChange)="change($event)"
+        nzFormat="dd.MM.yyyy"
+        *ngSwitchCase="'date'"
+        [disabled]="isDisabled || alternateEdit && !isEdit"
+      ></nz-date-picker>
+      <nz-select
+        [nzPlaceHolder]="'FIELD_LABELS.' + config.field | translate"
+        class="flex-grow-1 max "
+        [id]="config.field"
+        [ngModel]="value"
+        (ngModelChange)="change($event)"
+        *ngSwitchCase="'select'"
+        [disabled]="isDisabled || alternateEdit && !isEdit">
+        <nz-option *ngFor="let el of dictionaryService.getDictionarySelect(config.options)" [nzValue]="el.value"
+                   [nzLabel]="el.label"></nz-option>
+      </nz-select>
+      <nz-input-number
+        class="flex-grow-1"
+        [id]="config.field"
+        [nzPlaceHolder]="'FIELD_LABELS.' + config.field | translate"
+        [ngModel]="value"
+        (ngModelChange)="change($event)"
+        *ngSwitchCase="'number'"
+        [disabled]="isDisabled || alternateEdit && !isEdit"></nz-input-number>
+      <textarea nz-input
+                [id]="config.field"
+                [placeholder]="'FIELD_LABELS.' + config.field | translate"
+                [ngModel]="value"
+                (ngModelChange)="change($event)"
+                *ngSwitchCase="'text'"
+                [disabled]="isDisabled || alternateEdit && !isEdit"> </textarea>
+      <input nz-input
+             [id]="config.field"
+             [placeholder]="'FIELD_LABELS.' + config.field | translate"
+             [ngModel]="value"
+             (ngModelChange)="change($event)"
+             *ngSwitchDefault
+             [disabled]="isDisabled || alternateEdit && !isEdit">
+    </nz-input-group>
+  </nz-form-control>
+</ng-container>

@@ -1,10 +1,12 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { StudentService } from '@services/student.service';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { DictionaryService } from '@services/dictionary.service';
 import { Subscription } from 'rxjs';
 import { HrdAuthService } from '@services/hrd-auth.service';
+import { student_fields, student_schematic } from '@configs/student_fields';
+import { AllFieldsComponent } from '@components/all-fields/all-fields.component';
 
 @Component({
   selector: 'hrd-new-student',
@@ -12,12 +14,14 @@ import { HrdAuthService } from '@services/hrd-auth.service';
   styleUrls: ['./new-student.component.scss']
 })
 export class NewStudentComponent implements OnInit, OnDestroy {
-  form: FormGroup;
   filterGroup = '';
 
   statusUserChangeSubs: Subscription;
-
+  students_fields = student_fields;
+  students_schematic = student_schematic;
   process: boolean;
+
+  @ViewChild('allFields') allFields: AllFieldsComponent;
 
   constructor(
     private service: StudentService,
@@ -25,32 +29,7 @@ export class NewStudentComponent implements OnInit, OnDestroy {
     public dictionary: DictionaryService,
     private auth: HrdAuthService
   ) {
-    this.form = new FormGroup({
-      first_name: new FormControl('', [Validators.required]),
-      last_name: new FormControl('', [Validators.required]),
-      group: new FormControl('', [Validators.required]),
-      patronymic: new FormControl(''),
-      birthday: new FormControl(''),
-      inn: new FormControl(''),
-      address: new FormControl(''),
-      address2: new FormControl(''),
-      phone_number: new FormControl(''),
-      passport_series: new FormControl(''),
-      passport_no: new FormControl(''),
-      form_study: new FormControl(null, [Validators.required]),
-      terms_training: new FormControl(null, [Validators.required]),
-      status: new FormControl(null, [Validators.required]),
-      notes: new FormControl(''),
-      diploma: new FormControl(''),
-      diploma_registration_number: new FormControl(''),
-      date_of_enrollment: new FormControl(),
-      enrollment_order: new FormControl(''),
-      date_of_graduation: new FormControl(),
-      graduation_order: new FormControl(''),
-      specialty: new FormControl(null, [Validators.required]),
-      activity: new FormControl(null, [Validators.required]),
-      group_formation_year: new FormControl(null)
-    });
+
   }
 
   ngOnInit() {
@@ -63,9 +42,9 @@ export class NewStudentComponent implements OnInit, OnDestroy {
 
   save() {
     this.process = true;
-    this.service.addStudent(this.form.value).subscribe(() => {
+    this.service.addStudent(this.allFields.formGroup).subscribe(() => {
       this.process = false;
-      this.form.reset();
+      this.allFields.formGroup.reset();
     });
   }
 
@@ -89,7 +68,7 @@ export class NewStudentComponent implements OnInit, OnDestroy {
 
   saveAndOpen() {
     this.process = true;
-    this.service.addStudent(this.form.value).subscribe((value: any) => {
+    this.service.addStudent(this.allFields.formGroup.value).subscribe((value: any) => {
       this.process = false;
       this.route.navigate(['/', 'student', value[0]._id]);
     });
