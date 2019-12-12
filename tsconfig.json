@@ -16,7 +16,8 @@
     "baseUrl": ".",
     "paths": {
       "@hrd/api-interface": ["libs/api-interface/src/index.ts"]
-    }
+    },
+    "rootDir": "."
   },
   "exclude": ["node_modules", "tmp"]
 }

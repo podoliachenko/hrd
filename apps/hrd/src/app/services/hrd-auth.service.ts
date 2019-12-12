@@ -1,10 +1,4 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import {
-  AuthService,
-  GoogleLoginProvider,
-  SocialUser
-} from 'angularx-social-login';
-import { skip } from 'rxjs/operators';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject } from 'rxjs';
 
@@ -12,13 +6,13 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class HrdAuthService implements OnDestroy {
-  user: SocialUser;
+  user: any;
   privilege: number;
   public statusUserChange: BehaviorSubject<any>;
 
-  constructor(private auth: AuthService, private http: HttpClient) {
+  constructor(private http: HttpClient) {
     this.statusUserChange = new BehaviorSubject(null);
-    console.log(auth);
+    /*console.log(auth);
     this.auth.authState.subscribe(value => {
       this.user = value;
       if (value) {
@@ -29,15 +23,15 @@ export class HrdAuthService implements OnDestroy {
         this.privilege = null;
         this.statusUserChange.next({ status: false });
       }
-    });
+    });*/
   }
 
   logIn() {
-    this.auth.signIn(GoogleLoginProvider.PROVIDER_ID);
+    // this.auth.signIn(GoogleLoginProvider.PROVIDER_ID);
   }
 
   logOut() {
-    this.auth.signOut();
+    // this.auth.signOut();
   }
 
   getPrivilege() {
@@ -58,4 +52,9 @@ export class HrdAuthService implements OnDestroy {
   checkPrivilege(lvl: number) {
     return this.privilege >= lvl;
   }
+
+  isLoggedIn() {
+    return false;
+  }
+
 }

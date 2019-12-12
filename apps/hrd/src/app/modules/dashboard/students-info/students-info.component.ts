@@ -30,7 +30,7 @@ export class StudentsInfoComponent implements OnInit {
 
   selected: any;
   itemsMenu: any;
-  @ViewChild('dt1') dtl;
+  @ViewChild('dt1', {static: false}) dtl;
   private _selectedColumns: any[];
   cols: any[];
 

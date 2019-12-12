@@ -21,7 +21,7 @@ export class NewStudentComponent implements OnInit, OnDestroy {
   students_schematic = student_schematic;
   process: boolean;
 
-  @ViewChild('allFields') allFields: AllFieldsComponent;
+  @ViewChild('allFields', {static: false}) allFields: AllFieldsComponent;
 
   constructor(
     private service: StudentService,

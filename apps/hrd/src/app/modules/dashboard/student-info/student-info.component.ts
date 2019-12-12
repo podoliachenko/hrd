@@ -30,7 +30,7 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
   isChangeModalVisible: boolean;
   isLoadingButton: boolean;
 
-  @ViewChild('allFieldsComponent') allFieldsComponent: AllFieldsComponent;
+  @ViewChild('allFieldsComponent', {static: false}) allFieldsComponent: AllFieldsComponent;
   studentInfo: any;
 
   constructor(

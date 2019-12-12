@@ -4,117 +4,49 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ButtonModule } from 'primeng/button';
-import {
-  AutoCompleteModule,
-  CalendarModule,
-  ContextMenuModule,
-  DialogModule,
-  DialogService, FieldsetModule,
-  InplaceModule,
-  InputTextareaModule,
-  InputTextModule,
-  MessageService,
-  MultiSelectModule,
-  PaginatorModule, PanelModule
-} from 'primeng/primeng';
-import { TableModule } from 'primeng/table';
 import { DynamicDialogModule } from 'primeng/dynamicdialog';
-import { NewStudentComponent } from '@pages/new-student/new-student.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { HTTP_INTERCEPTORS, HttpClient, HttpClientModule } from '@angular/common/http';
-import { StudentInfoComponent } from '@pages/student-info/student-info.component';
-import { StudentsInfoComponent } from '@pages/students-info/students-info.component';
-import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
 import {
-  AuthServiceConfig,
-  GoogleLoginProvider,
-  SocialLoginModule
-} from 'angularx-social-login';
-import { NavbarComponent } from '@components/navbar/navbar.component';
+  HTTP_INTERCEPTORS,
+  HttpClient,
+  HttpClientModule
+} from '@angular/common/http';
+import { BsDatepickerModule, ModalModule } from 'ngx-bootstrap';
 import { InterceptorService } from '@services/interceptor.service';
-import { UsersComponent } from '@components/users/users.component';
-import { StartComponent } from '@components/start/start.component';
-import { GroupsComponent } from '@pages/groups/groups.component';
-import { GroupComponent } from '@pages/group/group.component';
-import { FixColumnsPipe } from '@pipes/fix-colums.pipe';
-import { LogPipe } from '@pipes/log.pipe';
-import { StaticTableComponent } from '@components/static-table/static-table.component';
-import { StringifyPipe } from '@pipes/StringifyPipe.pipe';
 import { DictionaryService } from '@services/dictionary.service';
-import { DictionariesComponent } from '@pages/dictionaries/dictionaries.component';
 import { AppRoutingModule } from './app-routing.module';
-import { DictionaryComponent } from '@pages/dictionaries/dictionary/dictionary.component';
 import { ToastModule } from 'primeng/toast';
-import { DynamicTableComponent } from '@components/dynamic-table/dynamic-table.component';
-import { NxModule } from '@nrwl/nx';
+import { NxModule } from '@nrwl/angular';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
-import {TranslateHttpLoader} from '@ngx-translate/http-loader';
-import { DictionaryLogsComponent } from '@components/logs/dictionary-logs/dictionary-logs.component';
-import { StudentLogsComponent } from '@components/logs/student-logs/student-logs.component';
-import { NgZorroAntdModule, NZ_I18N, uk_UA } from 'ng-zorro-antd';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { NZ_I18N, uk_UA } from 'ng-zorro-antd';
 import { registerLocaleData } from '@angular/common';
 import uk from '@angular/common/locales/uk';
-import { UniversalFieldComponent } from './components/universal-field/universal-field.component';
-import { AllFieldsComponent } from './components/all-fields/all-fields.component';
 import { ScrollingModule } from '@workspace/node_modules/@angular/cdk/scrolling';
+import { DialogService } from '@workspace/node_modules/primeng/components/dynamicdialog/dialogservice';
+import { MessageService } from '@workspace/node_modules/primeng/components/common/messageservice';
 
 registerLocaleData(uk);
-
 
 export function HttpLoaderFactory(httpClient: HttpClient) {
   return new TranslateHttpLoader(httpClient);
 }
 
 @NgModule({
-  declarations: [
-    AppComponent,
-    NewStudentComponent,
-    NewStudentComponent,
-    StudentInfoComponent,
-    StudentsInfoComponent,
-    NavbarComponent,
-    UsersComponent,
-    StartComponent,
-    GroupsComponent,
-    GroupComponent,
-    FixColumnsPipe,
-    LogPipe,
-    StaticTableComponent,
-    StringifyPipe,
-    DictionariesComponent,
-    DictionaryComponent,
-    DynamicTableComponent,
-    DictionaryLogsComponent,
-    StudentLogsComponent,
-    UniversalFieldComponent,
-    AllFieldsComponent
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
     ButtonModule,
-    InputTextModule,
-    TableModule,
     DynamicDialogModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    PaginatorModule,
     AppRoutingModule,
-    ContextMenuModule,
-    CalendarModule,
     ModalModule.forRoot(),
     BsDatepickerModule.forRoot(),
-    SocialLoginModule,
-    AutoCompleteModule,
-    InputTextareaModule,
-    MultiSelectModule,
-    DialogModule,
-    InplaceModule,
     ToastModule,
     NxModule.forRoot(),
-    FieldsetModule,
-    PanelModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -122,7 +54,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
         deps: [HttpClient]
       }
     }),
-    NgZorroAntdModule,
     ScrollingModule
   ],
   providers: [
@@ -130,25 +61,13 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     DictionaryService,
     MessageService,
     {
-      provide: AuthServiceConfig,
-      useFactory: () =>
-        new AuthServiceConfig([
-          {
-            id: GoogleLoginProvider.PROVIDER_ID,
-            provider: new GoogleLoginProvider(
-              '955712266139-p02inm3kua8ugl2mq5clsovi1juhgq0g.apps.googleusercontent.com'
-            )
-          }
-        ])
-    },
-    {
       provide: HTTP_INTERCEPTORS,
       useClass: InterceptorService,
       multi: true
     },
-    { provide: NZ_I18N, useValue: uk_UA },
+    { provide: NZ_I18N, useValue: uk_UA }
   ],
   bootstrap: [AppComponent],
-  entryComponents: [NewStudentComponent]
+  entryComponents: []
 })
 export class AppModule {}
