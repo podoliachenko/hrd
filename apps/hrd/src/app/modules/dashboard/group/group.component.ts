@@ -1,10 +1,9 @@
-import { Component, OnDestroy, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { StudentService } from '@services/student.service';
 import { HrdAuthService } from '@services/hrd-auth.service';
 import { Subscription } from 'rxjs';
 import { student_fields } from '@configs/student_fields';
-import { BsModalRef, BsModalService } from '@workspace/node_modules/ngx-bootstrap';
 
 @Component({
   selector: 'hrd-group',
@@ -44,13 +43,7 @@ export class GroupComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.statusUserChangeSubs = this.auth.statusUserChange.subscribe(val => {
-      if (val && val.status) {
-        this.refresh();
-      } else {
-        this.group = null;
-      }
-    });
+    this.refresh();
   }
 
   refresh() {

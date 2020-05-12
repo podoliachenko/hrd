@@ -1,6 +1,6 @@
 <div *ngIf="student">
   <hrd-all-fields [config]="students_fields"
-                  [schematic]="students_schematic" [alternateEdit]="true"
+                  [schematic]="students_schematic" [alternateEdit]="2 | hrdPrivilege"
                   #allFieldsComponent [ngModel]="studentInfo" (ngModelChange)="changeField($event)"></hrd-all-fields>
   <div class="mb-4"></div>
   <hrd-static-table
@@ -9,7 +9,7 @@
     [tableService]="service"
     [columns]="students_fields"
   ></hrd-static-table>
-  <div class="mt-4 mb-4" *ngIf="auth.checkPrivilege(3)">
+  <div class="mt-4 mb-4" *hrdPrivilege="3">
     <hrd-student-logs [logs]="student.history"></hrd-student-logs>
   </div>
 </div>

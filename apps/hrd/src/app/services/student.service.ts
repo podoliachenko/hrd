@@ -1,5 +1,5 @@
 import { Injectable, OnDestroy } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { HrdAuthService } from './hrd-auth.service';
 import { BehaviorSubject, Observable, of, Subscription, zip } from 'rxjs';
 import { map } from 'rxjs/operators';
@@ -18,14 +18,8 @@ export class StudentService implements OnDestroy, DynamicTableService {
     private router: Router
   ) {
     this.$items = new BehaviorSubject(null);
-    this.userStatusSubs = this.auth.statusUserChange.subscribe(value => {
-      if (value && value.status) {
-        this.get(1);
-        this.groups$ = this.getGroups();
-      } else {
-        delete this.students;
-      }
-    });
+    this.groups$ = this.getGroups();
+    this.get(1);
   }
 
   students: any = {};
@@ -38,6 +32,11 @@ export class StudentService implements OnDestroy, DynamicTableService {
 
   $items: BehaviorSubject<any>;
   groups$ = of([]);
+
+
+  initStudents() {
+
+  }
 
   addStudent(any) {
     return this.http.post('/student', any).pipe(
@@ -54,7 +53,7 @@ export class StudentService implements OnDestroy, DynamicTableService {
     params.filter = JSON.stringify(filters);
     params.sort = JSON.stringify(sort);
     this.http
-      .get('/student/page/' + this.pageStudents, { params: params })
+      .get('/student/page/' + this.pageStudents, { params })
       .subscribe(value => {
         this.students = {};
         this.students = value;

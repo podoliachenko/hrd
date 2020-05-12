@@ -1,7 +1,7 @@
 import { ObjectId } from 'bson';
 
 export interface Log {
-  _id: ObjectId;
+  _id: any;
   userId: ObjectId;
   user: any;
   targetId?: ObjectId;

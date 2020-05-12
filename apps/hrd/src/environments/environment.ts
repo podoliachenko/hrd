@@ -6,7 +6,8 @@ import * as npm from '../../../../package.json';
 export const environment = {
   production: false,
   apiBase: 'http://hrd.kk.nau.edu.ua:3000',
-  version: npm.version + '-dev'
+  version: npm.version + '-dev',
+  whiteList: ['hrd.kk.nau.edu.ua:3000']
 };
 
 /*

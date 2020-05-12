@@ -1,9 +1,8 @@
 import { Document, Schema } from 'mongoose';
-import * as mongoose from 'mongoose';
 import { ObjectId } from 'bson';
 import { Log } from '@hrd/api-interface';
 
-export const LoggerSchema: Schema = new mongoose.Schema(
+export const LoggerSchema: Schema = new Schema(
   {
     userId: ObjectId,
     targetId: ObjectId,

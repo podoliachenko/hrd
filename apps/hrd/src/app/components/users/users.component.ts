@@ -1,7 +1,10 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { UsersService } from '@services/users.service';
 import { HrdAuthService } from '@services/hrd-auth.service';
 import { Subscription } from 'rxjs';
+import { User } from '@workspace/apps/api/src/schemas/user.schema';
+import { AddNewUserComponent } from '@workspace/apps/hrd/src/app/modals/add-new-user/add-new-user.component';
+import { NzMessageService } from '@workspace/node_modules/ng-zorro-antd';
 
 @Component({
   selector: 'hrd-users',
@@ -9,6 +12,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./users.component.scss']
 })
 export class UsersComponent implements OnInit, OnDestroy {
+
+  @ViewChild(AddNewUserComponent, { static: true }) newUserModal: AddNewUserComponent;
 
   // TODO: вынести в отдельный файл
   private usersLvl = [
@@ -18,21 +23,22 @@ export class UsersComponent implements OnInit, OnDestroy {
     'USERS.LVL.SUPERVISOR',
     'USERS.LVL.DEV'
   ];
-  users: any[];
+  users: User[];
 
   statusUserSubs: Subscription;
 
-  constructor(private service: UsersService, private auth: HrdAuthService) {}
+  constructor(private service: UsersService, private auth: HrdAuthService,
+              private message: NzMessageService) {
+  }
 
   ngOnInit() {
-    this.statusUserSubs = this.auth.statusUserChange.subscribe(value => {
-      if (value && value.status) {
-        this.service.getUsers().subscribe((value2: any[]) => {
-          this.users = value2;
-        });
-      } else {
-        this.users = [];
-      }
+    this.refresh();
+
+  }
+
+  refresh() {
+    this.service.getUsers().subscribe((value2: any[]) => {
+      this.users = value2;
     });
   }
 
@@ -43,12 +49,10 @@ export class UsersComponent implements OnInit, OnDestroy {
     this.statusUserSubs = null;
   }
 
-  changeLevel(target, index: number) {
-    const lvl = target.value;
+  changeLevel(lvl, index: number) {
     const oldLvl = this.users[index].privilege;
-    console.log(lvl, index);
     if (lvl !== this.users[index]) {
-      this.service.changeLvl(lvl, this.users[index].id).subscribe(
+      this.service.changeLvl(lvl, this.users[index]._id).subscribe(
         (value: any) => {
           if (value.ok) {
             this.users[index].privilege = lvl;
@@ -77,5 +81,21 @@ export class UsersComponent implements OnInit, OnDestroy {
       return 4;
     }
     return lvl;
+  }
+
+  newPassword(payload) {
+    this.service.updatePasswordUser(payload.id, payload.password).subscribe(() => {
+      this.refresh();
+    });
+  }
+
+  showModal() {
+    this.newUserModal.showModal();
+  }
+
+  result(value) {
+    this.service.newUser(value).subscribe(value1 => {
+      this.refresh();
+    }, v => {this.message.error(v.error.message)});
   }
 }

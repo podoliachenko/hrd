@@ -13,7 +13,7 @@ async function bootstrap() {
     .setVersion(environment.version)
     .build();
   const document = SwaggerModule.createDocument(app, options);
-  SwaggerModule.setup('api', app, document);
+  // SwaggerModule.setup('api', app, document);
 
   await app.listen(process.env.port || 3000);
   Logger.log(environment.version, 'Версия');

@@ -6,10 +6,17 @@
     margin-right: 10px;
   }
 
+  button {
+    margin-right: 10px;
+  }
+
   display: flex;
+  align-items: center;
+
   .name {
     display: flex;
     flex-direction: column;
+
     .prefix {
       font-size: 12px;
       color: #777777;

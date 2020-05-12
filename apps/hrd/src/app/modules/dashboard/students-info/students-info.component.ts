@@ -30,7 +30,7 @@ export class StudentsInfoComponent implements OnInit {
 
   selected: any;
   itemsMenu: any;
-  @ViewChild('dt1', {static: false}) dtl;
+  @ViewChild('dt1', { static: false }) dtl;
   private _selectedColumns: any[];
   cols: any[];
 
@@ -59,6 +59,7 @@ export class StudentsInfoComponent implements OnInit {
   show() {
     this.modalService.show(NewStudentComponent, { class: 'modal-lg' });
   }
+
   view(event: any) {
     this.service.view(event._id);
   }
@@ -69,5 +70,6 @@ export class StudentsInfoComponent implements OnInit {
 
   ngOnInit(): void {
     this.cols = student_fields;
+    this.service.initStudents();
   }
 }

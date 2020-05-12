@@ -1,8 +1,7 @@
-import * as mongoose from 'mongoose';
-import { Schema } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 import * as pagination from 'mongoose-paginate-v2';
 
-export const StudentSchema: Schema = new mongoose.Schema(
+export const StudentSchema: Schema = new Schema(
   {
     first_name: String,
     group: String,
@@ -31,3 +30,30 @@ export const StudentSchema: Schema = new mongoose.Schema(
     // privileges: Date
   }
 ).plugin(pagination);
+
+export interface Student extends Document {
+  first_name: string;
+  group: string;
+  patronymic: string;
+  last_name: string;
+  birthday: Date;
+  inn: number;
+  address: string;
+  address2: string;
+  phone_number: string;
+  form_study: string;
+  terms_training: number;
+  status: number;
+  specialty: number;
+  activity: number;
+  passport_series: string;
+  passport_no: string;
+  date_of_enrollment: Date;
+  group_formation_year: number;
+  enrollment_order: string;
+  notes: string;
+  date_of_graduation: Date;
+  graduation_order: string;
+  diploma: string;
+  diploma_registration_number: string;
+}

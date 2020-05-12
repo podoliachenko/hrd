@@ -4,7 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { HrdAuthService } from '@services/hrd-auth.service';
 import { Subscription } from 'rxjs';
 import { StudentField } from '@interfaces/student-field';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 import { student_fields, student_schematic } from '@configs/student_fields';
 import { DictionaryService } from '@services/dictionary.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap';
@@ -30,7 +30,7 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
   isChangeModalVisible: boolean;
   isLoadingButton: boolean;
 
-  @ViewChild('allFieldsComponent', {static: false}) allFieldsComponent: AllFieldsComponent;
+  @ViewChild('allFieldsComponent', { static: false }) allFieldsComponent: AllFieldsComponent;
   studentInfo: any;
 
   constructor(
@@ -44,16 +44,12 @@ export class StudentInfoComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.statusUserChangeSubs = this.auth.statusUserChange.subscribe(val => {
-      if (val && val.status) {
-        this.paramsSubs = this.route.params.subscribe(() => {
-          // this.dictionaryService.refreshDictionaries();
-          this.getStudent();
-        });
-      } else {
-        this.student = null;
-      }
+
+    this.paramsSubs = this.route.params.subscribe(() => {
+      // this.dictionaryService.refreshDictionaries();
+      this.getStudent();
     });
+
   }
 
   ngOnDestroy(): void {

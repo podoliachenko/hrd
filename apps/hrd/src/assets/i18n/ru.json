@@ -1,16 +1,15 @@
 {
 	"CONST": {
 		"ADD": "Добавить",
-		"WAIT": "Подождите",
 		"APPLY": "Применить",
 		"CANCEL": "Отменить",
-		"CREATE": "Создать",
 		"CHANGE": "Сменить",
+		"CREATE": "Создать",
 		"CREATE_AND_OPEN": "Создать и открыть",
 		"DATE": "Дата",
 		"DELETE": "Удалить",
 		"EDIT": "Редактировать",
-    "EDITING": "Редактирование",
+		"EDITING": "Редактирование",
 		"HIDDEN": "Скрытый",
 		"MAKING": "Создание",
 		"NAME": "Название",
@@ -20,7 +19,8 @@
 		"TYPE": "Тип",
 		"USER": "Пользователь",
 		"VIEW": "Посмотреть",
-		"VISIBILITY": "Видимость"
+		"VISIBILITY": "Видимость",
+		"WAIT": "Подождите"
 	},
 	"DICTIONARIES": {
 		"LABELS": {
@@ -34,13 +34,13 @@
 		"status": "Статус",
 		"terms_training": "Условия обучения"
 	},
-  "FIELD_GROUP": {
-    "PERSONAL_INFORMATION": "Личная информация",
-    "EDUCATIONAL_INFORMATION": "Учебная информация",
-    "GROUP": "Группа",
-    "GRADUATION_AND_ENROLLMENT": "Выпуск и зачисление",
-    "DIPLOMA": "Диплом"
-  },
+	"FIELD_GROUP": {
+		"DIPLOMA": "Диплом",
+		"EDUCATIONAL_INFORMATION": "Учебная информация",
+		"GRADUATION_AND_ENROLLMENT": "Выпуск и зачисление",
+		"GROUP": "Группа",
+		"PERSONAL_INFORMATION": "Личная информация"
+	},
 	"FIELD_LABELS": {
 		"GROUPS": {
 			"FILTER": "Фильтр"
@@ -49,9 +49,16 @@
 		"address": "Адрес прописки",
 		"address2": "Адрес фактического проживания",
 		"birthday": "День рождения",
+		"date_of_enrollment": "Дата зачисления",
+		"date_of_graduation": "Дата выпуска",
+		"diploma": "Серия и номер диплома",
+		"diploma_registration_number": "Регистрационный номер диплома",
+		"enrollment_order": "Приказ зачисления",
 		"first_name": "Имя",
 		"form_study": "Форма обучения",
+		"graduation_order": "Приказ выпуска",
 		"group": "Группа",
+		"group_formation_year": "Год формирования группы",
 		"inn": "ИНН",
 		"last_name": "Фамилия",
 		"notes": "Заметки",
@@ -61,15 +68,8 @@
 		"phone_number": "Номер телефона",
 		"specialty": "Специальность",
 		"status": "Статус",
-		"terms_training": "Условия обучения",
-    "date_of_enrollment": "Дата зачисления",
-    "enrollment_order": "Приказ зачисления",
-    "date_of_graduation": "Дата выпуска",
-    "graduation_order": "Приказ выпуска",
-    "diploma": "Серия и номер диплома",
-    "group_formation_year": "Год формирования группы",
-    "diploma_registration_number": "Регистрационный номер диплома"
-  },
+		"terms_training": "Условия обучения"
+	},
 	"HEADER": {
 		"CREATE_STUDENT": "Добавить студента",
 		"DICTIONARIES": "Словари",
@@ -78,6 +78,21 @@
 		"LOGIN": "Войти",
 		"STUDENTS": "Студенты",
 		"USERS": "Пользователи"
+	},
+	"MODALS": {
+		"RESET_PASSWORD": {
+			"HEADER": "Сбросить пароль",
+			"PASSWORD": "Пароль",
+			"PASSWORD_REPEAT": "Подтверждение пароля"
+		}
+	},
+	"NEW_USER": {
+		"LABELS": {
+			"LOGIN": "Имя учетной записи",
+			"NAME": "ФИО",
+			"PASSWORD": "Пароль",
+			"PRIVILEGE": "Уровень доступа"
+		}
 	},
 	"TABLE_PARAMS": {
 		"cols": "столбцов",
@@ -91,5 +106,19 @@
 			"SUPERVISOR": "Руководитель",
 			"USER": "Пользователь"
 		}
+	},
+	"USER_SETTING": {
+		"CURRENT_PASSWORD": "Текущий пароль",
+		"FULL_NAME": "Фамилия и имя",
+		"MESSAGES": {
+			"SUCCESS": "Пароль успешно изменен."
+		},
+		"NEW_PASSWORD": "Новый пароль",
+		"NEW_PASSWORD_REPEAT": "Повторите новый пароль"
+	},
+	"VALIDATORS": {
+		"MIN_LENGTH": "Минимальный размер {{requiredLength}} символов.",
+		"REPEAT_FAILED": "Поля не совпадают.",
+		"REQUIRED": "Обязательное поле."
 	}
 }

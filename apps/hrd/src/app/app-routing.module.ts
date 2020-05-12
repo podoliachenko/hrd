@@ -1,10 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthControllerGuard } from '@guards/auth-controller.guard';
 
 const routes: Routes = [
-  {path: '', loadChildren: './modules/dashboard/dashboard.module#DashboardModule'},
-  { path: 'auth', loadChildren: './modules/auth/auth.module#AuthModule' }
+  { path: 'auth', loadChildren: () => import('./modules/auth/auth.module').then(m => m.AuthModule) },
+  { path: '', loadChildren: './modules/dashboard/dashboard.module#DashboardModule' }
 ];
 
 @NgModule({

@@ -1,8 +1,6 @@
-import * as mongoose from 'mongoose';
-import { Schema } from 'mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
-export const DictionarySchema: Schema = new mongoose.Schema(
+export const DictionarySchema: Schema = new Schema(
   {
     name: String,
     label: String,

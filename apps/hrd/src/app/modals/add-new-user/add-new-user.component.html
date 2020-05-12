@@ -1,0 +1,58 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'CONST.ADD' | translate"
+          [nzOkDisabled]="formGroup?.invalid"
+          (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <form nz-form [formGroup]="formGroup" *ngIf="formGroup">
+    <nz-form-item class="mb-0">
+      <nz-form-control>
+        <nz-input-group [nzAddOnBefore]="'NEW_USER.LABELS.LOGIN' | translate">
+          <input nz-input id="login" type="text"
+                 [placeholder]="'NEW_USER.LABELS.LOGIN' | translate"
+                 formControlName="login"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-0">
+      <nz-form-control>
+        <nz-input-group [nzAddOnBefore]="'NEW_USER.LABELS.NAME' | translate">
+          <input nz-input id="name" type="text"
+                 [placeholder]="'NEW_USER.LABELS.NAME' | translate"
+                 formControlName="name"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-0">
+      <nz-form-control>
+        <nz-input-group [nzAddOnBefore]="'NEW_USER.LABELS.PASSWORD' | translate" [nzSuffix]="suffixTemplate">
+          <input nz-input id="password"  [type]="passwordVisible ? 'text' : 'password'"
+                 [placeholder]="'NEW_USER.LABELS.PASSWORD' | translate"
+                 formControlName="password"/>
+        </nz-input-group>
+        <ng-template #suffixTemplate>
+          <i nz-icon [nzType]="passwordVisible ? 'eye-invisible' : 'eye'" (click)="passwordVisible = !passwordVisible"></i>
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item class="mb-0">
+      <nz-form-control>
+        <nz-input-group [nzAddOnBefore]="'NEW_USER.LABELS.PRIVILEGE' | translate">
+          <nz-select
+            class="w-100"
+            formControlName="privilege"
+            [nzPlaceHolder]="'NEW_USER.LABELS.PASSWORD' | translate"
+          >
+            <ng-container *ngFor="let ul of usersLvl; let i = index">
+              <nz-option
+                [nzValue]="i"
+                [nzLabel]="ul | translate"
+                *ngIf="
+              getLvl(auth.user.privilege) > i
+            "
+              ></nz-option
+              >
+            </ng-container>
+          </nz-select>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

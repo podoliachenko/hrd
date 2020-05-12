@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, isDevMode, OnInit } from '@angular/core';
 import { HrdAuthService } from '@services/hrd-auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { environment } from '@environment';
+import { NzI18nService, ru_RU, uk_UA } from '@workspace/node_modules/ng-zorro-antd';
 
 @Component({
   selector: 'hrd-navbar',
@@ -18,8 +19,10 @@ export class NavbarComponent implements OnInit {
   ];
 
   version = environment.version;
+  isDevMode = isDevMode;
 
-  constructor(public auth: HrdAuthService, public translate: TranslateService) {
+  constructor(public auth: HrdAuthService, public translate: TranslateService,
+              private i18n: NzI18nService) {
   }
 
   ngOnInit() {
@@ -38,9 +41,12 @@ export class NavbarComponent implements OnInit {
     if (this.translate.currentLang === 'uk') {
       this.translate.use('ru');
       localStorage.setItem('lang', 'ru');
+      this.i18n.setLocale(ru_RU);
+
     } else {
       this.translate.use('uk');
       localStorage.setItem('lang', 'uk');
+      this.i18n.setLocale(uk_UA);
     }
   }
 }

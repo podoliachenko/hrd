@@ -16,9 +16,11 @@ export class DictionaryComponent implements OnInit {
     public service: DictionaryService,
     public route: ActivatedRoute,
     public auth: HrdAuthService
-  ) {}
+  ) {
+  }
 
-  ngOnInit() {}
+  ngOnInit() {
+  }
 
   editName(dictionary: DictionaryOptionSetting, input) {
     if (dictionary.edit) {

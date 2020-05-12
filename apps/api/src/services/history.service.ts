@@ -1,6 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { LoggerDB } from '../schemas/logger.schema';
-import { User } from '../schemas/user.schema';
+import { toPublicUser, User } from '../schemas/user.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 
@@ -11,7 +11,7 @@ export class HistoryService {
   }
 
   async getLogsByTargetIds(ids: string[]) {
-    return await this.logger.aggregate([
+    return this.logger.aggregate([
       {
         '$match': {
           'targetId': {
@@ -26,17 +26,16 @@ export class HistoryService {
           'as': 'user'
         }
       }, {
-        '$project': {
-          'user': {
-            'token': false
-          }
-        }
-      }, {
         '$sort': {
           'date': -1
         }
       }
-    ]);
+    ]).then((v: any[]) => {
+      for (const v2 of v) {
+        v2.user = toPublicUser(v2.user[0]);
+      }
+      return v;
+    });
 
   }
 

@@ -13,6 +13,8 @@ import { ToastModule } from '@workspace/node_modules/primeng/components/toast/to
 import { HrdComponentsModule } from '@components/hrd-components.module';
 import { HrdPipesModule } from '@pipes/hrd-pipes.module';
 import { NewStudentComponent } from '@workspace/apps/hrd/src/app/modules/dashboard/new-student/new-student.component';
+import { DirectivesModule } from '@workspace/apps/hrd/src/app/directives/directives.module';
+import { ModalsModule } from '@workspace/apps/hrd/src/app/modals/modals.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { NewStudentComponent } from '@workspace/apps/hrd/src/app/modules/dashboa
     DashboardRoutingModule,
     ToastModule,
     HrdComponentsModule,
-    HrdPipesModule
+    HrdPipesModule,
+    DirectivesModule,
+    ModalsModule
   ],
   entryComponents: [NewStudentComponent]
 })

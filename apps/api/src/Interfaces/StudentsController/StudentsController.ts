@@ -1,24 +1,24 @@
-import { ApiModelProperty } from '@nestjs/swagger';
+import { ApiProperty } from '@nestjs/swagger';
 
 export class PagesParam {
-  @ApiModelProperty({ description: 'Номер страницы списка студентов' })
+  @ApiProperty({ description: 'Номер страницы списка студентов' })
   page: number;
 }
 
 export class PagesQuery {
-  @ApiModelProperty({
+  @ApiProperty({
     description: 'Обьект фильтра',
     example: '{first_name: "Василий"}'
   })
   filter: any;
 
-  @ApiModelProperty({
+  @ApiProperty({
     description: 'Обьект сортировки',
     example: '{first_name: -1}'
   })
   sort: any;
 
-  @ApiModelProperty({
+  @ApiProperty({
     required: false,
     description: 'Количество студентов на странице'
   })
@@ -26,6 +26,6 @@ export class PagesQuery {
 }
 
 export class StudentParam {
-  @ApiModelProperty({ description: 'Id студента' })
+  @ApiProperty({ description: 'Id студента' })
   id: string;
 }

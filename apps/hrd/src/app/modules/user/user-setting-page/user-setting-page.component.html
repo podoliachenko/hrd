@@ -1,0 +1,45 @@
+<form nz-form nzLayout="vertical" [formGroup]="formName" (ngSubmit)="formNameSubmit()">
+  <nz-form-item class="mb-0">
+    <nz-form-label nzFor="fullName">{{'USER_SETTING.FULL_NAME' | translate}}</nz-form-label>
+    <nz-form-control>
+      <input nz-input formControlName="fullName" nzSize="large" name="fullName" type="text" id="fullName">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="full-name-button">
+    <button nz-button class="login-form-button" nzSize="large"
+            [disabled]="notMatch(formName.get('fullName'))"
+            [nzType]="'primary'">{{'CONST.CHANGE' | translate}}
+    </button>
+  </nz-form-item>
+</form>
+<form nz-form nzLayout="vertical" [formGroup]="formPassword" (ngSubmit)="formPasswordSubmit()">
+  <nz-form-item>
+    <nz-form-label nzFor="currentPassword">{{'USER_SETTING.CURRENT_PASSWORD' | translate}}</nz-form-label>
+    <nz-form-control>
+      <input nz-input nzSize="large" formControlName="currentPassword" name="currentPassword" type="password"
+             id="currentPassword">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="newPassword">{{'USER_SETTING.NEW_PASSWORD' | translate}}</nz-form-label>
+    <nz-form-control>
+      <input nz-input nzSize="large" formControlName="newPassword" name="newPassword" type="password" id="newPassword">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item>
+    <nz-form-label nzFor="newPasswordRepeat">{{'USER_SETTING.NEW_PASSWORD_REPEAT' | translate}}</nz-form-label>
+    <nz-form-control>
+      <input nz-input nzSize="large" formControlName="newPasswordRepeat" name="newPasswordRepeat" type="password" id="newPasswordRepeat">
+    </nz-form-control>
+  </nz-form-item>
+  <nz-form-item class="full-name-button">
+    <button nz-button class="login-form-button" nzSize="large"
+            [disabled]="passwordNotMatch() || formPassword.invalid"
+            [nzType]="'primary'">{{'CONST.CHANGE' | translate}}
+    </button>
+  </nz-form-item>
+</form>
+
+<ng-template #passwordSuccess>
+  {{'USER_SETTING.MESSAGES.SUCCESS' | translate}}
+</ng-template>

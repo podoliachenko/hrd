@@ -24,6 +24,9 @@ import { ContextMenuModule } from '@workspace/node_modules/primeng/components/co
 import { CalendarModule } from '@workspace/node_modules/primeng/components/calendar/calendar';
 import { AutoCompleteModule } from '@workspace/node_modules/primeng/components/autocomplete/autocomplete';
 import { HrdPipesModule } from '@pipes/hrd-pipes.module';
+import { DirectivesModule } from '@workspace/apps/hrd/src/app/directives/directives.module';
+import { ModalModule } from '@workspace/node_modules/ngx-bootstrap';
+import { ModalsModule } from '@workspace/apps/hrd/src/app/modals/modals.module';
 
 
 const components = [AllFieldsComponent,
@@ -71,7 +74,7 @@ const components = [AllFieldsComponent,
     InputTextModule,
     MultiSelectModule,
     PaginatorModule, PanelModule,
-    HrdPipesModule, CommonModule
+    HrdPipesModule, CommonModule, DirectivesModule,ModalsModule
   ]
 })
 export class HrdComponentsModule {

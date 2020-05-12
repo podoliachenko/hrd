@@ -1,16 +1,15 @@
 {
 	"CONST": {
 		"ADD": "Додати",
-    "WAIT": "Зачекайте",
-    "APPLY": "Застосувати",
+		"APPLY": "Застосувати",
 		"CANCEL": "Скасувати",
+		"CHANGE": "Змінити",
 		"CREATE": "Створити",
 		"CREATE_AND_OPEN": "Створити і відкрити",
 		"DATE": "Дата",
 		"DELETE": "Видалити",
 		"EDIT": "Редагувати",
-    "CHANGE": "Змінити",
-    "EDITING": "Редагування",
+		"EDITING": "Редагування",
 		"HIDDEN": "Прихований",
 		"MAKING": "Створення",
 		"NAME": "Назва",
@@ -20,7 +19,8 @@
 		"TYPE": "Тип",
 		"USER": "Користувач",
 		"VIEW": "Переглянути",
-		"VISIBILITY": "Видимість"
+		"VISIBILITY": "Видимість",
+		"WAIT": "Зачекайте"
 	},
 	"DICTIONARIES": {
 		"LABELS": {
@@ -34,13 +34,13 @@
 		"status": "Статус",
 		"terms_training": "Умови навчання"
 	},
-  "FIELD_GROUP": {
-    "PERSONAL_INFORMATION": "Особиста інформація",
-    "EDUCATIONAL_INFORMATION": "Навчальна інформація",
-    "GROUP": "Група",
-    "GRADUATION_AND_ENROLLMENT": "Випуск і зарахування",
-      "DIPLOMA": "Диплом"
-  },
+	"FIELD_GROUP": {
+		"DIPLOMA": "Диплом",
+		"EDUCATIONAL_INFORMATION": "Навчальна інформація",
+		"GRADUATION_AND_ENROLLMENT": "Випуск і зарахування",
+		"GROUP": "Група",
+		"PERSONAL_INFORMATION": "Особиста інформація"
+	},
 	"FIELD_LABELS": {
 		"GROUPS": {
 			"FILTER": "Фільтр"
@@ -49,9 +49,16 @@
 		"address": "Адреса прописки",
 		"address2": "Адреса фактичного проживання",
 		"birthday": "День народження",
+		"date_of_enrollment": "Дата зарахування",
+		"date_of_graduation": "Дата випуску",
+		"diploma": "Серія і номер диплома",
+		"diploma_registration_number": "Реєстраційний номер диплома",
+		"enrollment_order": "Наказ зарахування",
 		"first_name": "Ім'я",
 		"form_study": "Форма навчання",
+		"graduation_order": "Наказ випуску",
 		"group": "Група",
+		"group_formation_year": "Рік формування групи",
 		"inn": "ІПН",
 		"last_name": "Прізвище",
 		"notes": "Примітки",
@@ -61,15 +68,8 @@
 		"phone_number": "Номер телефону",
 		"specialty": "Спеціальність",
 		"status": "Статус",
-		"terms_training": "Умови навчання",
-    "date_of_enrollment": "Дата зарахування",
-    "enrollment_order": "Наказ зарахування",
-    "date_of_graduation": "Дата випуску",
-    "graduation_order": "Наказ випуску",
-    "diploma": "Серія і номер диплома",
-    "group_formation_year": "Рік формування групи",
-    "diploma_registration_number": "Реєстраційний номер диплома"
-  },
+		"terms_training": "Умови навчання"
+	},
 	"HEADER": {
 		"CREATE_STUDENT": "Додати студента",
 		"DICTIONARIES": "Словники",
@@ -78,6 +78,21 @@
 		"LOGIN": "Увійти",
 		"STUDENTS": "Студенти",
 		"USERS": "Користувачі"
+	},
+	"MODALS": {
+		"RESET_PASSWORD": {
+			"HEADER": "Скинути пароль",
+			"PASSWORD": "Пароль",
+			"PASSWORD_REPEAT": "Підтвердження пароля"
+		}
+	},
+	"NEW_USER": {
+		"LABELS": {
+			"LOGIN": "Ім'я облікового запису",
+			"NAME": "ПІБ",
+			"PASSWORD": "Пароль",
+			"PRIVILEGE": "Рівень доступу"
+		}
 	},
 	"TABLE_PARAMS": {
 		"cols": "стовпців",
@@ -91,5 +106,19 @@
 			"SUPERVISOR": "Керівник",
 			"USER": "Користувач"
 		}
+	},
+	"USER_SETTING": {
+		"CURRENT_PASSWORD": "Поточний пароль",
+		"FULL_NAME": "Прізвище та ім'я",
+		"MESSAGES": {
+			"SUCCESS": "Пароль успішно змінений."
+		},
+		"NEW_PASSWORD": "Новий пароль",
+		"NEW_PASSWORD_REPEAT": "Повторіть новий пароль"
+	},
+	"VALIDATORS": {
+		"MIN_LENGTH": "Мінімальний розмір {{requiredLength}} символів.",
+		"REPEAT_FAILED": "Поля не збігаються.",
+		"REQUIRED": "Обов'язкове поле."
 	}
 }

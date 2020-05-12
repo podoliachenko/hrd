@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AuthComponent } from '@workspace/apps/hrd/src/app/modules/auth/auth.component';
 import { LoginComponent } from '@workspace/apps/hrd/src/app/modules/auth/login/login.component';
-import { RegistrationComponent } from '@workspace/apps/hrd/src/app/modules/auth/registration/registration.component';
 
 const routes: Routes = [
   {
@@ -10,8 +9,7 @@ const routes: Routes = [
       {
         path: 'login', component: LoginComponent
       },
-      { path: 'registration', component: RegistrationComponent },
-      {path: '', pathMatch: 'full', redirectTo: 'login'}
+      { path: '', pathMatch: 'full', redirectTo: 'login' }
     ]
   }
 ];

@@ -1,24 +1,40 @@
-import * as mongoose from 'mongoose';
-import { Schema } from 'mongoose';
-import { Document } from 'mongoose';
+import { Document, Schema } from 'mongoose';
 
-export const UserSchema: Schema = new mongoose.Schema(
+export const UserSchema: Schema = new Schema(
   {
-    id: String,
-    token: String,
-    full_name: String,
-    email: String,
+    userName: String,
+    fullName: String,
+    password: String,
     privilege: Number,
-    img: String
+    refreshToken: String,
+    ...{
+      full_name: String,
+      email: String,
+      id: String
+    }
   }
 );
 
-export interface User extends Document {
-  _id: string;
-  id: string;
-  token: string;
-  full_name: string;
-  email: string;
-  privilege: number;
-  img: string;
+export interface OldUser extends Document {
+  full_name?: string;
+  email?: string;
+  id?: string;
+}
+
+export interface User extends OldUser {
+  userName?: string;
+  fullName?: string;
+  password?: string;
+  privilege?: number;
+  refreshToken?: string;
+}
+
+export function toPublicUser(user: User) {
+  const newData = {};
+  for (const key of Object.keys(user)
+    .filter(v => ['userName', 'fullName', 'privilege', 'full_name', 'email', '_id', 'id']
+      .some(v2 => v === v2))) {
+    newData[key] = user[key];
+  }
+  return newData;
 }

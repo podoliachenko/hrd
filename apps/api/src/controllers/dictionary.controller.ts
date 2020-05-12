@@ -3,12 +3,12 @@ import { Model } from 'mongoose';
 import { InjectModel } from '@nestjs/mongoose';
 import { Dictionary } from '../schemas/dictionary.schema';
 import { Level } from '../decorators/level.decorator';
-import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import { LogTarget } from '../decorators/logtarget.decorator';
 import { HistoryService } from '../services/history.service';
 
 
-@ApiUseTags('dictionary')
+@ApiTags('dictionary')
 @Controller('dictionary')
 export class DictionaryController {
   constructor(
@@ -16,7 +16,7 @@ export class DictionaryController {
     private history: HistoryService) {
   }
 
-  @ApiOperation({ title: 'Получить все словари' })
+  @ApiOperation({ summary: 'Получить все словари' })
   @Level(1)
   @Get()
   async getAll(@Param('profileWithDB') profile) {
@@ -51,7 +51,7 @@ export class DictionaryController {
     return dictionaries;
   }
 
-  @ApiOperation({ title: 'Cоздать элемент словаря' })
+  @ApiOperation({ summary: 'Cоздать элемент словаря' })
   @Level(2)
   @Post(':dictionary')
   @LogTarget(value => value[0]._id)
@@ -62,7 +62,7 @@ export class DictionaryController {
     ]);
   }
 
-  @ApiOperation({ title: 'Получить изменить имя словаря' })
+  @ApiOperation({ summary: 'Получить изменить имя словаря' })
   @Level(2)
   @Patch('/:id')
   @LogTarget((_, args) => args.params.id)
@@ -70,7 +70,7 @@ export class DictionaryController {
     return await this.dictionary.update({ _id: id }, { label });
   }
 
-  @ApiOperation({ title: 'Спрятать/показать элемент словаря' })
+  @ApiOperation({ summary: 'Спрятать/показать элемент словаря' })
   @Level(2)
   @Patch('/hide/:id')
   @LogTarget((_, args) => args.params.id)

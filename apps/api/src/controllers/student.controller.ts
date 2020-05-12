@@ -15,7 +15,7 @@ import {
   Param
 } from '@nestjs/common/decorators/http/route-params.decorator';
 import { Level } from '../decorators/level.decorator';
-import { ApiUseTags, ApiOperation } from '@nestjs/swagger';
+import { ApiOperation, ApiTags } from '@nestjs/swagger';
 import {
   PagesParam,
   PagesQuery,
@@ -24,13 +24,13 @@ import {
 import { LogTarget } from '../decorators/logtarget.decorator';
 import { HistoryService } from '../services/history.service';
 
-@ApiUseTags('student')
+@ApiTags('student')
 @Controller('student')
 export class StudentController {
   constructor(private readonly appService: StudentService, private history: HistoryService) {
   }
 
-  @ApiOperation({ title: 'Получить студента по id' })
+  @ApiOperation({ summary: 'Получить студента по id' })
   @Get(':id')
   @Level(1)
   async getStudent(@Param() params: StudentParam, @Param('profileWithDB') profile) {
@@ -41,7 +41,7 @@ export class StudentController {
     return student;
   }
 
-  @ApiOperation({ title: 'Получит указанную страницу списка студентов'})
+  @ApiOperation({ summary: 'Получит указанную страницу списка студентов'})
   @Get('page/:page')
   @Level(1)
   async getPage(
@@ -65,7 +65,7 @@ export class StudentController {
     );
   }
 
-  @ApiOperation({ title: 'Удаляет студента по id' })
+  @ApiOperation({ summary: 'Удаляет студента по id' })
   @Delete(':id')
   @Level(2)
   @LogTarget((_, args) => args.params.id)
@@ -73,7 +73,7 @@ export class StudentController {
     return this.appService.deleteStudent(params.id);
   }
 
-  @ApiOperation({ title: 'Добавить студента' })
+  @ApiOperation({ summary: 'Добавить студента' })
   @Post()
   @Level(2)
   @LogTarget(value => value[0]._id)
@@ -81,7 +81,7 @@ export class StudentController {
     return this.appService.addStudent(body);
   }
 
-  @ApiOperation({ title: 'Изменить студента' })
+  @ApiOperation({ summary: 'Изменить студента' })
   @Patch(':id')
   @Level(2)
   @LogTarget((_, args) => args.params.id)

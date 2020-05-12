@@ -1,5 +1,8 @@
+import { ObjectId } from 'bson';
+
+
 export interface DictionaryOption {
-  _id: string;
+  _id: any;
   label: string;
   value: number;
   hide?: boolean;
@@ -16,7 +19,7 @@ export interface Dictionary {
 }
 
 export interface LogHeader {
-  id: string;
+  id: ObjectId;
   type: string;
   date: string;
   user: string;

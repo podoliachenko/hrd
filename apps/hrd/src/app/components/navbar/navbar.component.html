@@ -11,7 +11,7 @@
         nz-menu-item
         routerLink="/users"
         routerLinkActive="ant-menu-item-selected"
-        *ngIf="auth.checkPrivilege(3)"
+        *hrdPrivilege="3"
       >
         <a class="nav-link">{{'HEADER.USERS' | translate}}</a>
       </li>
@@ -19,7 +19,7 @@
         nz-menu-item
         routerLink="/add-student"
         routerLinkActive="ant-menu-item-selected"
-        *ngIf="auth.checkPrivilege(2)"
+        *hrdPrivilege="2"
       >
         <a class="nav-link">{{'HEADER.CREATE_STUDENT' | translate}}</a>
       </li>
@@ -27,29 +27,31 @@
         nz-menu-item
         routerLink="/dictionaries"
         routerLinkActive="ant-menu-item-selected"
-        *ngIf="auth.checkPrivilege(3)"
+        *hrdPrivilege="3"
       >
         <a class="nav-link">{{'HEADER.DICTIONARIES' | translate}}</a>
       </li>
     </ul>
-    <div class="form-inline my-2 my-lg-0 align-item-center" *ngIf="!auth.user">
-      <button
-        class="btn btn-outline-success my-2 my-sm-0"
-        (click)="auth.logIn()"
-      >
-        {{'HEADER.LOGIN' | translate}}
-      </button>
-    </div>
     <div class="d-flex my-2 my-lg-0 auth mr-2" *ngIf="auth.user">
-      <div class="version" >{{version}}</div>
+      <div class="version" *ngIf="isDevMode()">
+        <nz-select [(ngModel)]="auth.prev">
+          <nz-option [nzValue]="0" nzLabel="0">0</nz-option>
+          <nz-option [nzValue]="1" nzLabel="1">1</nz-option>
+          <nz-option [nzValue]="2" nzLabel="2">2</nz-option>
+          <nz-option [nzValue]="3" nzLabel="3">3</nz-option>
+          <nz-option [nzValue]="4" nzLabel="4">4</nz-option>
+          <nz-option [nzValue]="5" nzLabel="5">5</nz-option>
+        </nz-select>
+      </div>
+      <div class="version">{{version}}</div>
       <img class="lang" [src]="'/assets/images/flags/' +  translate.currentLang + '.gif'" (click)="changeLang()"/>
-      <img [src]="auth.user.photoUrl" alt="" />
-      <div class="name">
-        {{ auth.user.name }}
-        <span class="prefix">{{ getStringLvl(auth.privilege) | translate}}</span>
+
+      <div class="name" routerLink="/user" routerLinkActive="ant-menu-item-selected">
+        {{ auth.user.fullName }}
+        <span class="prefix">{{ getStringLvl(auth.user.privilege) | translate}}</span>
       </div>
       <button nz-button nzShape="circle"
-        (click)="auth.logOut()"
+              (click)="auth.logOut()"
       >
         <i nz-icon nzType="logout" nzTheme="outline"></i>
       </button>

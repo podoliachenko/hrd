@@ -1,0 +1,15 @@
+<nz-modal [(nzVisible)]="isVisible" [nzTitle]="'CONST.ADD' | translate"
+          [nzOkDisabled]="formGroup?.invalid"
+          (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <form nz-form [formGroup]="formGroup" *ngIf="formGroup">
+    <nz-form-item class="mb-0">
+      <nz-form-control>
+        <nz-input-group [nzAddOnBefore]="'DICTIONARIES.LABELS.NAME' | translate">
+          <input nz-input id="name" type="text"
+                 [placeholder]="'DICTIONARIES.LABELS.NAME' | translate"
+                 formControlName="name"/>
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</nz-modal>

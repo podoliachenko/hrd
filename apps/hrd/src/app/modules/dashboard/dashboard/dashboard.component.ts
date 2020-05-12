@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DictionaryService } from '@services/dictionary.service';
 
 @Component({
   selector: 'hrd-dashboard',
@@ -7,9 +8,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private dictionaryService: DictionaryService) {
+  }
 
   ngOnInit() {
+    this.dictionaryService.refreshDictionaries();
   }
 
 }

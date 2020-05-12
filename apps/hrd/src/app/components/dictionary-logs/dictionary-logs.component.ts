@@ -30,7 +30,7 @@ export class DictionaryLogsComponent implements OnInit {
         id: log.targetId,
         type: 'CONST.VISIBILITY',
         date: moment(log.date).format('DD.MM.YYYY hh:mm:ss'),
-        user: log.user[0].full_name
+        user: log.user.fullName
       };
     }
     if (log.url.match(new RegExp('/dictionary/*')) && log.method === 'PATCH') {
@@ -38,7 +38,7 @@ export class DictionaryLogsComponent implements OnInit {
         id: log.targetId,
         type: 'CONST.EDITING',
         date: moment(log.date).format('DD.MM.YYYY hh:mm:ss'),
-        user: log.user[0].full_name
+        user: log.user.fullName
       };
     }
     if (log.url.match(new RegExp('/dictionary')) && log.method === 'POST') {
@@ -46,14 +46,14 @@ export class DictionaryLogsComponent implements OnInit {
         id: log.targetId,
         type: 'CONST.MAKING',
         date: moment(log.date).format('DD.MM.YYYY hh:mm:ss'),
-        user: log.user[0].full_name
+        user: log.user.fullName
       };
     }
     return {
       id: log.targetId,
       type: `${log.method} ${log.url}`,
       date: moment(log.date).format('DD.MM.YYYY hh:mm:ss'),
-      user: log.user[0].full_name
+      user: log.user.fullName
     };
   }
 

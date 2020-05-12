@@ -24,7 +24,7 @@ export class StudentLogsComponent implements OnInit {
       id: log.targetId,
       type: `${log.method} ${log.url}`,
       date: moment(log.date).format('DD.MM.YYYY hh:mm:ss'),
-      user: log.user[0].full_name
+      user: log.user.fullName
     };
 
     if (log.method === 'POST' && log.url.match(new RegExp('/student'))) {

@@ -2,10 +2,11 @@ import { HttpException, Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IStudent } from '../Interfaces/IStudent';
+import { Student } from '../schemas/student.schema';
 
 @Injectable()
 export class StudentService {
-  constructor(@InjectModel('Student') private readonly student: Model<any>) {
+  constructor(@InjectModel('Student') private readonly student: Model<Student>) {
   }
 
   getAll() {
@@ -13,7 +14,8 @@ export class StudentService {
   }
 
   async getPage(page, max, filter = {}, sort = {}) {
-    return await this.student.paginate(this.regFilter(filter), {
+    // @ts-ignore
+    return await this.student.paginate<any, any>(this.regFilter(filter), {
       sort,
       limit: 10,
       page
@@ -43,7 +45,7 @@ export class StudentService {
   }
 
   async getStudent(id) {
-    const student = await this.student.findOne({ _id: id }).catch(() => {
+    const student: Student = await this.student.findOne({ _id: id }).catch(() => {
       throw new HttpException('Student not found', 406);
     });
     if (student) {
@@ -195,5 +197,9 @@ export class StudentService {
   isDate(_date) {
     const _regExp = new RegExp('^(-?(?:[1-9][0-9]*)?[0-9]{4})-(1[0-2]|0[1-9])-(3[01]|0[1-9]|[12][0-9])T(2[0-3]|[01][0-9]):([0-5][0-9]):([0-5][0-9])(.[0-9]+)?(Z)?$');
     return _regExp.test(_date);
+  }
+
+  initStudents() {
+
   }
 }

@@ -16,9 +16,15 @@ import { DictionarySchema } from './schemas/dictionary.schema';
 import { DictionaryController } from './controllers/dictionary.controller';
 import { environment } from './environments/environment';
 import { HistoryService } from './services/history.service';
+import { JwtModule } from '@nestjs/jwt';
 
 @Module({
   imports: [
+    JwtModule.register({
+      secret: 'hard!to-guess_secret', signOptions: {
+        expiresIn: '90s'
+      }
+    }),
     MongooseModule.forRoot(environment.mongodb, {
       useNewUrlParser: true
     }),

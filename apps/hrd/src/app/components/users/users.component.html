@@ -1,30 +1,54 @@
 <ul class="list-group list-group-flush">
+  <li class="list-group-item d-flex justify-content-end">
+    <button nz-button nzType="primary" nzSize="large" (click)="showModal()">
+      {{ 'CONST.ADD' | translate }}
+    </button>
+    <hrd-add-new-user #newUserModal (result)="result($event)"></hrd-add-new-user>
+  </li>
   <li class="list-group-item" *ngFor="let user of users; let j = index">
-    <div class="user">
-      <img [src]="user.img" alt="" />
-      <div class="name">
-        {{ user.full_name }}
-        <div class="prefix">{{ user.email }}</div>
+    <ng-container *ngIf="(!user.email); else oldUser">
+      <div class="user">
+        <div class="name">
+          {{ user.fullName }}
+          <div class="prefix">{{ user.userName }}</div>
+        </div>
       </div>
-    </div>
+    </ng-container>
+    <ng-template #oldUser>
+      <div class="user">
+        <button nz-button nzType="primary" (click)="resetPasswordComponent
+        .showModal({id: user._id})" *hrdPrivilege="4">
+          <i nz-icon nzType="tool"
+             nzTheme="outline"></i>
+        </button>
+        <div class="name">
+          {{ user.full_name }}
+          <div class="prefix">{{ user.email }}</div>
+        </div>
+      </div>
+    </ng-template>
+
     <div class="privilege">
-      <select
+      <nz-select
         class="form-control"
-        (change)="changeLevel($event.target, j)"
-        [value]="getLvl(user.privilege)"
-        [disabled]="getLvl(auth.privilege) <= getLvl(user.privilege)"
+        (ngModelChange)="changeLevel($event, j)"
+        [ngModel]="getLvl(user.privilege)"
+        *ngIf="user.userName"
+        [nzDisabled]="getLvl(auth.user.privilege) <= getLvl(user.privilege)"
       >
         <ng-container *ngFor="let ul of usersLvl; let i = index">
-          <option
-            [value]="i"
+          <nz-option
+            [nzValue]="i"
+            [nzLabel]="ul | translate"
             *ngIf="
-              getLvl(auth.privilege) > i ||
-              getLvl(auth.privilege) <= getLvl(user.privilege)
+              getLvl(auth.user.privilege) > i ||
+              getLvl(auth.user.privilege) <= getLvl(user.privilege)
             "
-            >{{ ul | translate}}</option
+          ></nz-option
           >
         </ng-container>
-      </select>
+      </nz-select>
     </div>
   </li>
 </ul>
+<hrd-reset-password #resetPasswordComponent (newPassword)="newPassword($event)"></hrd-reset-password>

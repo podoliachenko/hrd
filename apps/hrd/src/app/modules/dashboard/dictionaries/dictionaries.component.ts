@@ -17,14 +17,11 @@ export class DictionariesComponent implements OnInit, OnDestroy {
   constructor(
     private service: DictionaryService,
     private auth: HrdAuthService
-  ) {}
+  ) {
+  }
 
   ngOnInit() {
-    this.statusUserChangeSubs = this.auth.statusUserChange.subscribe(val => {
-      if (val && val.status) {
-        this.service.refreshDictionaries();
-      }
-    });
+    this.service.refreshDictionaries();
   }
 
   ngOnDestroy(): void {

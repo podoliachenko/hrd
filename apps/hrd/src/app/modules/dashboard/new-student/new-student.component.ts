@@ -33,11 +33,6 @@ export class NewStudentComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
-    this.statusUserChangeSubs = this.auth.statusUserChange.subscribe(val => {
-      if (val && val.status) {
-        // this.dictionary.refreshDictionaries();
-      }
-    });
   }
 
   save() {

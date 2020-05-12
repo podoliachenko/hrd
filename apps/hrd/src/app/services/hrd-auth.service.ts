@@ -1,60 +1,76 @@
-import { Injectable, OnDestroy } from '@angular/core';
+import { Injectable, OnDestroy, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { BehaviorSubject } from 'rxjs';
+import { User } from '@workspace/apps/api/src/schemas/user.schema';
+import { JwtHelperService } from '@workspace/node_modules/@auth0/angular-jwt';
+import { Router } from '@workspace/node_modules/@angular/router';
+import { Subject } from '@workspace/node_modules/rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
-export class HrdAuthService implements OnDestroy {
-  user: any;
-  privilege: number;
-  public statusUserChange: BehaviorSubject<any>;
+export class HrdAuthService implements OnInit, OnDestroy {
+  user: User;
+  private helperService: JwtHelperService;
+  public needNewToken: boolean;
+  subj: Subject<number>;
 
-  constructor(private http: HttpClient) {
-    this.statusUserChange = new BehaviorSubject(null);
-    /*console.log(auth);
-    this.auth.authState.subscribe(value => {
-      this.user = value;
-      if (value) {
-        localStorage.setItem('logged', 'true');
-        this.getPrivilege();
-      } else {
-        delete localStorage['logged'];
-        this.privilege = null;
-        this.statusUserChange.next({ status: false });
-      }
-    });*/
+  get prev() {
+    return this.user.privilege;
   }
 
-  logIn() {
-    // this.auth.signIn(GoogleLoginProvider.PROVIDER_ID);
+  set prev(value) {
+    this.subj.next(value);
+    this.user.privilege = value;
+  }
+
+  constructor(private http: HttpClient, private router: Router) {
+    this.subj = new Subject<number>();
+    this.helperService = new JwtHelperService();
+    this.getUserFromStorage();
+  }
+
+  getUserFromStorage() {
+    this.user = this.helperService.decodeToken(localStorage.getItem('token')) as User;
+  }
+
+  saveTokens({ token, refreshToken }) {
+    localStorage.setItem('token', token);
+    localStorage.setItem('refreshToken', refreshToken);
+    this.getUserFromStorage();
+  }
+
+  getToken() {
+    return localStorage.getItem('token');
+  }
+
+  getRefreshToken() {
+    return localStorage.getItem('refreshToken');
   }
 
   logOut() {
-    // this.auth.signOut();
+    this.deleteTokens();
+    delete this.user;
+    this.router.navigate(['/auth/login']);
   }
 
-  getPrivilege() {
-    this.http.get('/user/authorization').subscribe((value: any) => {
-      this.privilege = value.privilege;
-      this.statusUserChange.next({
-        status: true,
-        user: this.user,
-        privilege: this.privilege
-      });
-    });
+  deleteTokens() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('refreshToken');
   }
 
   ngOnDestroy(): void {
-    this.statusUserChange.complete();
+    this.subj.complete();
   }
 
   checkPrivilege(lvl: number) {
-    return this.privilege >= lvl;
+    return this.user.privilege >= lvl;
   }
 
   isLoggedIn() {
-    return false;
+    return this.user;
+  }
+
+  ngOnInit(): void {
   }
 
 }
