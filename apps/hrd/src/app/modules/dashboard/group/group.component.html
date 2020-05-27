@@ -2,44 +2,28 @@
   <div class="group-name d-flex align-items-center">
     <h2 class="ml-2">{{'FIELD_LABELS.group' | translate}} {{ group.group }} <span
       *ngIf="route.snapshot.params['year'] !== 'null'">({{route.snapshot.params['year']}})</span></h2>
-    <!--    <div class="func ml-3" *ngIf="auth.checkPrivilege(2)">
-          <button
-            nz-button
-            nzType="primary"
-            (click)="openModal(renameModal)"
-          >{{'CONST.RENAME' | translate }}</button>
-        </div>-->
     <div class="func ml-3" *ngIf="auth.checkPrivilege(2)">
       <button
         nz-button
         type="button"
         class="ui-button-raised ui-button-rounded"
-        (click)="openModalEdit('group')"
+        (click)="openModalEdit(group_field)"
       >{{'CONST.RENAME' | translate}}</button>
     </div>
-
+    <div class="func ml-3" *ngIf="auth.checkPrivilege(1)">
+      <button
+        nz-button
+        type="button"
+        class="ui-button-raised ui-button-rounded"
+        (click)="exportGroupList()"
+      >{{'EXPORT.GROUP_LIST' | translate}}</button>
+    </div>
     <nz-dropdown *ngIf="auth.checkPrivilege(2)" class="ml-3">
       <a nz-dropdown> {{'CONST.EDIT' | translate}} <i nz-icon type="down"></i> </a>
       <ul nz-menu nzSelectable>
-        <li nz-menu-item>
-          <a (click)="openModalEdit('group_formation_year')"
-          >{{'FIELD_LABELS.group_formation_year' | translate}}</a>
-        </li>
-        <li nz-menu-item>
-          <a (click)="openModalEdit('date_of_enrollment')"
-          >{{'FIELD_LABELS.date_of_enrollment' | translate}}</a>
-        </li>
-        <li nz-menu-item>
-          <a (click)="openModalEdit('enrollment_order')"
-          >{{'FIELD_LABELS.enrollment_order' | translate}}</a>
-        </li>
-        <li nz-menu-item>
-          <a (click)="openModalEdit('date_of_graduation')"
-          >{{'FIELD_LABELS.date_of_graduation' | translate}}</a>
-        </li>
-        <li nz-menu-item>
-          <a (click)="openModalEdit('graduation_order')"
-          >{{'FIELD_LABELS.graduation_order' | translate}}</a>
+        <li nz-menu-item *ngFor="let st_filed of student_fields">
+          <a (click)="openModalEdit(st_filed)"
+          >{{'FIELD_LABELS.' + st_filed.field | translate}}</a>
         </li>
       </ul>
     </nz-dropdown>
@@ -50,49 +34,14 @@
     [columns]="students_fields"
     [tableService]="student"
   ></hrd-static-table>
-  <!--<ng-template #renameModal>
-    <div class="modal-header">
-      <h4 class="modal-title pull-left">{{'CONST.NAME' | translate}}</h4>
-      <button type="button" class="close pull-right" aria-label="Close" (click)="renameModalRef.hide()">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>
-    <div class="modal-body">
-      <input
-        pInputText
-        type="text"
-        class="w-100"
-        [value]="group.group"
-        [placeholder]="'CONST.NAME' | translate"
-        #nameField
-      />
-    </div>
-    <div class="modal-footer">
-      <button class="btn-outline-warning btn" (click)="renameModalRef.hide()">
-        {{ 'CONST.CANCEL' | translate }}
-      </button>
-      <button
-        class="btn btn-primary"
-        (click)="saveName(nameField.value)"
-      >
-        {{ 'CONST.APPLY' | translate }}
-      </button>
-    </div>
-  </ng-template>-->
   <nz-modal [(nzVisible)]="isChangeModalVisible" [nzOkLoading]="isLoadingButton"
-            (nzOnOk)="saveModalEdit(field)" (nzOnCancel)="closeModalEdit(); field.value = ''"
+            (nzOnOk)="saveModalEdit()" (nzOnCancel)="closeModalEdit();"
             [nzOkText]="'CONST.APPLY' | translate" [nzCancelText]="'CONST.CANCEL' | translate"
             [nzTitle]="'CONST.EDIT' | translate " [nzCancelDisabled]="isLoadingButton"
             [nzClosable]="!isLoadingButton" [nzMaskClosable]="!isLoadingButton">
     <div class="modal-body">
-      <input
-        nz-input
-        [disabled]="isLoadingButton"
-        type="text"
-        class="w-100"
-        [placeholder]="'FIELD_LABELS.' + selectedField  | translate"
-        #field
-      />
+      <hrd-universal-field *ngIf="selectedFormControl" [config]="selectedField"
+                          [formControl]="selectedFormControl"></hrd-universal-field>
     </div>
   </nz-modal>
 </div>

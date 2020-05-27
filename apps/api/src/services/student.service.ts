@@ -3,10 +3,13 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { IStudent } from '../Interfaces/IStudent';
 import { Student } from '../schemas/student.schema';
+import { GroupListExport, GroupListExportParams } from '../export/GroupListExport';
+import { Dictionary } from '../schemas/dictionary.schema';
 
 @Injectable()
 export class StudentService {
-  constructor(@InjectModel('Student') private readonly student: Model<Student>) {
+  constructor(@InjectModel('Student') private readonly student: Model<Student>,
+              @InjectModel('Dictionary') private readonly dictionary: Model<Dictionary>) {
   }
 
   getAll() {
@@ -201,5 +204,56 @@ export class StudentService {
 
   initStudents() {
 
+  }
+
+
+  async getGroupYearInFile(name, year) {
+    const group = await this.getGroupYear(name, year);
+    const dictionary = await this.dictionary.find();
+    console.log(group);
+    console.log(dictionary);
+    const firstStudent = group.students.filter(v => v.activity === 3)[0];
+    const group_formation_year = new Date(firstStudent.group_formation_year,9,1);
+    const course = (new Date()).getFullYear() - group_formation_year.getFullYear() + 1;
+
+    const args: GroupListExportParams = {
+      form_study: dictionary.find((v) => {
+        return v.name === 'form_study' && v.value === firstStudent.form_study;
+      }).label,
+      department: `Відділення "${dictionary.find((v2) => {
+        return v2.name === 'department' && v2.value === firstStudent.department;
+      }).label}"`,
+      group: `Група ${group.group}`,
+      specialty: dictionary.find((v) => {
+        return v.name === 'specialty' && v.value === firstStudent.specialty;
+      }).label,
+      course: `${this.toRoman(course)} курс`,
+      students: group.students.filter(v => v.activity === 3).map(v => {
+        return {
+          full_name: `${v.last_name} ${v.first_name} ${v.patronymic}`,
+          notes: v.notes,
+          status: dictionary.find((v2) => {
+            return v2.name === 'status' && v2.value === v.status;
+          }).label,
+          terms_training: dictionary.find((v2) => {
+            return v2.name === 'terms_training' && v2.value === v.terms_training;
+          }).label,
+        }
+      })
+    };
+    return await new GroupListExport(args).toBuffer();
+  }
+   toRoman(num) {
+    const decimal = [1000, 900, 500, 400, 100, 90, 50, 40, 10, 9, 5, 4, 1];
+     const roman = ["M", "CM", "D", "CD", "C", "XC", "L", "XL", "X", "IX", "V", "IV", "I"];
+     let result = '';
+
+    for (let i = 0; i <= decimal.length; i++) {
+      while (num % decimal[i] < num) {
+        result =result+ roman[i];
+        num =num-decimal[i];
+      }
+    }
+    return result;
   }
 }

@@ -26,7 +26,8 @@ export const StudentSchema: Schema = new Schema(
     date_of_graduation: Date,
     graduation_order: String,
     diploma: String,
-    diploma_registration_number: String
+    diploma_registration_number: String,
+    department: Number
     // privileges: Date
   }
 ).plugin(pagination);
@@ -56,4 +57,5 @@ export interface Student extends Document {
   graduation_order: string;
   diploma: string;
   diploma_registration_number: string;
+  department: number;
 }

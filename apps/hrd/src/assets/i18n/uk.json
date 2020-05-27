@@ -29,10 +29,14 @@
 			"VALUE": "Значення"
 		},
 		"activity": "Активність",
+		"department": "Відділення",
 		"form_study": "Форма навчання",
 		"specialty": "Спеціальності",
 		"status": "Статус",
 		"terms_training": "Умови навчання"
+	},
+	"EXPORT": {
+		"GROUP_LIST": "Експортувати список"
 	},
 	"FIELD_GROUP": {
 		"DIPLOMA": "Диплом",
@@ -51,6 +55,7 @@
 		"birthday": "День народження",
 		"date_of_enrollment": "Дата зарахування",
 		"date_of_graduation": "Дата випуску",
+		"department": "Відділення",
 		"diploma": "Серія і номер диплома",
 		"diploma_registration_number": "Реєстраційний номер диплома",
 		"enrollment_order": "Наказ зарахування",

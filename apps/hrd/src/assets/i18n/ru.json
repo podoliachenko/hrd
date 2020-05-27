@@ -29,10 +29,14 @@
 			"VALUE": "Значение"
 		},
 		"activity": "Активность",
+		"department": "Отделение",
 		"form_study": "Форма обучения",
 		"specialty": "Специальности",
 		"status": "Статус",
 		"terms_training": "Условия обучения"
+	},
+	"EXPORT": {
+		"GROUP_LIST": "Экспортировать список"
 	},
 	"FIELD_GROUP": {
 		"DIPLOMA": "Диплом",
@@ -51,6 +55,7 @@
 		"birthday": "День рождения",
 		"date_of_enrollment": "Дата зачисления",
 		"date_of_graduation": "Дата выпуска",
+		"department": "Отделение",
 		"diploma": "Серия и номер диплома",
 		"diploma_registration_number": "Регистрационный номер диплома",
 		"enrollment_order": "Приказ зачисления",

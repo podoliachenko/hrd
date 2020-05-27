@@ -6,4 +6,5 @@ export const dictionaries_menu: DictionaryItem[] = [
   { name: 'form_study', label: 'Форма обучения' },
   { name: 'specialty', label: 'Специальности' },
   { name: 'activity', label: 'Активность' },
+  { name: 'department', label: ''}
 ];

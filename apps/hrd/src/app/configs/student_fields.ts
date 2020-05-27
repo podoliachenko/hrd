@@ -5,8 +5,8 @@ export const student_fields: StudentField[] = [
   { field: 'last_name', default: true, validators: [Validators.required] },
   { field: 'first_name', default: true, validators: [Validators.required] },
   { field: 'patronymic', default: true },
-  { field: 'group', default: true, validators: [Validators.required]  },
-  { field: 'group_formation_year', type: 'number', validators: [Validators.required]  },
+  { field: 'group', default: true, validators: [Validators.required] },
+  { field: 'group_formation_year', type: 'number', validators: [Validators.required] },
   {
     field: 'birthday',
     default: true,
@@ -57,7 +57,8 @@ export const student_fields: StudentField[] = [
   },
   { field: 'graduation_order' },
   { field: 'diploma' },
-  { field: 'diploma_registration_number' }
+  { field: 'diploma_registration_number' },
+  { field: 'department', type: 'select', options: 'department', validators: [Validators.required] }
   // {field: 'date_action', header: 'ИНН'},
   // {field: 'order_date', header: 'Дата приказа'},
   // {field: 'output', header: 'ИНН'},
@@ -89,6 +90,7 @@ export const student_schematic = [
       { index: 12, class: 'ant-col-8 p-2' },
       { index: 15, class: 'ant-col-8 p-2' },
       { index: 16, class: 'ant-col-8 p-2' },
+      { index: 24, class: 'ant-col-8 p-2' },
       { index: 17, class: 'ant-col-24 p-2' }
     ]
   }, {

@@ -17,6 +17,7 @@ import { DictionaryController } from './controllers/dictionary.controller';
 import { environment } from './environments/environment';
 import { HistoryService } from './services/history.service';
 import { JwtModule } from '@nestjs/jwt';
+import { ExportController } from './controllers/export.controller';
 
 @Module({
   imports: [
@@ -52,7 +53,8 @@ import { JwtModule } from '@nestjs/jwt';
     UserController,
     GroupsController,
     TestController,
-    DictionaryController
+    DictionaryController,
+    ExportController
   ],
   providers: [
     StudentService,
